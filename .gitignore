@@ -3,7 +3,7 @@ coverage
 build
 node_modules
 stats.json
-
+app/containers/OldHomePage
 # Cruft
 .DS_Store
 npm-debug.log

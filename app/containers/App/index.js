@@ -8,8 +8,8 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/Feature/Loadable';
+import WorkPage from 'containers/WorkPage/Loadable';
+import FeaturePage from 'containers/ListFeature/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -29,11 +29,11 @@ export default function App() {
   return (
     <AppWrapper>
       <Helmet titleTemplate="%s - GnarWork" defaultTitle="GnarWork">
-        <meta name="description" content="A React.js Boilerplate application" />
+        <meta name="description" content="Change Me" />
       </Helmet>
       <Header />
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" component={WorkPage} />
         <Route path="/features" component={FeaturePage} />
         <Route path="" component={NotFoundPage} />
       </Switch>

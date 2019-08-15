@@ -9,21 +9,19 @@
 
 import produce from 'immer';
 import {
-  CHANGE_USERNAME,
   CHANGE_REPO_URL,
-  CODE_MIRROR_STATE,
-  ALL_TESTS_PASS,
-  NUM_ISSUES,
+  UPDATE_CODE_MIRROR_STATE,
+  LOAD_REPO_REQUEST,
+  LOAD_REPO_SUCCESS,
+  ALL_TESTS_PASSING,
   NUM_TESTS,
-  NUM_TESTS_FAILING,
   NUM_TESTS_PASSING,
+  NUM_TESTS_FAILING,
   RUNNING_TESTS,
+  NUM_ISSUES,
   SELECTED_ISSUE,
-  SELECTED_ISSUE_COMPENSATION,
-  FETCHING_REPO_CONTENTS,
-  FETCHING_REPO_ISSUES,
-  REPO_CONTENTS,
-  REPO_ISSUES,
+  LOAD_ISSUES,
+  ISSUES,
 } from './constants';
 
 // The initial state of the App
@@ -42,23 +40,20 @@ export const initialState = {
   haveRepo: false,
   fetchingRepo: false,
   runningTests: false,
+  issues: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
 const homeReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case CHANGE_USERNAME:
-        // Delete prefixed '@' from the github username
-        draft.username = action.username.replace(/@/gi, '');
-        break;
       case CHANGE_REPO_URL:
         draft.repoURL = action.url;
         break;
-      case CODE_MIRROR_STATE:
+      case UPDATE_CODE_MIRROR_STATE:
         draft.codeMirrorState = action.codeMirrorState;
         break;
-      case ALL_TESTS_PASS:
+      case ALL_TESTS_PASSING:
         draft.allTestsPassing = action.allTestsPassing;
         break;
       case NUM_TESTS:
@@ -79,20 +74,17 @@ const homeReducer = (state = initialState, action) =>
       case SELECTED_ISSUE:
         draft.selectedIssue = action.issue;
         break;
-      case SELECTED_ISSUE_COMPENSATION:
-        draft.selectedIssueCompensation = action.compensation;
-        break;
-      case FETCHING_REPO_CONTENTS:
+      case LOAD_REPO_REQUEST:
         draft.fetchingRepoContents = action.fetchingRepoContents;
         break;
-      case FETCHING_REPO_ISSUES:
+      case LOAD_ISSUES:
         draft.fetchingRepoIssues = action.fetchingRepoIssues;
         break;
-      case REPO_CONTENTS:
+      case LOAD_REPO_SUCCESS:
         draft.repoContents = action.repoContents;
         break;
-      case REPO_ISSUES:
-        draft.repoIssues = action.repoIssues;
+      case ISSUES:
+        draft.issues = action.issues;
         break;
     }
   });
