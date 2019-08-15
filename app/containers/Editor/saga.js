@@ -7,7 +7,7 @@ import { LOAD_REPOS } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
-import { makeSelectUsername } from 'containers/HomePage/selectors';
+import { makeSelectUsername } from 'containers/Editor/selectors';
 
 /**
  * Github repos request/response handler
@@ -16,6 +16,23 @@ export function* getRepos() {
   // Select username from store
   const username = yield select(makeSelectUsername());
   const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
+
+  try {
+    // Call our request helper (see 'utils/request')
+    const repos = yield call(request, requestURL);
+    yield put(reposLoaded(repos, username));
+  } catch (err) {
+    yield put(repoLoadingError(err));
+  }
+}
+
+/**
+ * Get Github repo
+ */
+export function* getRepo() {
+  // Select username from store
+  const username = yield select(makeSelectUsername());
+  const repoURL = `https://api.github.com/JohnAllen/remoto-test`;
 
   try {
     // Call our request helper (see 'utils/request')

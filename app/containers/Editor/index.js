@@ -1,77 +1,135 @@
 /*
- * FeaturePage
+ * Main Code Editor
  *
- * List all the features
+ * This is the first thing users see of our App, at the '/' route
  */
-import React from 'react';
+
+import React, { useEffect, memo } from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
-import H1 from 'components/H1';
+import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+import {
+  makeSelectRepos,
+  makeSelectLoading,
+  makeSelectError,
+} from 'containers/App/selectors';
+import H2 from 'components/H2';
+import ReposList from 'components/ReposList';
+import AtPrefix from './AtPrefix';
+import CenteredSection from './CenteredSection';
+import Form from './Form';
+import Input from './Input';
+import Section from './Section';
 import messages from './messages';
-import List from './List';
-import ListItem from './ListItem';
-import ListItemTitle from './ListItemTitle';
+import { loadRepos } from '../App/actions';
+import { changeUsername } from './actions';
+import { makeSelectUsername } from './selectors';
+import reducer from './reducer';
+import saga from './saga';
 
-export default function FeaturePage() {
+const key = 'home';
+
+export function Editor({
+  username,
+  loading,
+  error,
+  repos,
+  onSubmitForm,
+  onChangeUsername,
+}) {
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+
+  useEffect(() => {
+    // When initial state username is not null, submit the form to load repos
+    if (username && username.trim().length > 0) onSubmitForm();
+  }, []);
+
+  const reposListProps = {
+    loading,
+    error,
+    repos,
+  };
+
   return (
-    <div>
+    <article>
       <Helmet>
-        <title>Feature Page</title>
-        <meta
-          name="description"
-          content="Feature page of React.js Boilerplate application"
-        />
+        <title>Editor</title>
+        <meta name="description" content="Code Editor" />
       </Helmet>
-      <H1>
-        <FormattedMessage {...messages.header} />
-      </H1>
-      <List>
-        <ListItem>
-          <ListItemTitle>
-            <FormattedMessage {...messages.scaffoldingHeader} />
-          </ListItemTitle>
+      <div>
+        <CenteredSection>
+          <H2>
+            <FormattedMessage {...messages.startProjectHeader} />
+          </H2>
           <p>
-            <FormattedMessage {...messages.scaffoldingMessage} />
+            <FormattedMessage {...messages.startProjectMessage} />
           </p>
-        </ListItem>
-
-        <ListItem>
-          <ListItemTitle>
-            <FormattedMessage {...messages.feedbackHeader} />
-          </ListItemTitle>
-          <p>
-            <FormattedMessage {...messages.feedbackMessage} />
-          </p>
-        </ListItem>
-
-        <ListItem>
-          <ListItemTitle>
-            <FormattedMessage {...messages.routingHeader} />
-          </ListItemTitle>
-          <p>
-            <FormattedMessage {...messages.routingMessage} />
-          </p>
-        </ListItem>
-
-        <ListItem>
-          <ListItemTitle>
-            <FormattedMessage {...messages.networkHeader} />
-          </ListItemTitle>
-          <p>
-            <FormattedMessage {...messages.networkMessage} />
-          </p>
-        </ListItem>
-
-        <ListItem>
-          <ListItemTitle>
-            <FormattedMessage {...messages.intlHeader} />
-          </ListItemTitle>
-          <p>
-            <FormattedMessage {...messages.intlMessage} />
-          </p>
-        </ListItem>
-      </List>
-    </div>
+        </CenteredSection>
+        <Section>
+          <H2>
+            <FormattedMessage {...messages.trymeHeader} />
+          </H2>
+          {/*<Form onSubmit={onSubmitForm}>*/}
+          {/*  <label htmlFor="username">*/}
+          {/*    <FormattedMessage {...messages.trymeMessage} />*/}
+          {/*    <AtPrefix>*/}
+          {/*      <FormattedMessage {...messages.trymeAtPrefix} />*/}
+          {/*    </AtPrefix>*/}
+          {/*    <Input*/}
+          {/*      id="username"*/}
+          {/*      type="text"*/}
+          {/*      placeholder="mxstbr"*/}
+          {/*      value={username}*/}
+          {/*      onChange={onChangeUsername}*/}
+          {/*    />*/}
+          {/*  </label>*/}
+          {/*</Form>*/}
+          {/*<ReposList {...reposListProps} />*/}
+        </Section>
+      </div>
+    </article>
   );
 }
+
+Editor.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  repos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  onSubmitForm: PropTypes.func,
+  username: PropTypes.string,
+  onChangeUsername: PropTypes.func,
+};
+
+const mapStateToProps = createStructuredSelector({
+  repos: makeSelectRepos(),
+  username: makeSelectUsername(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+});
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
+    onSubmitForm: evt => {
+      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+      dispatch(loadRepos());
+    },
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(HomePage);
