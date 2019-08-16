@@ -10,7 +10,6 @@
 import produce from 'immer';
 import {
   CHANGE_REPO_URL,
-  UPDATE_CODE_MIRROR_STATE,
   LOAD_REPO_REQUEST,
   LOAD_REPO_SUCCESS,
   ALL_TESTS_PASSING,
@@ -26,7 +25,6 @@ import {
 
 // The initial state of the App
 export const initialState = {
-  codeMirrorState: '',
   username: '',
   repoURL: '',
   allTestsPassing: false,
@@ -44,14 +42,11 @@ export const initialState = {
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const homeReducer = (state = initialState, action) =>
+const workpageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case CHANGE_REPO_URL:
         draft.repoURL = action.url;
-        break;
-      case UPDATE_CODE_MIRROR_STATE:
-        draft.codeMirrorState = action.codeMirrorState;
         break;
       case ALL_TESTS_PASSING:
         draft.allTestsPassing = action.allTestsPassing;
@@ -89,4 +84,4 @@ const homeReducer = (state = initialState, action) =>
     }
   });
 
-export default homeReducer;
+export default workpageReducer;

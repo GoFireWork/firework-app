@@ -1,46 +1,27 @@
 /**
- * WorkPage selectors
+ * Issues selectors
  */
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectHome = state => state.home || initialState;
-
-const makeSelectUsername = () =>
-  createSelector(
-    selectHome,
-    homeState => homeState.username,
-  );
-
-const makeSelectGitHubRepoURL = () =>
-  createSelector(
-    selectHome,
-    homeState => homeState.repo.url,
-  );
+const selectIssues = state => state.issues || initialState;
 
 const makeSelectIssues = () =>
   createSelector(
-    selectHome,
-    homeState => homeState.issues,
+    selectIssues,
+    issuesState => issuesState.issues,
   );
 
-const makeSelectIssuesLoadingError = () =>
+const makeSelectIssuesError = () =>
   createSelector(
-    selectHome,
-    homeState => homeState.issuesLoadingError,
+    selectIssues,
+    issuesState => issuesState.error,
   );
 
-const makeSelectTestsLoadingError = () =>
+const makeSelectIssuesLoading = () =>
   createSelector(
-    selectHome,
-    homeState => homeState.testsLoadingError,
+    selectIssues,
+    issuesState => issuesState.loading,
   );
 
-export {
-  selectHome,
-  makeSelectGitHubRepoURL,
-  makeSelectUsername,
-  makeSelectIssuesLoadingError,
-  makeSelectIssues,
-  makeSelectTestsLoadingError,
-};
+export { makeSelectIssues, makeSelectIssuesLoading, makeSelectIssuesError };

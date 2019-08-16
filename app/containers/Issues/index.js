@@ -1,103 +1,63 @@
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import H2 from 'components/H2';
-// import ReposList from 'components/ReposList';
-// import AtPrefix from './AtPrefix';
-import { CenteredSection } from './Elements';
-// import Form from './Form';
-// import Input from './Input';
-import Section from './Section';
-import messages from './messages';
-import { loadRepos } from '../App/actions';
-import { se } from './actions';
+// import H2 from 'components/H2';
+// import { CenteredSection } from './Elements';
+// import Section from './Section';
+// import messages from './messages';
+import { setSelectedIssue } from './actions';
 import {
   makeSelectIssues,
-  makeSelectIssuesLoadingError,
-  makeSelectTestsLoadingError,
+  makeSelectIssuesLoading,
+  makeSelectIssuesError,
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import CodeMirror from '../CodeMirror';
+import IssuesList from './components/IssuesList/List';
 
-const key = 'editor';
+const key = 'issues';
 
-export function WorkPage({ username, loading, error, issues }) {
+export function Issues(props) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
   useEffect(() => {
     // When initial state username is not null, submit the form to load repos
-    if (username && username.trim().length > 0) onSubmitForm();
+    // if (username && username.trim().length > 0) onSubmitForm();
   }, []);
-
-  const issuesListProps = {
-    loadingIssues,
-    loadingIssuesError,
-    issues,
-    selectedIssueURL,
-  };
-
-  const testsListProps = {
-    runningTests,
-    allTestsPassing,
-    tests,
-    numTestsFailing,
-    numTestsPassing,
-  };
 
   return (
     <article>
-      <Helmet>
-        <title>Editor</title>
-        <meta name="description" content="Code Editor" />
-      </Helmet>
       <div>
-        <CenteredSection>
-          <CodeMirror />
-        </CenteredSection>
-        <Issues />
-        {/* <Tests /> */}
+        <IssuesList {...props} />
       </div>
     </article>
   );
 }
 
-WorkPage.propTypes = {
-  loadingIssues: PropTypes.bool,
-  loadingIssuesError: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+Issues.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   issues: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   selectedIssueURL: PropTypes.string,
-  selectIssue: PropTypes.func,
-  runningTests: PropTypes.bool,
-  allTestsPassing: PropTypes.bool,
-  numTestsFailing: PropTypes.number,
-  numTestsPassing: PropTypes.number,
+  changeSelectedIssue: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
+  loading: makeSelectIssuesLoading(),
+  error: makeSelectIssuesError(),
   issues: makeSelectIssues(),
-  issuesLoadingError: makeSelectIssuesLoadingError(),
-  testsLoadingError: makeSelectTestsLoadingError(),
 });
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    onChangeSelectedIssue: evt =>
-      dispatch(changeSelectedIssue(evt.target.value)),
-    // onSubmitForm: evt => {
-    //   if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-    //   dispatch(loadRepos());
-    // },
-  };
-}
+export const mapDispatchToProps = dispatch => ({
+  onChangeSelectedIssue: evt => dispatch(setSelectedIssue(evt.target.value)),
+});
 
 const withConnect = connect(
   mapStateToProps,
@@ -107,4 +67,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(WorkPage);
+)(Issues);

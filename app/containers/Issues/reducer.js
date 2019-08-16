@@ -8,80 +8,35 @@
  */
 
 import produce from 'immer';
-import {
-  CHANGE_REPO_URL,
-  LOAD_REPO_REQUEST,
-  LOAD_REPO_SUCCESS,
-  ALL_TESTS_PASSING,
-  NUM_TESTS,
-  NUM_TESTS_PASSING,
-  NUM_TESTS_FAILING,
-  RUNNING_TESTS,
-  NUM_ISSUES,
-  SELECTED_ISSUE,
-  LOAD_ISSUES,
-  ISSUES,
-} from './constants';
+import { NUM_ISSUES, SELECTED_ISSUE, LOAD_ISSUES, ISSUES } from './constants';
 
 // The initial state of the App
 export const initialState = {
-  username: '',
-  repoURL: '',
-  allTestsPassing: false,
-  numTests: 0,
-  numTestsPassing: 0,
-  numTestsFailing: 0,
+  loading: false,
+  error: false,
   numIssues: 0,
-  fetchingRepoIssues: false,
-  selectedIssue: '',
-  selectedIssueCompensation: 0,
-  haveRepo: false,
-  fetchingRepo: false,
-  runningTests: false,
+  selectedIssueURL: '',
   issues: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const workpageReducer = (state = initialState, action) =>
+const issuesReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case CHANGE_REPO_URL:
-        draft.repoURL = action.url;
-        break;
-      case ALL_TESTS_PASSING:
-        draft.allTestsPassing = action.allTestsPassing;
-        break;
-      case NUM_TESTS:
-        draft.numTests = action.numTests;
-        break;
-      case NUM_TESTS_PASSING:
-        draft.numTestsPassing = action.numTestsPassing;
-        break;
-      case NUM_TESTS_FAILING:
-        draft.numTestsFailing = action.numTestsFailing;
-        break;
-      case RUNNING_TESTS:
-        draft.runningTests = action.runningTests;
-        break;
       case NUM_ISSUES:
         draft.numIssues = action.numIssues;
         break;
       case SELECTED_ISSUE:
-        draft.selectedIssue = action.issue;
-        break;
-      case LOAD_REPO_REQUEST:
-        draft.fetchingRepoContents = action.fetchingRepoContents;
+        draft.selectedIssueURL = action.selectedIssueURL;
         break;
       case LOAD_ISSUES:
-        draft.fetchingRepoIssues = action.fetchingRepoIssues;
-        break;
-      case LOAD_REPO_SUCCESS:
-        draft.repoContents = action.repoContents;
+        draft.loading = true;
         break;
       case ISSUES:
         draft.issues = action.issues;
+        draft.loading = false;
         break;
     }
   });
 
-export default workpageReducer;
+export default issuesReducer;

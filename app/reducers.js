@@ -8,17 +8,19 @@ import { connectRouter } from 'connected-react-router';
 import history from 'utils/history';
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import issuesReducer from 'containers/Issues/reducer';
+import codeMirrorReducer from 'containers/CodeMirror/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
  */
 export default function createReducer(injectedReducers = {}) {
-  const rootReducer = combineReducers({
+  return combineReducers({
     global: globalReducer,
     language: languageProviderReducer,
+    issues: issuesReducer,
+    codeMirror: codeMirrorReducer,
     router: connectRouter(history),
     ...injectedReducers,
   });
-
-  return rootReducer;
 }
