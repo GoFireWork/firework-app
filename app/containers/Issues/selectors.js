@@ -24,4 +24,15 @@ const makeSelectIssuesLoading = () =>
     issuesState => issuesState.loading,
   );
 
-export { makeSelectIssues, makeSelectIssuesLoading, makeSelectIssuesError };
+const makeSelectSelectedIssueURL = () =>
+  createSelector(
+    selectIssues,
+    issuesState => issuesState.selectedIssueURL,
+  );
+
+export {
+  makeSelectIssues,
+  makeSelectIssuesLoading,
+  makeSelectIssuesError,
+  makeSelectSelectedIssueURL,
+};

@@ -7,24 +7,19 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import H2 from 'components/H2';
-import { CenteredSection } from './Elements';
+import H3 from 'components/H3';
 import Issues from '../Issues/index';
 // import Section from './Section';
 // import messages from './messages';
 // import { se } from './actions';
-import {
-  makeSelectIssues,
-  makeSelectIssuesLoadingError,
-  makeSelectTestsLoadingError,
-} from './selectors';
 import reducer from './reducer';
 // import saga from './saga';
 import CodeMirror from '../CodeMirror/index';
+import { makeSelectGitHubRepoURL } from './selectors';
 
 const key = 'workpage';
 
-export function WorkPage() {
+export function WorkPage(props) {
   useInjectReducer({ key, reducer });
   // useInjectSaga({ key, saga });
 
@@ -40,9 +35,10 @@ export function WorkPage() {
         <meta name="description" content="Gnarwork" />
       </Helmet>
       <div>
-        {/*<CenteredSection>*/}
+        <H3>{props.repoURL}</H3>
+        {/*<LeftAlignedSection>*/}
         <CodeMirror />
-        {/*</CenteredSection>*/}
+        {/*</LeftAlignedSection>*/}
         <Issues />
         {/* <Tests /> */}
       </div>
@@ -56,9 +52,7 @@ WorkPage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  issues: makeSelectIssues(),
-  issuesLoadingError: makeSelectIssuesLoadingError(),
-  testsLoadingError: makeSelectTestsLoadingError(),
+  repoURL: makeSelectGitHubRepoURL(),
 });
 
 const withConnect = connect(mapStateToProps);

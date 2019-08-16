@@ -5,7 +5,8 @@ import List from 'components/List';
 import LoadingIndicator from 'components/LoadingIndicator';
 import IssueListItem from 'containers/Issues/components/IssuesListItem';
 
-function IssuesList({ loading, error, issues, selectedIssueURL }) {
+function IssuesList(props) {
+  const { loading, error, issues, selectedIssueURL, selectIssue } = props;
   if (loading) {
     return <List component={LoadingIndicator} />;
   }
@@ -21,6 +22,7 @@ function IssuesList({ loading, error, issues, selectedIssueURL }) {
     return (
       <List
         selectedIssueURL={selectedIssueURL}
+        selectIssue={selectIssue}
         items={issues}
         component={IssueListItem}
       />
@@ -35,6 +37,7 @@ IssuesList.propTypes = {
   error: PropTypes.any,
   issues: PropTypes.array,
   selectedIssueURL: PropTypes.string,
+  selectIssue: PropTypes.func,
 };
 
 export default IssuesList;

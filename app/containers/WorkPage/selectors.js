@@ -1,6 +1,3 @@
-/**
- * WorkPage selectors
- */
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
@@ -15,32 +12,7 @@ const makeSelectUsername = () =>
 const makeSelectGitHubRepoURL = () =>
   createSelector(
     selectHome,
-    homeState => homeState.repo.url,
+    homeState => 'github/remoto-test',
   );
 
-const makeSelectIssues = () =>
-  createSelector(
-    selectHome,
-    homeState => homeState.issues,
-  );
-
-const makeSelectIssuesLoadingError = () =>
-  createSelector(
-    selectHome,
-    homeState => homeState.issuesLoadingError,
-  );
-
-const makeSelectTestsLoadingError = () =>
-  createSelector(
-    selectHome,
-    homeState => homeState.testsLoadingError,
-  );
-
-export {
-  selectHome,
-  makeSelectGitHubRepoURL,
-  makeSelectUsername,
-  makeSelectIssuesLoadingError,
-  makeSelectIssues,
-  makeSelectTestsLoadingError,
-};
+export { selectHome, makeSelectGitHubRepoURL, makeSelectUsername };

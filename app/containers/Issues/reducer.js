@@ -23,9 +23,6 @@ export const initialState = {
 const issuesReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case NUM_ISSUES:
-        draft.numIssues = action.numIssues;
-        break;
       case SELECTED_ISSUE:
         draft.selectedIssueURL = action.selectedIssueURL;
         break;
@@ -34,6 +31,7 @@ const issuesReducer = (state = initialState, action) =>
         break;
       case ISSUES:
         draft.issues = action.issues;
+        draft.numIssues = action.issues.length;
         draft.loading = false;
         break;
     }

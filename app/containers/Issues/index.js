@@ -7,15 +7,16 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-// import H2 from 'components/H2';
+import H3 from '../../components/H3';
 // import { CenteredSection } from './Elements';
-// import Section from './Section';
+import Section from './Section';
 // import messages from './messages';
 import { setSelectedIssue } from './actions';
 import {
   makeSelectIssues,
   makeSelectIssuesLoading,
   makeSelectIssuesError,
+  makeSelectSelectedIssueURL,
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -35,7 +36,10 @@ export function Issues(props) {
   return (
     <article>
       <div>
-        <IssuesList {...props} />
+        <Section>
+          <H3 />
+          <IssuesList {...props} />
+        </Section>
       </div>
     </article>
   );
@@ -46,17 +50,18 @@ Issues.propTypes = {
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   issues: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   selectedIssueURL: PropTypes.string,
-  changeSelectedIssue: PropTypes.func,
+  selectIssue: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   loading: makeSelectIssuesLoading(),
   error: makeSelectIssuesError(),
   issues: makeSelectIssues(),
+  selectedIssueURL: makeSelectSelectedIssueURL(),
 });
 
 export const mapDispatchToProps = dispatch => ({
-  onChangeSelectedIssue: evt => dispatch(setSelectedIssue(evt.target.value)),
+  selectIssue: selectedIssueURL => dispatch(setSelectedIssue(selectedIssueURL)),
 });
 
 const withConnect = connect(
