@@ -5,9 +5,11 @@ import Item from './Item';
 import Wrapper from './Wrapper';
 
 function ListItem(props) {
+  const issue = props.item;
   return (
     <Wrapper>
-      <Item>{props.item.url}</Item>
+      <Item>{issue.title}</Item>
+      <em>{issue.body}</em>
     </Wrapper>
   );
 }

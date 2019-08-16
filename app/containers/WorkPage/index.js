@@ -41,7 +41,7 @@ export function WorkPage() {
       </Helmet>
       <div>
         {/*<CenteredSection>*/}
-        {/*  <CodeMirror />*/}
+        <CodeMirror />
         {/*</CenteredSection>*/}
         <Issues />
         {/* <Tests /> */}
