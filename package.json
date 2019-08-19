@@ -65,6 +65,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.4.3",
+    "chai": "^4.2.0",
     "chalk": "^2.4.2",
     "codemirror": "^5.48.2",
     "compression": "1.7.4",
@@ -140,6 +141,7 @@
     "jest-dom": "3.1.3",
     "jest-styled-components": "6.3.1",
     "lint-staged": "8.1.5",
+    "mocha": "^6.2.0",
     "ngrok": "3.1.1",
     "node-plop": "0.18.0",
     "null-loader": "0.1.1",

@@ -2,18 +2,12 @@ import {
   LOAD_ISSUES_REQUEST,
   ISSUES_LOADING_ERROR,
   ISSUES,
-  NUM_ISSUES,
-  SELECTED_ISSUE,
+  SELECTED_ISSUE_ID,
 } from './constants';
 
-export const setNumIssues = numIssues => ({
-  type: NUM_ISSUES,
-  numIssues,
-});
-
-export const setSelectedIssue = selectedIssueURL => ({
-  type: SELECTED_ISSUE,
-  selectedIssueURL,
+export const setSelectedIssue = selectedIssueID => ({
+  type: SELECTED_ISSUE_ID,
+  selectedIssueID,
 });
 
 export const setFetchingIssues = loadIssuesRequest => ({

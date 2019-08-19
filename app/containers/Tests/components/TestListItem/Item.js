@@ -8,7 +8,7 @@ const Item = styled.div`
   align-items: center;
   padding: 0 1em;
   background: ${props =>
-    props.selectedIssueID === props.item.id ? '#3EF298' : 'white'};
+    props.selectedIssueID === props.item.url ? '#3EF298' : 'white'};
 `;
 
 export default Item;

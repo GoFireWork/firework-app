@@ -16,7 +16,7 @@ import {
   makeSelectIssues,
   makeSelectIssuesLoading,
   makeSelectIssuesError,
-  makeSelectSelectedIssueURL,
+  makeSelectSelectedIssueID,
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -49,7 +49,7 @@ Issues.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   issues: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  selectedIssueURL: PropTypes.string,
+  selectedIssueID: PropTypes.number,
   selectIssue: PropTypes.func,
 };
 
@@ -57,11 +57,11 @@ const mapStateToProps = createStructuredSelector({
   loading: makeSelectIssuesLoading(),
   error: makeSelectIssuesError(),
   issues: makeSelectIssues(),
-  selectedIssueURL: makeSelectSelectedIssueURL(),
+  selectedIssueID: makeSelectSelectedIssueID(),
 });
 
 export const mapDispatchToProps = dispatch => ({
-  selectIssue: selectedIssueURL => dispatch(setSelectedIssue(selectedIssueURL)),
+  selectIssue: selectedIssueID => dispatch(setSelectedIssue(selectedIssueID)),
 });
 
 const withConnect = connect(

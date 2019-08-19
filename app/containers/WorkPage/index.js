@@ -6,16 +6,17 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
-import { useInjectSaga } from 'utils/injectSaga';
 import H3 from 'components/H3';
 import Issues from '../Issues/index';
-// import Section from './Section';
-// import messages from './messages';
-// import { se } from './actions';
+import Tests from '../Tests/index';
+import WorkPageContainer from './WorkPageContainer';
+import CodeMirrorWrapper from '../CodeMirror/CodeMirrorWrapper';
+import { IssuesWrapper } from '../Issues/Elements';
 import reducer from './reducer';
-// import saga from './saga';
 import CodeMirror from '../CodeMirror/index';
-import { makeSelectGitHubRepoURL } from './selectors';
+import { makeSelectSelectedIssueID } from '../Issues/selectors';
+import { setSelectedIssue } from '../Issues/actions';
+import SelectedIssueContextWrapper from './SelectedIssueContextWrapper';
 
 const key = 'workpage';
 
@@ -35,27 +36,44 @@ export function WorkPage(props) {
         <meta name="description" content="Gnarwork" />
       </Helmet>
       <div>
-        <H3>{props.repoURL}</H3>
-        {/*<LeftAlignedSection>*/}
-        <CodeMirror />
-        {/*</LeftAlignedSection>*/}
-        <Issues />
-        {/* <Tests /> */}
+        <H3>Repo: {props.repoURL}</H3>
+        <WorkPageContainer>
+          <CodeMirrorWrapper>
+            <CodeMirror />
+          </CodeMirrorWrapper>
+          <SelectedIssueContextWrapper
+            selectedIssueID={props.selectedIssueID || 0}
+          >
+            <IssuesWrapper>
+              <Issues />
+            </IssuesWrapper>
+            <Tests />
+          </SelectedIssueContextWrapper>
+        </WorkPageContainer>
       </div>
     </article>
   );
 }
 
 WorkPage.propTypes = {
+  selectedIssueID: PropTypes.number,
+  repoURL: PropTypes.string,
   // loading: PropTypes.bool,
   // error: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
-  repoURL: makeSelectGitHubRepoURL(),
+  selectedIssueID: makeSelectSelectedIssueID(),
 });
 
-const withConnect = connect(mapStateToProps);
+export const mapDispatchToProps = dispatch => ({
+  selectIssue: selectedIssueID => dispatch(setSelectedIssue(selectedIssueID)),
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 
 export default compose(
   withConnect,

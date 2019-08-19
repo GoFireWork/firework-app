@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import List from 'components/List';
 import LoadingIndicator from 'components/LoadingIndicator';
-import IssueListItem from 'containers/Issues/components/IssuesListItem';
+import TestListItem from 'containers/Tests/components/TestListItem';
 
-function IssuesList(props) {
+function TestsList(props) {
   const { loading, error, issues, selectedIssueID, selectIssue } = props;
   if (loading) {
     return <List component={LoadingIndicator} />;
@@ -13,7 +13,7 @@ function IssuesList(props) {
 
   if (error !== false) {
     const ErrorComponent = () => (
-      <IssueListItem item="Something went wrong, please try again!" />
+      <TestListItem item="Something went wrong, please try again!" />
     );
     return <List component={ErrorComponent} />;
   }
@@ -32,12 +32,12 @@ function IssuesList(props) {
   return null;
 }
 
-IssuesList.propTypes = {
-  loading: PropTypes.bool,
-  error: PropTypes.any,
-  issues: PropTypes.array,
-  selectedIssueID: PropTypes.number,
-  selectIssue: PropTypes.func,
+TestsList.propTypes = {
+  // loading: PropTypes.bool,
+  // error: PropTypes.any,
+  // issues: PropTypes.array,
+  // selectedIssueID: PropTypes.string,
+  // selectIssue: PropTypes.func,
 };
 
-export default IssuesList;
+export default TestsList;

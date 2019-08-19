@@ -12,7 +12,7 @@ function List(props) {
   if (props.items) {
     content = props.items.map(item => (
       <ComponentToRender
-        selectedIssueURL={props.selectedIssueURL}
+        selectedIssueID={props.selectedIssueID}
         selectIssue={props.selectIssue}
         key={`${item.url}`}
         item={item}
@@ -34,7 +34,7 @@ List.propTypes = {
   component: PropTypes.elementType.isRequired,
   items: PropTypes.array,
   selectIssue: PropTypes.func,
-  selectedIssueURL: PropTypes.string,
+  selectedIssueID: PropTypes.number,
 };
 
 export default List;
