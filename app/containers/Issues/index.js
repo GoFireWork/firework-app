@@ -11,7 +11,7 @@ import H3 from '../../components/H3';
 // import { CenteredSection } from './Elements';
 import Section from './Section';
 // import messages from './messages';
-import { setSelectedIssue } from './actions';
+import { selectIssue } from './actions';
 import {
   makeSelectIssues,
   makeSelectIssuesLoading,
@@ -61,7 +61,9 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  selectIssue: selectedIssueID => dispatch(setSelectedIssue(selectedIssueID)),
+  selectIssue: selectedIssueID => {
+    dispatch(selectIssue(selectedIssueID));
+  },
 });
 
 const withConnect = connect(

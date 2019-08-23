@@ -19,7 +19,7 @@ const AppWrapper = styled.div`
   max-width: calc(1332px + 16px * 2);
   margin: 0 auto;
   display: flex;
-  min-height: 100%;
+  min-height: 100vh;
   padding: 0 10px;
   flex-direction: column;
 `;

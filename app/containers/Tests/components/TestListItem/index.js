@@ -5,18 +5,16 @@ import Item from './Item';
 import Wrapper from './Wrapper';
 
 function ListItem(props) {
-  const issue = props.item;
+  const test = props.item;
   return (
-    <Wrapper onClick={() => props.selectIssue(issue.id)}>
-      <Item {...props}>{issue.title}</Item>
-      <em>{issue.body}</em>
+    <Wrapper>
+      <Item {...props}>{test.title}</Item>
     </Wrapper>
   );
 }
 
 ListItem.propTypes = {
   item: PropTypes.any,
-  selectIssue: PropTypes.func,
 };
 
 export default ListItem;

@@ -6,16 +6,16 @@ export const initialState = {
   running: false,
   error: false,
   selectedTest: '',
-  selectedIssueID: 0,
+  numTests: 0,
 };
 
 /* eslint-disable default-case, no-param-reassign */
 const testsReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case SELECTED_ISSUE_ID:
-        draft.selectedIssueID = action.selectedIssueID;
-        break;
+      // case SELECTED_ISSUE_ID:
+      //   draft.selectedIssueID = action.selectedIssueID;
+      //   break;
       case RUN_TESTS:
         draft.running = true;
         break;

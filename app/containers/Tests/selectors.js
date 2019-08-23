@@ -3,16 +3,16 @@ import { initialState } from './reducer';
 
 const selectTests = state => state.tests || initialState;
 
-const makeSelectTests = () =>
+const makeSelectAllTests = () =>
   createSelector(
     selectTests,
     testsState => testsState.tests,
   );
 
-const makeSelectTestsRunning = () =>
+const makeSelectNumTests = () =>
   createSelector(
     selectTests,
-    testsState => testsState.selectedTest,
+    testsState => testsState.numTests,
   );
 
-export { makeSelectTestsRunning };
+export { makeSelectAllTests, makeSelectNumTests };

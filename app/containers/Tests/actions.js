@@ -1,28 +1,21 @@
-/*
-import {
-  // LOAD_ISSUES_REQUEST,
-  RUN_TESTS,
-  // ISSUES,
-  SELECTED_ISSUE_ID,
-} from './constants';
+import { NUM_TESTS, SELECTED_ISSUE_ID } from './constants';
 
-export const setSelectedIssue = selectedIssueID => ({
+export const setNumTestsForSelectedIssue = selectedIssueID => ({
   type: SELECTED_ISSUE_ID,
   selectedIssueID,
 });
 
-// export const setFetchingIssues = loadIssuesRequest => ({
-//   type: LOAD_ISSUES_REQUEST,
-//   loadIssuesRequest,
-// });
+export const setNumTestsForIssue = numTests => ({
+  type: NUM_TESTS,
+  numTests,
+});
+
+// export const selectIssue = selectedIssueID => dispatch => {
+//   dispatch(setSelectedIssue(selectedIssueID));
 //
-// export const setFetchingIssuesError = issuesLoadingError => ({
-//   type: ISSUES_LOADING_ERROR,
-//   issuesLoadingError,
-// });
-//
-// export const setIssues = issues => ({
-//   type: ISSUES,
-//   issues,
-// });
-*/
+//   dispatch(setNumTestsForSelectedIssue(numSuites.length));
+// };
+
+export const updateTestResults = results => dispatch => {
+  console.log(results[0]);
+};

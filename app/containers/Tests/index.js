@@ -4,58 +4,66 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-// import { useInjectReducer } from 'utils/injectReducer';
-// import { useInjectSaga } from 'utils/injectSaga';
-// import H3 from '../../components/H3';
-// import { CenteredSection } from './Elements';
 import Section from './Section';
-import { makeSelectTestsRunning } from './selectors';
+import { makeSelectNumTests, makeSelectAllTests } from './selectors';
 
-// import reducer from './reducer';
-import saga from './saga';
 import { runTests } from './runTests';
-import TestsList from './components/TestsList/List';
+import TestsList from './components/TestsList/TestsList';
 import { SelectedIssueContext } from '../WorkPage/SelectedIssueContextWrapper';
+import { run } from 'jest-lite';
+import { updateTestResults } from './actions';
 
-const key = 'tests';
-
-export function Tests() {
-  // useInjectReducer({ key, reducer });
-  // useInjectSaga({ key, saga });
+export function Tests(props) {
   const value = useContext(SelectedIssueContext);
   const { selectedIssueID } = value;
   useEffect(() => {
-    if (selectedIssueID !== 0) runTests(selectedIssueID);
+    if (selectedIssueID !== 0) {
+      // eslint-disable-next-line no-inner-declarations,no-shadow
+      async function runTestsForIssue(selectedIssueID) {
+        // const issueNum = 481828735;
+        if (selectedIssueID) {
+          import(/* webpackMode: "eager" */ `./tests/tests`).then(async () => {
+            console.log(`Running tests for ${selectedIssueID}`);
+            const results = await run();
+            updateTestResults(results);
+          });
+        }
+      }
+      runTestsForIssue(selectedIssueID);
+    }
   }, Object.values(value));
 
   return (
     <article>
-      <div id="mocha">
-        <Section>{/*<TestsList {...props} />*/}</Section>
+      <p>{props.numTests} tests found for selected issue</p>
+      <div>
+        <Section>
+          <TestsList {...props} />
+        </Section>
       </div>
     </article>
   );
 }
 
 Tests.propTypes = {
-  // loading: PropTypes.bool,
-  // error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  // issues: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  // selectIssue: PropTypes.func,
+  running: PropTypes.bool,
+  allTestsPassing: PropTypes.bool,
+  tests: PropTypes.array,
+  numTests: PropTypes.number,
 };
 
 const mapStateToProps = createStructuredSelector({
   // running: makeSelectTestsRunning(),
   // error: makeSelectIssuesError(),
-  // issues: makeSelectIssues(),
-  // selectedIssueID: makeSelectSelectedIssueID(),
+  numTests: makeSelectNumTests(),
+  tests: makeSelectAllTests(),
 });
 
-export const mapDispatchToProps = dispatch => ({});
+// export const mapDispatchToProps = dispatch => ({});
 
 const withConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  // mapDispatchToProps,
 );
 
 export default compose(
