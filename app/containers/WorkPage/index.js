@@ -9,7 +9,7 @@ import H3 from 'components/H3';
 import Issues from '../Issues/index';
 import Tests from '../Tests/index';
 import { CenteredSection, Container } from './styles';
-import CodeMirror from '../CodeMirror/index';
+// import CodeMirror from '../CodeMirror/index';
 import { makeSelectSelectedIssueID } from '../Issues/selectors';
 import { setSelectedIssue } from '../Issues/actions';
 import SelectedIssueContextWrapper from './SelectedIssueContextWrapper';
@@ -25,7 +25,7 @@ export function WorkPage(props) {
         <H3>Repo: {props.repoURL}</H3>
       </CenteredSection>
       <Container>
-        <CodeMirror />
+        {/* <CodeMirror /> */}
         <SelectedIssueContextWrapper
           selectedIssueID={props.selectedIssueID || 0}
         >

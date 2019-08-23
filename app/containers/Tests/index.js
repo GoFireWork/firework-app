@@ -4,13 +4,12 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
+import { run } from 'jest-lite';
 import Section from './Section';
 import { makeSelectNumTests, makeSelectAllTests } from './selectors';
 
-import { runTests } from './runTests';
 import TestsList from './components/TestsList/TestsList';
 import { SelectedIssueContext } from '../WorkPage/SelectedIssueContextWrapper';
-import { run } from 'jest-lite';
 import { updateTestResults } from './actions';
 
 export function Tests(props) {
