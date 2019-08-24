@@ -10,12 +10,6 @@ export const setNumTestsForIssue = numTests => ({
   numTests,
 });
 
-// export const selectIssue = selectedIssueID => dispatch => {
-//   dispatch(setSelectedIssue(selectedIssueID));
-//
-//   dispatch(setNumTestsForSelectedIssue(numSuites.length));
-// };
-
 export const updateTestResults = results => dispatch => {
   console.log(results[0]);
 };
