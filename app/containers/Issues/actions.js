@@ -4,7 +4,6 @@ import {
   ISSUES,
   SELECTED_ISSUE_ID,
 } from './constants';
-// import { setNumTestsForSelectedIssue } from '../Tests/actions';
 
 export const setSelectedIssue = selectedIssueID => ({
   type: SELECTED_ISSUE_ID,
@@ -28,8 +27,4 @@ export const setIssues = issues => ({
 
 export const selectIssue = selectedIssueID => dispatch => {
   dispatch(setSelectedIssue(selectedIssueID));
-
-  //  TODO improve this once we have more tests
-  // const numTests = results.suite.suites[0].tests.length;
-  // dispatch(setNumTestsForSelectedIssue(numTests));
 };

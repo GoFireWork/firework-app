@@ -1,4 +1,4 @@
-import { NUM_TESTS, SELECTED_ISSUE_ID } from './constants';
+import { NUM_TESTS, SELECTED_ISSUE_ID, TESTS_RESULTS } from './constants';
 
 export const setNumTestsForSelectedIssue = selectedIssueID => ({
   type: SELECTED_ISSUE_ID,
@@ -10,6 +10,7 @@ export const setNumTestsForIssue = numTests => ({
   numTests,
 });
 
-export const updateTestResults = results => dispatch => {
-  console.log(results[0]);
-};
+export const updateTestsResults = testsStatuses => ({
+  type: TESTS_RESULTS,
+  testsStatuses,
+});
