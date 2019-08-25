@@ -1,41 +1,23 @@
-import React, { useContext, useEffect, memo } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
 import Section from './Section';
-import { makeSelectNumTests, makeSelectAllTests } from './selectors';
+import {
+  makeSelectTestsResults,
+  makeSelectTestsResultsForSelectedIssue,
+  makeSelectTestsRunning,
+} from './selectors';
 
 import TestsList from './components/TestsList/TestsList';
-import { SelectedIssueContext } from '../WorkPage/SelectedIssueContextWrapper';
-// import { runTests } from './runTests';
-import { updateTestsResults } from './actions';
-import { run } from 'jest-lite';
-
-function requireAll(r) {
-  r.keys().forEach(r);
-}
+import { runTests } from './actions';
 
 export function Tests(props) {
-  const value = useContext(SelectedIssueContext);
-  const { selectedIssueID } = value;
-  useEffect(() => {
-    if (selectedIssueID !== 0) {
-      // eslint-disable-next-line no-inner-declarations
-      function runTests() {
-        requireAll(require.context('./tests/expTests/', true, /\.js$/));
-        const results = run();
-        console.log(`${results}`);
-        updateTestsResults(results);
-      }
-      runTests();
-    }
-  }, Object.values(value));
-
   return (
     <article>
-      <p>{props.numTests} tests found for selected issue</p>
+      {/* <p>{props.numTests} tests found for selected issue</p> */}
       <div>
         <Section>
           <TestsList {...props} />
@@ -50,20 +32,22 @@ Tests.propTypes = {
   allTestsPassing: PropTypes.bool,
   tests: PropTypes.array,
   numTests: PropTypes.number,
+  setTestsResults: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  // running: makeSelectTestsRunning(),
-  // error: makeSelectIssuesError(),
-  numTests: makeSelectNumTests(),
-  tests: makeSelectAllTests(),
+  testsResults: makeSelectTestsResults(),
+  running: makeSelectTestsRunning(),
+  testsResultsForIssue: makeSelectTestsResultsForSelectedIssue(),
 });
 
-// export const mapDispatchToProps = dispatch => ({});
+export const mapDispatchToProps = dispatch => ({
+  selectIssue: dispatch(runTests()),
+});
 
 const withConnect = connect(
   mapStateToProps,
-  // mapDispatchToProps,
+  mapDispatchToProps,
 );
 
 export default compose(
