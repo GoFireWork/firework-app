@@ -84,7 +84,7 @@
     "isomorphic-git": "^0.64.5",
     "jest": "^24.9.0",
     "jest-lite": "^1.0.0-alpha.4",
-    "lodash": "4.17.11",
+    "lodash": "^4.17.11",
     "minimist": "1.2.0",
     "monaco-editor": "^0.17.1",
     "prop-types": "15.7.2",
