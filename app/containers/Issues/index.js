@@ -1,6 +1,5 @@
-import React, { useEffect, memo } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-// import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -8,9 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import H3 from '../../components/H3';
-// import { CenteredSection } from './Elements';
 import Section from './Section';
-// import messages from './messages';
 import { selectIssue } from './actions';
 import {
   makeSelectIssues,
@@ -28,16 +25,11 @@ export function Issues(props) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  useEffect(() => {
-    // When initial state username is not null, submit the form to load repos
-    // if (username && username.trim().length > 0) onSubmitForm();
-  }, []);
-
   return (
     <article>
       <div>
         <Section>
-          <H3 />
+          <H3>{props.issues.length} issues</H3>
           <IssuesList {...props} />
         </Section>
       </div>

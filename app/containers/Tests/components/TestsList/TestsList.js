@@ -6,7 +6,7 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import TestListItem from 'containers/Tests/components/TestListItem';
 
 function TestsList(props) {
-  const { running, error, allTestsPassing, tests } = props;
+  const { running, error, tests } = props;
   if (running) {
     return <List component={LoadingIndicator} />;
   }
@@ -29,7 +29,7 @@ TestsList.propTypes = {
   running: PropTypes.bool,
   error: PropTypes.any,
   tests: PropTypes.array,
-  allTestsPassing: PropTypes.bool,
+  // allTestsPassing: PropTypes.bool,
 };
 
 export default TestsList;
