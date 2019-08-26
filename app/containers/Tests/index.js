@@ -1,32 +1,19 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
 
 import H3 from 'components/H3';
 import TestsStyles from './styles';
 
-import { runTests } from './actions';
-import {
-  makeSelectTestsResults,
-  makeSelectTestsResultsForSelectedIssue,
-  makeSelectTestsRunning,
-} from './selectors';
-import { makeSelectSelectedIssueID } from '../Issues/selectors';
+import { getTestsError, getTestsResults, getTestsRunning } from './reducer';
+
+import { getSelectedIssueID } from '../Issues/reducer';
 
 import TestsList from './components/TestsList/TestsList';
 import TestsMetaData from './components/TestsCounts';
 
 export function Tests(props) {
-  console.log(`${props.selectedIssueID}`);
-  useEffect(() => {
-    async function reRunTests() {
-      await runTests();
-    }
-    reRunTests().then(() => console.log(`Tests done`));
-  }, [props.selectedIssueID]);
-
   return (
     <article>
       <div>
@@ -48,20 +35,18 @@ Tests.propTypes = {
   testsResults: PropTypes.array,
 };
 
-const mapStateToProps = createStructuredSelector({
-  selectedIssueID: makeSelectSelectedIssueID(),
-  testsResults: makeSelectTestsResults(),
-  running: makeSelectTestsRunning(),
-  testsResultsForIssue: makeSelectTestsResultsForSelectedIssue(),
+const mapStateToProps = state => ({
+  running: getTestsRunning(state),
+  error: getTestsError(state),
+  selectedIssueID: getSelectedIssueID(state),
+  testsResults: getTestsResults(state),
 });
 
-export const mapDispatchToProps = () => ({
-  runTests,
-});
+// export const mapDispatchToProps = () => ({});
 
 const withConnect = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 );
 
 export default compose(

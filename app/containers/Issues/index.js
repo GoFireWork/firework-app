@@ -2,20 +2,19 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import H3 from '../../components/H3';
 import Section from './Section';
 import { selectIssue } from './actions';
-import {
-  makeSelectIssues,
-  makeSelectIssuesLoading,
-  makeSelectIssuesError,
-  makeSelectSelectedIssueID,
-} from './selectors';
-import reducer from './reducer';
+
+import reducer, {
+  getIssues,
+  getIssuesError,
+  getIssuesLoading,
+  getSelectedIssueID,
+} from './reducer';
 import saga from './saga';
 import IssuesList from './components/IssuesList/List';
 
@@ -45,11 +44,11 @@ Issues.propTypes = {
   selectIssue: PropTypes.func,
 };
 
-const mapStateToProps = createStructuredSelector({
-  loading: makeSelectIssuesLoading(),
-  error: makeSelectIssuesError(),
-  issues: makeSelectIssues(),
-  selectedIssueID: makeSelectSelectedIssueID(),
+const mapStateToProps = state => ({
+  loading: getIssuesLoading(state),
+  error: getIssuesError(state),
+  issues: getIssues(state),
+  selectedIssueID: getSelectedIssueID(state),
 });
 
 export const mapDispatchToProps = dispatch => ({

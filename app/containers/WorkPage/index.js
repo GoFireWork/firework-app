@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
 
 import H3 from 'components/H3';
 import Issues from '../Issues/index';
 import Tests from '../Tests/index';
 import { CenteredSection, Container } from './styles';
 // import CodeMirror from '../CodeMirror/index';
-import { makeSelectSelectedIssueID } from '../Issues/selectors';
 import { setSelectedIssue } from '../Issues/actions';
 import SelectedIssueContextWrapper from './SelectedIssueContextWrapper';
+import { getSelectedIssueID } from '../Issues/reducer';
 
 export function WorkPage(props) {
   return (
@@ -48,8 +47,8 @@ WorkPage.defaultProps = {
   repoURL: 'https://github.com/Distense/distense-ui',
 };
 
-const mapStateToProps = createStructuredSelector({
-  selectedIssueID: makeSelectSelectedIssueID(),
+const mapStateToProps = state => ({
+  selectedIssueID: getSelectedIssueID(state),
 });
 
 export const mapDispatchToProps = dispatch => ({
