@@ -29,7 +29,6 @@ TestsList.propTypes = {
   running: PropTypes.bool,
   error: PropTypes.any,
   tests: PropTypes.array,
-  // allTestsPassing: PropTypes.bool,
 };
 
 export default TestsList;

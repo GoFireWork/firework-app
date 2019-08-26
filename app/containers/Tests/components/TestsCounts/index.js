@@ -1,14 +1,9 @@
-import React, { memo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
 
 import TestSummary from '../TestsSummary';
 
-import { makeSelectTestsResultsForSelectedIssue } from '../../selectors';
-
-export function TestsMetaData(props) {
+export default function TestsCounts(props) {
   const { testsResults } = props;
   const fileTestSuccessCount = Object.keys(testsResults).filter(
     f => testsResults[f] === 'pass',
@@ -31,20 +26,6 @@ export function TestsMetaData(props) {
   );
 }
 
-TestsMetaData.propTypes = {
+TestsCounts.propTypes = {
   testsResults: PropTypes.array,
 };
-
-const mapStateToProps = createStructuredSelector({
-  testsResults: makeSelectTestsResultsForSelectedIssue(),
-});
-
-const withConnect = connect(
-  mapStateToProps,
-  null,
-);
-
-export default compose(
-  withConnect,
-  memo,
-)(TestsMetaData);
