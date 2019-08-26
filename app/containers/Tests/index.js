@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import Section from './Section';
+import H3 from 'components/H3';
+import TestsStyles from './styles';
+
 import {
   makeSelectTestsResults,
   makeSelectTestsResultsForSelectedIssue,
@@ -12,16 +14,18 @@ import {
 } from './selectors';
 
 import TestsList from './components/TestsList/TestsList';
+import TestsMetaData from './components/TestsCounts';
 import { runTests } from './actions';
 
 export function Tests(props) {
   return (
     <article>
-      {/* <p>{props.numTests} tests found for selected issue</p> */}
       <div>
-        <Section>
+        <TestsStyles>
+          <H3>{props.testsResults.length} tests found</H3>
+          <TestsMetaData {...props} />
           <TestsList {...props} />
-        </Section>
+        </TestsStyles>
       </div>
     </article>
   );
@@ -29,9 +33,8 @@ export function Tests(props) {
 
 Tests.propTypes = {
   running: PropTypes.bool,
-  allTestsPassing: PropTypes.bool,
   tests: PropTypes.array,
-  numTests: PropTypes.number,
+  testsResults: PropTypes.array,
   setTestsResults: PropTypes.func,
 };
 
