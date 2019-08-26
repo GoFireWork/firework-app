@@ -5,7 +5,6 @@ import { SELECTED_ISSUE_ID, LOAD_ISSUES, ISSUES } from './constants';
 export const initialState = {
   loading: false,
   error: false,
-  numIssues: 0,
   selectedIssueID: 0,
   issues: [],
 };
@@ -22,10 +21,14 @@ const issuesReducer = (state = initialState, action) =>
         break;
       case ISSUES:
         draft.issues = action.issues;
-        draft.numIssues = action.issues.length;
         draft.loading = false;
         break;
     }
   });
 
 export default issuesReducer;
+
+export const getSelectedIssueID = state => state.issues.selectedIssueID;
+export const getIssuesLoading = state => state.issues.loading;
+export const getIssuesError = state => state.issues.error;
+export const getIssues = state => state.issues.issues;

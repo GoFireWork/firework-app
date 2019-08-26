@@ -1,9 +1,11 @@
+import { run } from 'jest-lite';
 import {
   LOAD_ISSUES_REQUEST,
   ISSUES_LOADING_ERROR,
   ISSUES,
   SELECTED_ISSUE_ID,
 } from './constants';
+import { setTestsResults } from '../Tests/actions';
 
 export const setSelectedIssue = selectedIssueID => ({
   type: SELECTED_ISSUE_ID,
@@ -25,6 +27,20 @@ export const setIssues = issues => ({
   issues,
 });
 
-export const selectIssue = selectedIssueID => dispatch => {
+function requireAll(r) {
+  r.keys().forEach(r);
+}
+
+export const runTests = async () => {
+  console.log(`Beginning runTests`);
+  requireAll(require.context('../Tests/tests/expTests/', true, /\.js$/));
+  const results = await run();
+  console.log(`${results.length} tests found`);
+  return results;
+};
+
+export const selectIssue = selectedIssueID => async dispatch => {
   dispatch(setSelectedIssue(selectedIssueID));
+  const results = await runTests();
+  dispatch(setTestsResults(results));
 };
