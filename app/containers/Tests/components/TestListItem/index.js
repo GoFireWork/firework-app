@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Item from './Item';
 import Wrapper from './Wrapper';
 
-function ListItem(props) {
+function TestListItem(props) {
   const test = props.item;
   return (
     <Wrapper>
@@ -13,8 +13,8 @@ function ListItem(props) {
   );
 }
 
-ListItem.propTypes = {
+TestListItem.propTypes = {
   item: PropTypes.any,
 };
 
-export default ListItem;
+export default TestListItem;

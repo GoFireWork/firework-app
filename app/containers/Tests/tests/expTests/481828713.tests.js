@@ -7,8 +7,8 @@ describe('481828735 sum', () => {
   });
 });
 
-describe('481828712 sum', () => {
-  it('481828712 should return sum of arguments', () => {
+describe('481828713 sum', () => {
+  it('481828713 should return sum of arguments', () => {
     expect(sum(1, 2)).toBe(4);
   });
 });
