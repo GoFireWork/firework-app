@@ -25,5 +25,21 @@ const testsReducer = (state = initialState, action) =>
 export default testsReducer;
 
 export const getTestsResults = state => state.tests.testsResults;
+export const getTestsResultsForIssue = state => {
+  const { selectedIssueID } = state.issues;
+  if (selectedIssueID) {
+    //  testPath is an array within each test of paths;
+    //  don't want to count each test twice
+    const testsForIssue = state.tests.testsResults.filter(
+      testResult =>
+        testResult.testPath.filter(
+          path => path.indexOf(state.issues.selectedIssueID) > -1,
+        ).length > 0,
+    );
+    return testsForIssue;
+  }
+  return [];
+};
+
 export const getTestsRunning = state => state.tests.running;
 export const getTestsError = state => state.tests.error;
