@@ -19,10 +19,11 @@ export default function TestsCounts(props) {
     testsResults,
     testResult => testResult.status === 'fail',
   );
-  const numTotal = testsResults.length;
 
+  const numTotal = testsResults.length;
   const numPassing = passing.length;
   const numFailing = failing.length;
+
   return (
     <article>
       <TestDetails>
