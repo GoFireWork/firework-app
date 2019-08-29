@@ -65,6 +65,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.4.3",
+    "@isomorphic-git/lightning-fs": "^3.3.0",
+    "browserfs": "^1.4.3",
     "chai": "^4.2.0",
     "chalk": "^2.4.2",
     "codemirror": "^5.48.2",
@@ -79,6 +81,7 @@
     "intl": "1.2.5",
     "invariant": "2.2.4",
     "ip": "1.1.5",
+    "isomorphic-git": "^0.64.5",
     "jest": "^24.9.0",
     "jest-lite": "^1.0.0-alpha.4",
     "lodash": "4.17.11",

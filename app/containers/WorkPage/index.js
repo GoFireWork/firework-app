@@ -45,7 +45,7 @@ WorkPage.propTypes = {
 };
 
 WorkPage.defaultProps = {
-  repoURL: 'github.com/Distense/Distense',
+  repoURL: 'https://github.com/Distense/distense-ui',
 };
 
 const mapStateToProps = createStructuredSelector({
