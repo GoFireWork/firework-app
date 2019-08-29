@@ -8,9 +8,7 @@ import 'codemirror/theme/material.css';
 
 import { createStructuredSelector } from 'reselect';
 
-// import H2 from 'components/H2';
-// import Section from './Section';
-// import messages from './messages';
+import { Container } from './Container';
 import { changeCodeMirrorState } from './actions';
 import { selectCodeMirrorState, selectCodeMirrorError } from './selectors';
 import { CodeMirrorWrapper } from './CodeMirrorWrapper';
@@ -22,6 +20,7 @@ export function CodeMirror(props) {
 
   return (
     <CodeMirrorWrapper>
+    <div>
       <ControlledCodeMirror
         value={props.codeMirrorState}
         options={{
@@ -37,11 +36,11 @@ export function CodeMirror(props) {
         }}
       />
     </CodeMirrorWrapper>
+    </div>
   );
 }
 
 CodeMirror.propTypes = {
-  // loading: PropTypes.bool,
   codeMirrorState: PropTypes.string,
   onChangeCodeMirror: PropTypes.func,
   // codeMirrorError: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
