@@ -8,22 +8,23 @@ import 'codemirror/theme/material.css';
 
 import { createStructuredSelector } from 'reselect';
 
-import { Container } from './Container';
 import { changeCodeMirrorState } from './actions';
 import { selectCodeMirrorState, selectCodeMirrorError } from './selectors';
-import reducer from './reducer';
+import { CodeMirrorWrapper } from './CodeMirrorWrapper';
+
 require('codemirror/mode/javascript/javascript');
 
 export function CodeMirror(props) {
   useEffect(() => {}, []);
 
   return (
-    <div>
+    <CodeMirrorWrapper>
       <ControlledCodeMirror
         value={props.codeMirrorState}
         options={{
           mode: 'javascript',
           lineNumbers: true,
+          theme: 'material',
         }}
         onBeforeChange={(editor, data, value) => {
           props.onChangeCodeMirror(value);
@@ -32,12 +33,11 @@ export function CodeMirror(props) {
           props.onChangeCodeMirror(value);
         }}
       />
-    </div>
+    </CodeMirrorWrapper>
   );
 }
 
 CodeMirror.propTypes = {
-  // loading: PropTypes.bool,
   codeMirrorState: PropTypes.string,
   onChangeCodeMirror: PropTypes.func,
   // codeMirrorError: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),

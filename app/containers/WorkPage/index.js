@@ -9,9 +9,7 @@ import Issues from '../Issues/index';
 import Tests from '../Tests/index';
 import {
   CenteredSection,
-  CodeMirrorPlaceHolder,
   EditorContainer,
-  Files,
   Preview,
   PreviewContainer,
   WorkPageContainer,

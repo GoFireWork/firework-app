@@ -7,6 +7,27 @@ const Ul = styled.ul`
   max-height: 30em;
   overflow-y: auto;
   padding: 0;
+  ::-webkit-scrollbar-track {
+    background-color: #191d1f;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    background-color: #191d1f;
+  }
+  ::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #333637;
+  }
+  > li {
+    border-top: 0px;
+    > div {
+      > p {
+        margin-left: 15px;
+        color: #4a616c;
+      }
+    }
+  }
 `;
 
 export default Ul;

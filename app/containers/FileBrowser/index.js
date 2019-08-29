@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import { setFetchingFiles } from './actions';
+import { setFetchingFiles, selectFile } from './actions';
 import {
   makeSelectFiles,
   makeSelectFilesLoading,
@@ -41,6 +41,7 @@ FileBrowserContainer.propTypes = {
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   files: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   setFetchingFiles: PropTypes.func,
+  selectFile: PropTypes.func,
   repo: PropTypes.string,
 };
 
@@ -53,6 +54,9 @@ const mapStateToProps = createStructuredSelector({
 export const mapDispatchToProps = dispatch => ({
   setFetchingFiles: repoURL => {
     dispatch(setFetchingFiles(repoURL));
+  },
+  selectFile: selectedIssueID => {
+    dispatch(selectFile(selectedIssueID));
   },
 });
 
