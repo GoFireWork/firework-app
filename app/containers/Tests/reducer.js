@@ -6,6 +6,7 @@ export const initialState = {
   error: false,
   selectedTest: '',
   testsResults: [],
+  failingTestsResults: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -37,6 +38,22 @@ export const getTestsResultsForIssue = state => {
         ).length > 0,
     );
     return testsForIssue;
+  }
+  return [];
+};
+
+export const getFailingTestsResultsForIssue = state => {
+  const { selectedIssueID } = state.issues;
+  if (selectedIssueID) {
+    //  testPath is an array within each test of paths;
+    //  don't want to count each test twice
+    const failingTestsForIssue = state.tests.testsResults.filter(
+      testResult =>
+        testResult.testPath.filter(
+          path => path.indexOf(state.issues.selectedIssueID) > -1,
+        ).length > 0 && testResult.status === 'fail',
+    );
+    return failingTestsForIssue;
   }
   return [];
 };

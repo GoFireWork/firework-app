@@ -3,31 +3,32 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import H3 from 'components/H3';
-import TestsStyles from './styles';
+import { TestsContainer, PreviewHeader } from './styles';
 
 import {
   getTestsError,
+  getFailingTestsResultsForIssue,
   getTestsResultsForIssue,
   getTestsRunning,
 } from './reducer';
 
 import { getSelectedIssueID } from '../Issues/reducer';
 
-// import TestsList from './components/TestsList/TestsList';
+import FailingTestsList from './components/FailingTestsList/FailingTestsList';
 import TestsCounts from './components/TestsCounts';
 
 export function Tests(props) {
+  const { selectedIssueID, testsResults } = props;
   return (
-    <article>
-      <div>
-        <TestsStyles>
-          <H3>{props.testsResults.length} tests found for selected issue</H3>
-          <TestsCounts {...props} />
-          {/* <TestsList {...props} /> */}
-        </TestsStyles>
-      </div>
-    </article>
+    <TestsContainer>
+      <PreviewHeader>
+        {selectedIssueID
+          ? `${testsResults.length} tests found for selected issue`
+          : 'Select An Issue to Run Tests'}
+      </PreviewHeader>
+      <TestsCounts {...props} />
+      <FailingTestsList {...props} />
+    </TestsContainer>
   );
 }
 
@@ -37,6 +38,7 @@ Tests.propTypes = {
   selectedIssueID: PropTypes.number,
   tests: PropTypes.array,
   testsResults: PropTypes.array,
+  failingTests: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
@@ -44,6 +46,7 @@ const mapStateToProps = state => ({
   error: getTestsError(state),
   selectedIssueID: getSelectedIssueID(state),
   testsResults: getTestsResultsForIssue(state),
+  failingTestsResults: getFailingTestsResultsForIssue(state),
 });
 
 // export const mapDispatchToProps = () => ({});
