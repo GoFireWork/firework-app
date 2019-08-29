@@ -9,7 +9,6 @@ import Issues from '../Issues/index';
 import Tests from '../Tests/index';
 import {
   CenteredSection,
-  EditorContainer,
   Preview,
   PreviewContainer,
   WorkPageContainer,
@@ -30,9 +29,7 @@ export function WorkPage(props) {
         <H3>Repo: {props.repoURL}</H3>
       </CenteredSection>
       <WorkPageContainer>
-        <EditorContainer>
-          <Editor />
-        </EditorContainer>
+        <Editor />
         <SelectedIssueContextWrapper
           selectedIssueID={props.selectedIssueID || 0}
         >

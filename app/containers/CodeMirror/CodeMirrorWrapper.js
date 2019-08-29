@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 
 export const CodeMirrorWrapper = styled.div`
-  width:100%;
-    > .react-codemirror2{
-      >.CodeMirror{
+  position: absolute;
+  right: 0px;
+  width: 65%;
+  height: 100%;
+  display: flex;
+  flex-direction: 'column';
+  background-color: #263238;
+    > .react-codemirror2 {
+      > .CodeMirror{
          height:calc(100vh - 81px);
          > .CodeMirror-vscrollbar ,.CodeMirror-hscrollbar{
          ::-webkit-scrollbar-track
