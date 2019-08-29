@@ -16,10 +16,10 @@ import {
   PreviewContainer,
   WorkPageContainer,
 } from './styles';
-import CodeMirror from '../CodeMirror/index';
 import { setSelectedIssue } from '../Issues/actions';
 import SelectedIssueContextWrapper from './SelectedIssueContextWrapper';
 import { getSelectedIssueID } from '../Issues/reducer';
+import Editor from '../Editor';
 
 export function WorkPage(props) {
   return (
@@ -33,11 +33,8 @@ export function WorkPage(props) {
       </CenteredSection>
       <WorkPageContainer>
         <EditorContainer>
-          <Files />
-          {/*<CodeMirror />*/}
-          <CodeMirrorPlaceHolder />
+          <Editor />
         </EditorContainer>
-
         <SelectedIssueContextWrapper
           selectedIssueID={props.selectedIssueID || 0}
         >

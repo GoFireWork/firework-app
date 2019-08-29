@@ -22,7 +22,6 @@ export function* getRepoFiles(repoUrl) {
     });
 
     const files = yield git.readDirectory(directoryName);
-    console.log(files);
     yield put(setFiles(files));
   } catch (err) {
     console.log(err);

@@ -15,28 +15,28 @@ import {
 import reducer from './reducer';
 import saga from './saga';
 import FileList from './components/FileList';
+import { FileBrowser } from './styles';
 
 const key = 'files';
 
-export function FilesContainer(props) {
+export function FileBrowserContainer(props) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  console.log(props.repo);
   useEffect(() => {
     props.setFetchingFiles(props.repo);
   }, []);
 
   return (
     <article>
-      <div>
+      <FileBrowser>
         <FileList {...props} />
-      </div>
+      </FileBrowser>
     </article>
   );
 }
 
-FilesContainer.propTypes = {
+FileBrowserContainer.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   files: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
@@ -64,4 +64,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(FilesContainer);
+)(FileBrowserContainer);

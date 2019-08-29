@@ -15,16 +15,6 @@ export const WorkPageContainer = styled.div`
   height: 100%;
 `;
 
-export const Files = styled.div`
-  display: flex;
-  flex-grow: 1;
-  width: 30%;
-  max-width: 300px;
-  position: absolute;
-  height: 100%;
-  background-color: green;
-`;
-
 export const EditorContainer = styled.div`
   display: flex;
   flex-grow: 1;
