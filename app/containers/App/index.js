@@ -17,11 +17,9 @@ import Footer from 'components/Footer';
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
-  max-width: calc(1332px + 16px * 2);
-  margin: 0 auto;
+  margin: 0;
   display: flex;
   min-height: 100vh;
-  padding: 0 10px;
   flex-direction: column;
 `;
 

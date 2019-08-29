@@ -24,4 +24,15 @@ const makeSelectFilesLoading = () =>
     state => state.loading,
   );
 
-export { makeSelectFiles, makeSelectFilesLoading, makeSelectFilesError };
+const makeSelectSelectedFileID = () => {
+  createSelector(
+    selectFiles,
+    state => state.selectedFileID,
+  );
+};
+export {
+  makeSelectFiles,
+  makeSelectFilesLoading,
+  makeSelectFilesError,
+  makeSelectSelectedFileID,
+};

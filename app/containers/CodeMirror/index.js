@@ -13,30 +13,30 @@ import { createStructuredSelector } from 'reselect';
 // import messages from './messages';
 import { changeCodeMirrorState } from './actions';
 import { selectCodeMirrorState, selectCodeMirrorError } from './selectors';
-import reducer from './reducer';
+import { CodeMirrorWrapper } from './CodeMirrorWrapper';
+
 require('codemirror/mode/javascript/javascript');
 
 export function CodeMirror(props) {
   useEffect(() => {}, []);
 
   return (
-    <article>
-      <div>
-        <ControlledCodeMirror
-          value={props.codeMirrorState}
-          options={{
-            mode: 'javascript',
-            lineNumbers: true,
-          }}
-          onBeforeChange={(editor, data, value) => {
-            props.onChangeCodeMirror(value);
-          }}
-          onChange={(editor, data, value) => {
-            props.onChangeCodeMirror(value);
-          }}
-        />
-      </div>
-    </article>
+    <CodeMirrorWrapper>
+      <ControlledCodeMirror
+        value={props.codeMirrorState}
+        options={{
+          mode: 'javascript',
+          lineNumbers: true,
+          theme: 'material',
+        }}
+        onBeforeChange={(editor, data, value) => {
+          props.onChangeCodeMirror(value);
+        }}
+        onChange={(editor, data, value) => {
+          props.onChangeCodeMirror(value);
+        }}
+      />
+    </CodeMirrorWrapper>
   );
 }
 
