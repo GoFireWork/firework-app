@@ -51,7 +51,7 @@ WorkPage.propTypes = {
 };
 
 WorkPage.defaultProps = {
-  repoURL: 'https://github.com/Distense/distense-ui',
+  repoURL: 'https://github.com/Distense/distense',
 };
 
 const mapStateToProps = state => ({
