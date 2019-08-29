@@ -5,8 +5,9 @@ import { compose } from 'redux';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import H3 from '../../components/H3';
-import Section from './Section';
+import { IssuesContainer } from './styles';
+import { PreviewHeader } from '../Tests/styles';
+
 import { selectIssue } from './actions';
 
 import reducer, {
@@ -25,14 +26,12 @@ export function Issues(props) {
   useInjectSaga({ key, saga });
 
   return (
-    <article>
-      <div>
-        <Section>
-          <H3>{props.issues.length} issues</H3>
-          <IssuesList {...props} />
-        </Section>
-      </div>
-    </article>
+    <div>
+      <IssuesContainer>
+        <PreviewHeader>{props.issues.length} issues</PreviewHeader>
+        <IssuesList {...props} />
+      </IssuesContainer>
+    </div>
   );
 }
 

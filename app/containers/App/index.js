@@ -11,8 +11,6 @@ import { Switch, Route } from 'react-router-dom';
 import WorkPage from 'containers/WorkPage/Loadable';
 import EditorPage from 'containers/Editor/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-// import Header from 'components/Header';
-import Footer from 'components/Footer';
 
 import GlobalStyle from '../../global-styles';
 
@@ -36,7 +34,6 @@ export default function App() {
         <Route exact path="/editor" component={EditorPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
-      <Footer />
       <GlobalStyle />
     </AppWrapper>
   );

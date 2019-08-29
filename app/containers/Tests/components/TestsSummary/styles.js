@@ -3,16 +3,16 @@ import styled, { css } from 'styled-components';
 export const TestDetails = styled.div`
   display: flex;
   flex: 1;
-  margin-left: 1rem;
-  font-size: 1rem;
+  // margin: 0 0 1rem 0.5rem;
+  // font-size: 1rem;
+  // border-bottom: 1px solid lightgray;
 `;
 
 const baseTestStyles = css`
-  display: inline-flex;
-  font-weight: 500;
-  margin-left: 0.8rem;
+  display: flex;
+  margin-left: 1rem;
   align-items: center;
-  font-size: 0.85rem;
+  text-align: center;
 `;
 
 export const PassedTests = styled.div`
@@ -30,7 +30,7 @@ export const TotalTests = styled.div`
   color: F2E9EA;
 `;
 
-export const RightSide = styled.div`
-  flex: 1;
-  text-align: right;
-`;
+// export const RightSide = styled.div`
+//   flex: 1;
+//   text-align: right;
+// `;

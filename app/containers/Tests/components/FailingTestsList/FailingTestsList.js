@@ -5,8 +5,8 @@ import List from 'components/List';
 import LoadingIndicator from 'components/LoadingIndicator';
 import TestListItem from 'containers/Tests/components/TestListItem';
 
-function TestsList(props) {
-  const { running, error, tests } = props;
+function FailingTestsList(props) {
+  const { running, error, failingTestsResults } = props;
   if (running) {
     return <List component={LoadingIndicator} />;
   }
@@ -18,17 +18,17 @@ function TestsList(props) {
     return <List component={ErrorComponent} />;
   }
 
-  if (tests !== false) {
-    return <List items={tests} component={TestListItem} />;
+  if (failingTestsResults.length) {
+    return <List items={failingTestsResults} component={TestListItem} />;
   }
 
   return null;
 }
 
-TestsList.propTypes = {
+FailingTestsList.propTypes = {
   running: PropTypes.bool,
   error: PropTypes.any,
-  tests: PropTypes.array,
+  failingTestsResults: PropTypes.array,
 };
 
-export default TestsList;
+export default FailingTestsList;

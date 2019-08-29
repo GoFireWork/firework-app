@@ -8,9 +8,7 @@ import 'codemirror/theme/material.css';
 
 import { createStructuredSelector } from 'reselect';
 
-// import H2 from 'components/H2';
-// import Section from './Section';
-// import messages from './messages';
+import { Container } from './Container';
 import { changeCodeMirrorState } from './actions';
 import { selectCodeMirrorState, selectCodeMirrorError } from './selectors';
 import reducer from './reducer';
@@ -20,23 +18,21 @@ export function CodeMirror(props) {
   useEffect(() => {}, []);
 
   return (
-    <article>
-      <div>
-        <ControlledCodeMirror
-          value={props.codeMirrorState}
-          options={{
-            mode: 'javascript',
-            lineNumbers: true,
-          }}
-          onBeforeChange={(editor, data, value) => {
-            props.onChangeCodeMirror(value);
-          }}
-          onChange={(editor, data, value) => {
-            props.onChangeCodeMirror(value);
-          }}
-        />
-      </div>
-    </article>
+    <div>
+      <ControlledCodeMirror
+        value={props.codeMirrorState}
+        options={{
+          mode: 'javascript',
+          lineNumbers: true,
+        }}
+        onBeforeChange={(editor, data, value) => {
+          props.onChangeCodeMirror(value);
+        }}
+        onChange={(editor, data, value) => {
+          props.onChangeCodeMirror(value);
+        }}
+      />
+    </div>
   );
 }
 
