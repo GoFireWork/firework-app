@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import { setFetchingFiles } from './actions';
+import { setFetchingFiles, selectFile } from './actions';
 import {
   makeSelectFiles,
   makeSelectFilesLoading,
@@ -15,32 +15,33 @@ import {
 import reducer from './reducer';
 import saga from './saga';
 import FileList from './components/FileList';
+import { FileBrowser } from './styles';
 
 const key = 'files';
 
-export function FilesContainer(props) {
+export function FileBrowserContainer(props) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  console.log(props.repo);
   useEffect(() => {
     props.setFetchingFiles(props.repo);
   }, []);
 
   return (
     <article>
-      <div>
+      <FileBrowser>
         <FileList {...props} />
-      </div>
+      </FileBrowser>
     </article>
   );
 }
 
-FilesContainer.propTypes = {
+FileBrowserContainer.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   files: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   setFetchingFiles: PropTypes.func,
+  selectFile: PropTypes.func,
   repo: PropTypes.string,
 };
 
@@ -54,6 +55,9 @@ export const mapDispatchToProps = dispatch => ({
   setFetchingFiles: repoURL => {
     dispatch(setFetchingFiles(repoURL));
   },
+  selectFile: selectedIssueID => {
+    dispatch(selectFile(selectedIssueID));
+  },
 });
 
 const withConnect = connect(
@@ -64,4 +68,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(FilesContainer);
+)(FileBrowserContainer);

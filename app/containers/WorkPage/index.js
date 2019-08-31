@@ -9,17 +9,14 @@ import Issues from '../Issues/index';
 import Tests from '../Tests/index';
 import {
   CenteredSection,
-  CodeMirrorPlaceHolder,
-  EditorContainer,
-  Files,
   Preview,
   PreviewContainer,
   WorkPageContainer,
 } from './styles';
-import CodeMirror from '../CodeMirror/index';
 import { setSelectedIssue } from '../Issues/actions';
 import SelectedIssueContextWrapper from './SelectedIssueContextWrapper';
 import { getSelectedIssueID } from '../Issues/reducer';
+import Editor from '../Editor';
 
 export function WorkPage(props) {
   return (
@@ -32,12 +29,7 @@ export function WorkPage(props) {
         <H3>Repo: {props.repoURL}</H3>
       </CenteredSection>
       <WorkPageContainer>
-        <EditorContainer>
-          <Files />
-          {/*<CodeMirror />*/}
-          <CodeMirrorPlaceHolder />
-        </EditorContainer>
-
+        <Editor />
         <SelectedIssueContextWrapper
           selectedIssueID={props.selectedIssueID || 0}
         >
@@ -59,7 +51,7 @@ WorkPage.propTypes = {
 };
 
 WorkPage.defaultProps = {
-  repoURL: 'https://github.com/Distense/distense-ui',
+  repoURL: 'https://github.com/Distense/distense',
 };
 
 const mapStateToProps = state => ({

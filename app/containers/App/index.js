@@ -9,17 +9,14 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
 import WorkPage from 'containers/WorkPage/Loadable';
-import EditorPage from 'containers/Editor/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
-  max-width: calc(1332px + 16px * 2);
-  margin: 0 auto;
+  margin: 0;
   display: flex;
   min-height: 100vh;
-  padding: 0 10px;
   flex-direction: column;
 `;
 
@@ -31,7 +28,6 @@ export default function App() {
       </Helmet>
       <Switch>
         <Route exact path="/" component={WorkPage} />
-        <Route exact path="/editor" component={EditorPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
