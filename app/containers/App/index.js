@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
 import WorkPage from 'containers/WorkPage/Loadable';
+import Login from 'containers/Login';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from '../../global-styles';
@@ -28,6 +29,7 @@ export default function App() {
       </Helmet>
       <Switch>
         <Route exact path="/" component={WorkPage} />
+        <Route exact path="/login" component={Login} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
