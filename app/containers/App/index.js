@@ -23,7 +23,7 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <AppWrapper>
-      <Helmet titleTemplate="%s - GnarWork" defaultTitle="GnarWork">
+      <Helmet titleTemplate="%s - FireWork" defaultTitle="FireWork">
         <meta name="description" content="Change Me" />
       </Helmet>
       <Switch>
