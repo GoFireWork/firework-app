@@ -26,15 +26,15 @@ export const Login = props => {
     <div>
       <Helmet>
         <title>Gnarwork</title>
-        <meta name="description" content="Gnarwork" />
+        <meta name="description" content="FireWork" />
       </Helmet>
       <LoginSection>
         <LoginTitle>Log in ! </LoginTitle>
         <SocialLogin
           provider="github"
           gatekeeper="https://firework.localtunnel.me/api/user"
-          appId="375c26afcb4c7a1c46a3"
-          redirect="http://localhost:3000/login"
+          appId="9dbcad9d4f67823a744f"
+          redirect="http://localhost:3000/"
           onLoginSuccess={handleSocialLogin}
           onLoginFailure={handleSocialLoginFailure}
           key="github"
