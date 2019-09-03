@@ -32,7 +32,7 @@ function requireAll(r) {
 }
 
 export const runTests = async () => {
-  console.log(`Beginning runTests`);
+  console.log(`Running tests`);
   requireAll(require.context('../Tests/tests/expTests/', true, /\.js$/));
   const results = await run();
   console.log(`${results.length} total tests found`);

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import H3 from 'components/H3';
+import A from 'components/A';
 import Issues from '../Issues/index';
 import Tests from '../Tests/index';
 import {
@@ -22,9 +23,12 @@ export function WorkPage(props) {
   return (
     <div>
       <Helmet>
-        <title>Open Work</title>
-        <meta name="description" content="Open Work" />
+        <title>FireWork</title>
+        <meta name="description" content="FireWork" />
       </Helmet>
+      <H3>
+        <A href="/login">Github Login</A>
+      </H3>
       <CenteredSection>
         <H3>Repo: {props.repoURL}</H3>
       </CenteredSection>
