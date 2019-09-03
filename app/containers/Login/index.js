@@ -1,11 +1,10 @@
 import React, { memo } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose, bindActionCreators } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-react-router';
-import PropTypes from 'prop-types';
 
 import SocialLogin from './socialButton';
 import { LoginSection, LoginTitle } from './style';
@@ -25,7 +24,7 @@ export const Login = props => {
   return (
     <div>
       <Helmet>
-        <title>Gnarwork</title>
+        <title>FireWork</title>
         <meta name="description" content="FireWork" />
       </Helmet>
       <LoginSection>
