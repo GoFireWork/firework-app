@@ -4,6 +4,8 @@
   "boilerplate.components.Footer.company.name": "FireWork",
   "boilerplate.components.Header.features": "Features",
   "boilerplate.components.Header.home": "Home",
+  "boilerplate.components.Header.login": "Login",
+  "boilerplate.containers.Header.workpage": "WorkPage",
   "boilerplate.containers.FeaturePage.css.header": "Features",
   "boilerplate.containers.FeaturePage.css.message": "Next generation CSS",
   "boilerplate.containers.FeaturePage.feedback.header": "Instant feedback",

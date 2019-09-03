@@ -12,8 +12,12 @@ export default defineMessages({
     id: `${scope}.home`,
     defaultMessage: 'Home',
   },
-  features: {
-    id: `${scope}.features`,
-    defaultMessage: 'Features',
+  login: {
+    id: `${scope}.login`,
+    defaultMessage: 'GitHub Login',
+  },
+  workpage: {
+    id: `${scope}.workpage`,
+    defaultMessage: 'WorkPage',
   },
 });

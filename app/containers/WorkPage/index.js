@@ -4,16 +4,9 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import H3 from 'components/H3';
-import A from 'components/A';
 import Issues from '../Issues/index';
 import Tests from '../Tests/index';
-import {
-  CenteredSection,
-  Preview,
-  PreviewContainer,
-  WorkPageContainer,
-} from './styles';
+import { Preview, PreviewContainer, WorkPageContainer } from './styles';
 import { setSelectedIssue } from '../Issues/actions';
 import SelectedIssueContextWrapper from './SelectedIssueContextWrapper';
 import { getSelectedIssueID } from '../Issues/reducer';
@@ -26,12 +19,6 @@ export function WorkPage(props) {
         <title>FireWork</title>
         <meta name="description" content="FireWork" />
       </Helmet>
-      <H3>
-        <A href="/login">Github Login</A>
-      </H3>
-      <CenteredSection>
-        <H3>Repo: {props.repoURL}</H3>
-      </CenteredSection>
       <WorkPageContainer>
         <Editor />
         <SelectedIssueContextWrapper
@@ -51,11 +38,6 @@ export function WorkPage(props) {
 
 WorkPage.propTypes = {
   selectedIssueID: PropTypes.number,
-  repoURL: PropTypes.string,
-};
-
-WorkPage.defaultProps = {
-  repoURL: 'https://github.com/Distense/distense',
 };
 
 const mapStateToProps = state => ({

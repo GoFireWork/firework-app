@@ -11,6 +11,7 @@ import { Switch, Route } from 'react-router-dom';
 import WorkPage from 'containers/WorkPage/Loadable';
 import Login from 'containers/Login';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Header from 'components/Header';
 
 import GlobalStyle from '../../global-styles';
 
@@ -24,9 +25,10 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <AppWrapper>
-      <Helmet titleTemplate="%s - FireWork" defaultTitle="FireWork">
+      <Helmet titleTemplate="%s" defaultTitle="FireWork">
         <meta name="description" content="Change Me" />
       </Helmet>
+      <Header />
       <Switch>
         <Route exact path="/" component={WorkPage} />
         <Route exact path="/login" component={Login} />
