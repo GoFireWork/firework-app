@@ -12,7 +12,7 @@ function Header() {
         {/* <HeaderLink to="/"> */}
         {/*  <FormattedMessage {...messages.home} /> */}
         {/* </HeaderLink> */}
-        <HeaderLink to="/workpage">
+        <HeaderLink to="/">
           <FormattedMessage {...messages.workpage} />
         </HeaderLink>
         <HeaderLink to="/login">
