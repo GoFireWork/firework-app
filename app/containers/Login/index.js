@@ -2,14 +2,21 @@ import React, { memo } from 'react';
 // import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { compose, bindActionCreators } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { push } from 'connected-react-router';
+import PropTypes from 'prop-types';
+
 import SocialLogin from './socialButton';
 import { LoginSection, LoginTitle } from './style';
 
-export const Login = () => {
+export const Login = props => {
   const handleSocialLogin = user => {
-    console.log('User', user);
+    const { accessToken } = user.token;
+    localStorage.setItem('token', accessToken);
+    if (accessToken) {
+      props.redirect('/');
+    }
   };
 
   const handleSocialLoginFailure = err => {
@@ -25,9 +32,9 @@ export const Login = () => {
         <LoginTitle>Log in ! </LoginTitle>
         <SocialLogin
           provider="github"
-          gatekeeper="http://localhost:9999"
+          gatekeeper="https://firework.localtunnel.me/api/user"
           appId="375c26afcb4c7a1c46a3"
-          redirect="http://localhost:3000/login/"
+          redirect="http://localhost:3000/login"
           onLoginSuccess={handleSocialLogin}
           onLoginFailure={handleSocialLoginFailure}
           key="github"
@@ -42,9 +49,16 @@ export const Login = () => {
   );
 };
 
+Login.propTypes = {
+  redirect: PropTypes.func,
+};
+
 const mapStateToProps = createStructuredSelector({});
 
-export const mapDispatchToProps = () => ({});
+const mapDispatchToProps = dispatch => ({
+  redirect: bindActionCreators(push, dispatch),
+  push,
+});
 
 const withConnect = connect(
   mapStateToProps,
