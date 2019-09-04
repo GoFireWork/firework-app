@@ -12,6 +12,8 @@ import { LoginSection, LoginTitle } from './style';
 export const Login = props => {
   const handleSocialLogin = user => {
     const { accessToken } = user.token;
+    console.log(user.profile);
+    localStorage.setItem('user', user.profile.name);
     localStorage.setItem('token', accessToken);
     if (accessToken) {
       props.redirect('/');
@@ -32,8 +34,8 @@ export const Login = props => {
         <SocialLogin
           provider="github"
           gatekeeper="https://firework.localtunnel.me/api/user"
-          appId="9dbcad9d4f67823a744f"
-          redirect="http://localhost:3000/"
+          appId="0d0c9894acb5e075f2b5"
+          redirect="http://localhost:3000/login"
           onLoginSuccess={handleSocialLogin}
           onLoginFailure={handleSocialLoginFailure}
           key="github"

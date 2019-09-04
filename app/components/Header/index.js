@@ -18,6 +18,9 @@ function Header() {
         <HeaderLink to="/login">
           <FormattedMessage {...messages.login} />
         </HeaderLink>
+        <HeaderLink to="/repositories">
+          <FormattedMessage {...messages.repositories} />
+        </HeaderLink>
       </NavBar>
     </div>
   );

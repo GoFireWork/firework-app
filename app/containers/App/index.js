@@ -12,6 +12,7 @@ import WorkPage from 'containers/WorkPage/Loadable';
 import Login from 'containers/Login';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
+import Repo from 'containers/RepoList';
 
 import GlobalStyle from '../../global-styles';
 
@@ -32,6 +33,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={WorkPage} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/repositories" component={Repo} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
