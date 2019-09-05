@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { TestResult } from './TestResult';
-import Wrapper from './Wrapper';
 import { stripIssueIDFromTestPath } from '../../utils';
 
 function TestResultListItem(props) {
@@ -11,11 +10,7 @@ function TestResultListItem(props) {
     testPaths[testPaths.length - 1],
   );
 
-  return (
-    <Wrapper>
-      <TestResult {...props}>{finalTestPath}</TestResult>
-    </Wrapper>
-  );
+  return <TestResult {...props}>{finalTestPath}</TestResult>;
 }
 
 TestResultListItem.propTypes = {
