@@ -11,7 +11,6 @@ export const initialState = {
   repoURL: '',
   repoList: '',
   error: false,
-  haveRepo: false,
   loading: false,
 };
 
@@ -23,10 +22,11 @@ const RepositorReducer = (state = initialState, action) =>
         draft.repoURL = action.url;
         break;
       case LOAD_REPO_REQUEST:
-        draft.loading = action.loading;
+        draft.loading = true;
         break;
       case LOAD_REPO_SUCCESS:
-        draft.repoList = action.repoContents;
+        draft.repoList = action.repoList;
+        draft.loading = false;
         break;
       case LOAD_REPO_ERROR:
         draft.error = action.error;

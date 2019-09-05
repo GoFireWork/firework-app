@@ -77,7 +77,7 @@ module.exports = {
       actions.push({
         type: 'add',
         path: '../../app/components/{{properCase name}}/Loadable.js',
-        templateFile: './component/loadable.js.hbs',
+        templateFile: './component/Loadable.js.hbs',
         abortOnFail: true,
       });
     }

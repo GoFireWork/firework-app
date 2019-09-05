@@ -2,21 +2,35 @@
  * Gets the repositories of the user from Github
  */
 
-import { call, put } from 'redux-saga/effects';
+import { call, put, fork } from 'redux-saga/effects';
 import request from 'utils/request';
-import { setRepoContents, setFetchingRepoContentsError } from './action';
+import {
+  setRepositories,
+  setFetchingRepoContentsError,
+  setFetchingRepositories,
+} from './action';
 
 /**
  * Get Github repositories List
  */
-export default function* getRepoList() {
-  // get  user Name
-  const user = localStorage.getItem('user');
-  const repoURL = `https://api.github.com/users/${user}/repos`;
+function* getRepoList() {
+  // get  Access Token
+  const token = localStorage.getItem('token');
+  const repoURL = `https://api.github.com/user/repos`;
+  const options = {
+    headers: {
+      Authorization: `bearer ${token}`,
+    },
+  };
   try {
-    const repo = yield call(request, repoURL);
-    yield put(setRepoContents(repo));
+    const repo = yield call(request, repoURL, options);
+    yield put(setRepositories(repo));
   } catch (err) {
     yield put(setFetchingRepoContentsError(err));
   }
+}
+
+export default function* saga() {
+  yield put(setFetchingRepositories());
+  yield fork(getRepoList);
 }

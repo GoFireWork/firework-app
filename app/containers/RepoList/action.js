@@ -10,7 +10,7 @@ export const changeRepoURL = repoURL => ({
   repoURL,
 });
 
-export const setFetchingRepoContents = fetchingRepoContents => ({
+export const setFetchingRepositories = fetchingRepoContents => ({
   type: LOAD_REPO_REQUEST,
   fetchingRepoContents,
 });
@@ -20,7 +20,7 @@ export const setFetchingRepoContentsError = loadRepoContentsError => ({
   loadRepoContentsError,
 });
 
-export const setRepoContents = repoContents => ({
+export const setRepositories = repoList => ({
   type: LOAD_REPO_SUCCESS,
-  repoContents,
+  repoList,
 });

@@ -12,7 +12,7 @@ import WorkPage from 'containers/WorkPage/Loadable';
 import Login from 'containers/Login';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
-import Repo from 'containers/RepoList';
+import Repo from 'containers/RepoList/Loadable';
 
 import GlobalStyle from '../../global-styles';
 
