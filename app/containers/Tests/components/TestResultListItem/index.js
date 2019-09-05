@@ -6,15 +6,14 @@ import Wrapper from './Wrapper';
 import { stripIssueIDFromTestPath } from '../../utils';
 
 function TestResultListItem(props) {
-  let message;
-  if (props.testResult) {
-    const testPaths = props.testResult.testPath;
-    message = stripIssueIDFromTestPath(testPaths[testPaths.length - 1]);
-  } else message = 'Error occurred while running tests';
+  const testPaths = props.testResult.testPath;
+  const finalTestPath = stripIssueIDFromTestPath(
+    testPaths[testPaths.length - 1],
+  );
 
   return (
     <Wrapper>
-      <TestResult {...props}>{message}</TestResult>
+      <TestResult {...props}>{finalTestPath}</TestResult>
     </Wrapper>
   );
 }
