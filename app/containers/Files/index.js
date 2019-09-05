@@ -14,7 +14,7 @@ import {
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import FileList from './components/FileList';
+import TreeView from './components/TreeView';
 
 const key = 'files';
 
@@ -22,18 +22,11 @@ export function FilesContainer(props) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  console.log(props.repo);
   useEffect(() => {
     props.setFetchingFiles(props.repo);
   }, []);
 
-  return (
-    <article>
-      <div>
-        <FileList {...props} />
-      </div>
-    </article>
-  );
+  return <TreeView {...props} />;
 }
 
 FilesContainer.propTypes = {

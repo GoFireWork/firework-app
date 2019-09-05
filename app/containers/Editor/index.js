@@ -5,11 +5,28 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
+import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
 import H3 from 'components/H3';
+import reducer from './reducer';
+import saga from './saga';
+
 import Files from '../Files/index';
-import { CenteredSection, Container, LeftSide } from './styles';
+import { CenteredSection, Container, LeftSide, MainDiv } from './styles';
+import CodeEditor from './Editor';
+import { openFetchingFile } from './actions';
+import {
+  makeOpenFile,
+  makeOpenFileError,
+  makeOpenFileLoading,
+} from './selectors';
+
+const key = 'open';
 
 export function Editor(props) {
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+
   return (
     <div>
       <Helmet>
@@ -21,8 +38,11 @@ export function Editor(props) {
       </CenteredSection>
       <Container>
         <LeftSide>
-          <Files repo={props.repoURL} />
+          <Files repo={props.repoURL} openFile={props.openFile} />
         </LeftSide>
+        <MainDiv>
+          <CodeEditor {...props} />
+        </MainDiv>
       </Container>
     </div>
   );
@@ -30,15 +50,24 @@ export function Editor(props) {
 
 Editor.propTypes = {
   repoURL: PropTypes.string,
+  openFile: PropTypes.func,
 };
 
 Editor.defaultProps = {
   repoURL: 'https://github.com/Distense/distense-ui',
 };
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+  content: makeOpenFile(),
+  loading: makeOpenFileLoading(),
+  error: makeOpenFileError(),
+});
 
-export const mapDispatchToProps = () => ({});
+export const mapDispatchToProps = dispatch => ({
+  openFile: path => {
+    dispatch(openFetchingFile(path));
+  },
+});
 
 const withConnect = connect(
   mapStateToProps,

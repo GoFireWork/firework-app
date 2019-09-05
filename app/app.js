@@ -9,7 +9,9 @@ import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
-
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
+import './global.css';
 // Import root app
 import App from 'containers/App';
 

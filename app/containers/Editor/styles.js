@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import CodeMirror from 'react-codemirror';
 
 export const CenteredSection = styled.div`
   text-align: center;
@@ -8,7 +9,6 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: 'column';
   > article {
     min-height: 100vh;
     width: 33%;
@@ -16,11 +16,27 @@ export const Container = styled.div`
 `;
 
 export const LeftSide = styled.div`
-  width: 30%;
-  height: 100%;
+  width: 20%;
+  height: auto;
   display: flex;
-  flex-direction: 'column';
-  > article {
-    width: 100%;
+  flex-direction: column;
+  > ul {
+    height: 100%;
   }
+`;
+
+export const MainDiv = styled.div`
+  width: 80%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  .CodeMirror {
+    width: 100%;
+    height: calc(100vh - 65px);
+  }
+`;
+
+export const CodeMirrorWrapper = styled(CodeMirror)`
+  width: 100%;
 `;

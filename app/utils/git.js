@@ -19,9 +19,85 @@ export async function makeDirectory(directoryName) {
   }
 }
 
-export function readDirectory(directoryName) {
+/* eslint-disable no-await-in-loop */
+export async function readRecursiveDirectory(
+  directoryName,
+  type = 'dir',
+  filename = 'root',
+) {
+  console.log('recursive');
   const fs = init();
-  return fs.readdir(directoryName);
+  let item;
+  let subStat;
+  const stat = await fs.lstat(directoryName);
+  const root = {
+    id: stat.ino,
+    name: filename,
+    path: directoryName,
+    type: stat.type,
+    leaf: stat.type !== 'dir',
+  };
+
+  if (type === 'dir') {
+    root.children = [];
+    const rootFiles = await fs.readdir(directoryName);
+    for (let index = 0; index < rootFiles.length; index += 1) {
+      item = rootFiles[index];
+      subStat = await fs.lstat(`${directoryName}/${item}`);
+      root.children.push(
+        await readRecursiveDirectory(
+          `${directoryName}/${item}`,
+          subStat.type,
+          item,
+        ),
+      );
+    }
+  }
+  return root;
+}
+
+export async function readDirectory(
+  directoryName,
+  toggled = false,
+  type = 'dir',
+  filename = 'root',
+) {
+  const fs = init();
+  let item;
+  let subStat;
+  let file;
+  const stat = await fs.lstat(directoryName);
+  const root = {
+    id: stat.ino,
+    name: filename,
+    path: directoryName,
+    type: stat.type,
+    toggled,
+    leaf: stat.type !== 'dir',
+  };
+
+  if (type === 'dir') {
+    root.children = [];
+    const rootFiles = await fs.readdir(directoryName);
+    for (let index = 0; index < rootFiles.length; index += 1) {
+      item = rootFiles[index];
+      subStat = await fs.lstat(`${directoryName}/${item}`);
+      file = {
+        id: subStat.ino,
+        name: item,
+        path: `${directoryName}/${item}`,
+        type: subStat.type,
+      };
+      if (subStat.type !== 'dir') {
+        file.leaf = true;
+      } else {
+        file.children = [];
+        file.loading = true;
+      }
+      root.children.push(file);
+    }
+  }
+  return root;
 }
 
 export function clone({
@@ -38,4 +114,10 @@ export function clone({
     singleBranch: true,
     depth,
   });
+}
+
+export async function readFile(path) {
+  const fs = init();
+  const content = await fs.readFile(path, 'utf8');
+  return content;
 }
