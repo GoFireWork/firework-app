@@ -7,5 +7,6 @@ export const TestResult = styled.div`
   height: 100%;
   align-items: center;
   padding: 0 1em;
-  background: ${props => (props.status === 'fail' ? 'red' : 'green')};
+  background: ${props =>
+    props.testResult.status === 'fail' ? 'red' : 'green'};
 `;

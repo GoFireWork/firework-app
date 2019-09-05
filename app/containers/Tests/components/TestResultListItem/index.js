@@ -14,7 +14,6 @@ function TestResultListItem(props) {
 }
 
 TestResultListItem.propTypes = {
-  message: PropTypes.string,
   testResult: PropTypes.any,
 };
 
