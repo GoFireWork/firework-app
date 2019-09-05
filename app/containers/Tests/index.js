@@ -1,68 +1,59 @@
-import React, { useContext, useEffect, memo } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
 
-import { run } from 'jest-lite';
-import Section from './Section';
-import { makeSelectNumTests, makeSelectAllTests } from './selectors';
+import { TestsContainer, PreviewHeader } from './styles';
 
-import TestsList from './components/TestsList/TestsList';
-import { SelectedIssueContext } from '../WorkPage/SelectedIssueContextWrapper';
-import { updateTestResults } from './actions';
+import {
+  getTestsError,
+  getFailingTestsResultsForIssue,
+  getTestsResultsForIssue,
+  getTestsRunning,
+} from './reducer';
+
+import { getSelectedIssueID } from '../Issues/reducer';
+
+import FailingTestsList from './components/FailingTestsList/FailingTestsList';
+import TestsCounts from './components/TestsCounts';
 
 export function Tests(props) {
-  const value = useContext(SelectedIssueContext);
-  const { selectedIssueID } = value;
-  useEffect(() => {
-    if (selectedIssueID !== 0) {
-      // eslint-disable-next-line no-inner-declarations,no-shadow
-      async function runTestsForIssue(selectedIssueID) {
-        // const issueNum = 481828735;
-        if (selectedIssueID) {
-          import(/* webpackMode: "eager" */ `./tests/tests`).then(async () => {
-            console.log(`Running tests for ${selectedIssueID}`);
-            const results = await run();
-            updateTestResults(results);
-          });
-        }
-      }
-      runTestsForIssue(selectedIssueID);
-    }
-  }, Object.values(value));
-
+  const { selectedIssueID, testsResults } = props;
   return (
-    <article>
-      <p>{props.numTests} tests found for selected issue</p>
-      <div>
-        <Section>
-          <TestsList {...props} />
-        </Section>
-      </div>
-    </article>
+    <TestsContainer>
+      <PreviewHeader>
+        {selectedIssueID
+          ? `${testsResults.length} tests found for selected issue`
+          : 'Select An Issue to Run Tests'}
+      </PreviewHeader>
+      <TestsCounts {...props} />
+      <FailingTestsList {...props} />
+    </TestsContainer>
   );
 }
 
 Tests.propTypes = {
   running: PropTypes.bool,
-  allTestsPassing: PropTypes.bool,
+  runTests: PropTypes.func,
+  selectedIssueID: PropTypes.number,
   tests: PropTypes.array,
-  numTests: PropTypes.number,
+  testsResults: PropTypes.array,
+  failingTests: PropTypes.array,
 };
 
-const mapStateToProps = createStructuredSelector({
-  // running: makeSelectTestsRunning(),
-  // error: makeSelectIssuesError(),
-  numTests: makeSelectNumTests(),
-  tests: makeSelectAllTests(),
+const mapStateToProps = state => ({
+  running: getTestsRunning(state),
+  error: getTestsError(state),
+  selectedIssueID: getSelectedIssueID(state),
+  testsResults: getTestsResultsForIssue(state),
+  failingTestsResults: getFailingTestsResultsForIssue(state),
 });
 
-// export const mapDispatchToProps = dispatch => ({});
+// export const mapDispatchToProps = () => ({});
 
 const withConnect = connect(
   mapStateToProps,
-  // mapDispatchToProps,
+  null,
 );
 
 export default compose(

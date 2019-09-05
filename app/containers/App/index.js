@@ -9,30 +9,29 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
 import WorkPage from 'containers/WorkPage/Loadable';
-import EditorPage from 'containers/Editor/Loadable';
+import Login from 'containers/Login';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-// import Header from 'components/Header';
+import Header from 'components/Header';
 
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
-  max-width: calc(1332px + 16px * 2);
-  margin: 0 auto;
+  margin: 0;
   display: flex;
   min-height: 100vh;
-  padding: 0 10px;
   flex-direction: column;
 `;
 
 export default function App() {
   return (
     <AppWrapper>
-      <Helmet titleTemplate="%s - GnarWork" defaultTitle="GnarWork">
+      <Helmet titleTemplate="%s" defaultTitle="FireWork">
         <meta name="description" content="Change Me" />
       </Helmet>
+      <Header />
       <Switch>
         <Route exact path="/" component={WorkPage} />
-        <Route exact path="/editor" component={EditorPage} />
+        <Route exact path="/login" component={Login} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

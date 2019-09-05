@@ -1,6 +1,4 @@
-/**
- * Issues selectors
- */
+/*
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
@@ -9,25 +7,25 @@ const selectIssues = state => state.issues || initialState;
 const makeSelectIssues = () =>
   createSelector(
     selectIssues,
-    issuesState => issuesState.issues,
+    issues => issues.issues,
   );
 
 const makeSelectIssuesError = () =>
   createSelector(
     selectIssues,
-    issuesState => issuesState.error,
+    issues => issues.error,
   );
 
 const makeSelectIssuesLoading = () =>
   createSelector(
     selectIssues,
-    issuesState => issuesState.loading,
+    issues => issues.loading,
   );
 
 const makeSelectSelectedIssueID = () =>
   createSelector(
     selectIssues,
-    issuesState => issuesState.selectedIssueID,
+    issues => issues.selectedIssueID,
   );
 
 export {
@@ -36,3 +34,4 @@ export {
   makeSelectIssuesError,
   makeSelectSelectedIssueID,
 };
+*/

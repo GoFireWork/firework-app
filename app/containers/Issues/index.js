@@ -1,24 +1,21 @@
-import React, { useEffect, memo } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-// import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import H3 from '../../components/H3';
-// import { CenteredSection } from './Elements';
-import Section from './Section';
-// import messages from './messages';
+import { IssuesContainer } from './styles';
+import { PreviewHeader } from '../Tests/styles';
+
 import { selectIssue } from './actions';
-import {
-  makeSelectIssues,
-  makeSelectIssuesLoading,
-  makeSelectIssuesError,
-  makeSelectSelectedIssueID,
-} from './selectors';
-import reducer from './reducer';
+
+import reducer, {
+  getIssues,
+  getIssuesError,
+  getIssuesLoading,
+  getSelectedIssueID,
+} from './reducer';
 import saga from './saga';
 import IssuesList from './components/IssuesList/List';
 
@@ -28,20 +25,13 @@ export function Issues(props) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  useEffect(() => {
-    // When initial state username is not null, submit the form to load repos
-    // if (username && username.trim().length > 0) onSubmitForm();
-  }, []);
-
   return (
-    <article>
-      <div>
-        <Section>
-          <H3 />
-          <IssuesList {...props} />
-        </Section>
-      </div>
-    </article>
+    <div>
+      <IssuesContainer>
+        <PreviewHeader>{props.issues.length} issues</PreviewHeader>
+        <IssuesList {...props} />
+      </IssuesContainer>
+    </div>
   );
 }
 
@@ -53,11 +43,11 @@ Issues.propTypes = {
   selectIssue: PropTypes.func,
 };
 
-const mapStateToProps = createStructuredSelector({
-  loading: makeSelectIssuesLoading(),
-  error: makeSelectIssuesError(),
-  issues: makeSelectIssues(),
-  selectedIssueID: makeSelectSelectedIssueID(),
+const mapStateToProps = state => ({
+  loading: getIssuesLoading(state),
+  error: getIssuesError(state),
+  issues: getIssues(state),
+  selectedIssueID: getSelectedIssueID(state),
 });
 
 export const mapDispatchToProps = dispatch => ({

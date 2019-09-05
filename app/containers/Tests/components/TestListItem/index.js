@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Item from './Item';
+import FailingTest from './FailingTest';
 import Wrapper from './Wrapper';
 
-function ListItem(props) {
+function TestListItem(props) {
   const test = props.item;
+  const testPaths = test.testPath;
   return (
     <Wrapper>
-      <Item {...props}>{test.title}</Item>
+      <FailingTest {...props}>{testPaths[testPaths.length - 1]}</FailingTest>
     </Wrapper>
   );
 }
 
-ListItem.propTypes = {
+TestListItem.propTypes = {
   item: PropTypes.any,
 };
 
-export default ListItem;
+export default TestListItem;
