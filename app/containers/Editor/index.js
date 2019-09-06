@@ -11,7 +11,7 @@ import H3 from 'components/H3';
 import reducer from './reducer';
 import saga from './saga';
 
-import Files from '../Files/index';
+import Files from '../FileBrowser/index';
 import { CenteredSection, Container, LeftSide, MainDiv } from './styles';
 import CodeEditor from './Editor';
 import { openFetchingFile } from './actions';
