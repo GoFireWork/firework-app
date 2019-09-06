@@ -129,7 +129,6 @@ function searchOrCreate(dir, idx, arr, path) {
   if (dir.length === idx) return;
 
   const item = arr.filter(s => s.name === key)[0];
-  let children = [];
 
   if (!item) {
     type = dir.length === idx + 1 ? 'file' : 'folder';
@@ -145,11 +144,9 @@ function searchOrCreate(dir, idx, arr, path) {
       iterator.leaf = true;
     }
     arr.push(iterator);
-  } else {
-    [children] = item;
   }
 
-  searchOrCreate(dir, idx + 1, children, path);
+  searchOrCreate(dir, idx + 1, item ? item.children : [], path);
 }
 
 function sortBy(a, b) {
