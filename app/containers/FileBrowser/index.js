@@ -14,7 +14,7 @@ import {
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import FileList from './components/FileList';
+import TreeView from './components/TreeView';
 import { FileBrowser } from './styles';
 
 const key = 'files';
@@ -28,18 +28,16 @@ export function FileBrowserContainer(props) {
   }, []);
 
   return (
-    <article>
-      <FileBrowser>
-        <FileList {...props} />
-      </FileBrowser>
-    </article>
+    <FileBrowser>
+      <TreeView {...props} />
+    </FileBrowser>
   );
 }
 
 FileBrowserContainer.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  files: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  files: PropTypes.object,
   setFetchingFiles: PropTypes.func,
   selectFile: PropTypes.func,
   repo: PropTypes.string,

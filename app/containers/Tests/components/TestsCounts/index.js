@@ -2,12 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import {
-  FailedTests,
-  PassedTests,
-  TestDetails,
-  TotalTests,
-} from '../TestsSummary/styles';
+import { FailedTests, PassedTests, TotalTests } from '../TestsSummary/styles';
 import Wrapper from '../TestListItem/Wrapper';
 
 export default function TestsCounts(props) {
@@ -28,11 +23,11 @@ export default function TestsCounts(props) {
   return (
     <article>
       <Wrapper>
-        {/*<TestDetails>*/}
+        {/* <TestDetails> */}
         {numFailing !== 0 && <FailedTests>{numFailing} failed</FailedTests>}
         {numPassing !== 0 && <PassedTests>{numPassing} passed</PassedTests>}
         {numTotal !== 0 && <TotalTests>{numTotal} total</TotalTests>}
-        {/*</TestDetails>*/}
+        {/* </TestDetails> */}
       </Wrapper>
     </article>
   );

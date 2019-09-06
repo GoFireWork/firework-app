@@ -1,38 +1,73 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import FileBrowser from '../FileBrowser/index';
-import CodeMirror from '../CodeMirror/index';
-import { EditorContainer, FileBrowserContainer } from './styles';
-import { SelectedFileContextProvider } from './SelectedFileContextWrapper';
+import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+import H3 from 'components/H3';
+import reducer from './reducer';
+import saga from './saga';
+
+import Files from '../FileBrowser/index';
+import { CenteredSection, Container, LeftSide, MainDiv } from './styles';
+import CodeEditor from './Editor';
+import { openFetchingFile } from './actions';
+import {
+  makeOpenFile,
+  makeOpenFileError,
+  makeOpenFileLoading,
+} from './selectors';
+
+const key = 'open';
 
 export function Editor(props) {
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+
   return (
-    <EditorContainer>
-      <SelectedFileContextProvider>
-        <FileBrowserContainer>
-          <FileBrowser repo={props.repoURL} />
-        </FileBrowserContainer>
-        <CodeMirror />
-      </SelectedFileContextProvider>
-    </EditorContainer>
+    <div>
+      <Helmet>
+        <title>Gnarwork</title>
+        <meta name="description" content="Gnarwork" />
+      </Helmet>
+      <CenteredSection>
+        <H3>Repo: {props.repoURL}</H3>
+      </CenteredSection>
+      <Container>
+        <LeftSide>
+          <Files repo={props.repoURL} openFile={props.openFile} />
+        </LeftSide>
+        <MainDiv>
+          <CodeEditor {...props} />
+        </MainDiv>
+      </Container>
+    </div>
   );
 }
 
 Editor.propTypes = {
   repoURL: PropTypes.string,
+  openFile: PropTypes.func,
 };
 
 Editor.defaultProps = {
-  repoURL: 'https://github.com/Distense/distense',
+  repoURL: 'https://github.com/Distense/distense-ui',
 };
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+  content: makeOpenFile(),
+  loading: makeOpenFileLoading(),
+  error: makeOpenFileError(),
+});
 
-export const mapDispatchToProps = () => ({});
+export const mapDispatchToProps = dispatch => ({
+  openFile: path => {
+    dispatch(openFetchingFile(path));
+  },
+});
 
 const withConnect = connect(
   mapStateToProps,

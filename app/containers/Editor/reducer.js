@@ -1,34 +1,28 @@
 import produce from 'immer';
-import {
-  LOAD_FILES,
-  LOAD_FILES_REQUEST,
-  FILES_LOADING_ERROR,
-  GIT_DIR_SETTING_ERROR,
-} from './constants';
+import { OPEN_FILE, OPEN_FILE_REQUEST, OPEN_FILE_ERROR } from './constants';
 
 // The initial state of the App
 export const initialState = {
   loading: false,
   error: false,
-  files: {},
+  content: '',
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const filesReducer = (state = initialState, action) =>
+const reducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case FILES_LOADING_ERROR:
-      case GIT_DIR_SETTING_ERROR:
+      case OPEN_FILE_ERROR:
         draft.error = action.error;
         break;
-      case LOAD_FILES_REQUEST:
+      case OPEN_FILE_REQUEST:
         draft.loading = true;
         break;
-      case LOAD_FILES:
+      case OPEN_FILE:
         draft.loading = false;
-        draft.files = action.files;
+        draft.content = action.content;
         break;
     }
   });
 
-export default filesReducer;
+export default reducer;

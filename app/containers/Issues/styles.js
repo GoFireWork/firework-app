@@ -15,7 +15,6 @@ export const IssuesContainer = styled.div`
   right: 0;
   width: 50%;
   height: 100%;
-
   ul {
     list-style: none;
     margin: 1;
@@ -24,7 +23,6 @@ export const IssuesContainer = styled.div`
     overflow-y: auto;
     padding: 0;
   }
-
   li {
     background-color: rgb(28, 32, 34);
     color: ${props =>

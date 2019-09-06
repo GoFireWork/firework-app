@@ -20,8 +20,7 @@ export function* getRepoFiles(repoUrl) {
       repoUrl,
       depth: 10,
     });
-
-    const files = yield git.readDirectory(directoryName);
+    const files = yield git.listFiles(directoryName);
     yield put(setFiles(files));
   } catch (err) {
     console.log(err);
