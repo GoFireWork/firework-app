@@ -20,7 +20,6 @@ const reducer = (state = initialState, action) =>
         break;
       case OPEN_FILE:
         draft.loading = false;
-        console.log(action);
         draft.content = action.content;
         break;
     }

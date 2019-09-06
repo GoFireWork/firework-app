@@ -39,14 +39,5 @@ window.fs = new LightningFS('fs')
 git.plugins.set('fs', window.fs)
 // I prefer using the Promisified version honestly
 window.pfs = window.fs.promises
-
-// BrowserFS.configure({ fs: "IndexedDB", options: {} }, function (err) {
-//   if (err) return console.log(err);
-//   const fs = BrowserFS.BFSRequire("fs");
-//   git.plugins.set('fs', fs)
-//   console.log(fs)
-//   const files = git.listFiles({ dir: '/' });
-//   console.log(files);
-// });
 </script>
 </html>

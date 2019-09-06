@@ -18,7 +18,13 @@ export const Container = styled.div`
 export const FileBrowser = styled.div`
   display: flex;
   flex-grow: 1;
-  width: 250px;
+  width: 100%;
   position: absolute;
-  height: 100%;
+  overflow: auto;
+  height: 100vh;
+  background-color: #21252b;
+
+  ul {
+    width: 100%;
+  }
 `;

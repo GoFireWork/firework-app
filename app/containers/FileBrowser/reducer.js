@@ -10,7 +10,7 @@ import {
 export const initialState = {
   loading: false,
   error: false,
-  files: [],
+  files: {},
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -26,7 +26,6 @@ const filesReducer = (state = initialState, action) =>
         break;
       case LOAD_FILES:
         draft.loading = false;
-        console.log(action);
         draft.files = action.files;
         break;
     }

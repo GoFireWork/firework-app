@@ -5,6 +5,7 @@ import { Div } from 'react-treebeard/dist/components/common';
 import Icon from 'react-icons-kit';
 import { folder } from 'react-icons-kit/feather/folder';
 import { file } from 'react-icons-kit/feather/file';
+import LoadingIndicator from 'components/LoadingIndicator';
 
 const Header = ({ style, node }) => {
   const iconType = node.children ? folder : file;
@@ -51,6 +52,10 @@ const TreeView = props => {
     }
   };
 
+  if (props.loading) {
+    return <LoadingIndicator />;
+  }
+
   return (
     <Treebeard
       data={data}
@@ -62,6 +67,7 @@ const TreeView = props => {
 
 TreeView.propTypes = {
   files: PropTypes.object,
+  loading: PropTypes.bool,
   openFile: PropTypes.func,
 };
 

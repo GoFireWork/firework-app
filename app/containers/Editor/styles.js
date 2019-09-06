@@ -7,7 +7,6 @@ export const CenteredSection = styled.div`
 
 export const Container = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   > article {
     min-height: 100vh;
@@ -20,6 +19,8 @@ export const LeftSide = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
+  position: relative;
+
   > ul {
     height: 100%;
   }
@@ -33,7 +34,7 @@ export const MainDiv = styled.div`
   flex-direction: column;
   .CodeMirror {
     width: 100%;
-    height: calc(100vh - 65px);
+    height: calc(100vh);
   }
 `;
 

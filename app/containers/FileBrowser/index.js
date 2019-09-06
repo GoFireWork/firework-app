@@ -37,7 +37,7 @@ export function FileBrowserContainer(props) {
 FileBrowserContainer.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  files: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
+  files: PropTypes.object,
   setFetchingFiles: PropTypes.func,
   selectFile: PropTypes.func,
   repo: PropTypes.string,
