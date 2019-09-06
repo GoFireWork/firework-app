@@ -9,11 +9,11 @@ import {
 export const initialState = {
   username: '',
   repoURL: '',
-  repoList: '',
+  repoList: [],
   error: false,
   loading: false,
 };
-
+/* eslint-disable default-case, no-param-reassign */
 const RepositorReducer = (state = initialState, action) =>
   /* eslint-disable no-param-reassign */
   produce(state, draft => {
@@ -31,10 +31,9 @@ const RepositorReducer = (state = initialState, action) =>
       case LOAD_REPO_ERROR:
         draft.error = action.error;
         break;
-      default:
-        return state;
     }
-    return draft;
   });
 
 export default RepositorReducer;
+
+export const getRepoList = state => state.repo.repoList;
