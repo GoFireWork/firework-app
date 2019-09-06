@@ -23,9 +23,9 @@ function Card(props) {
 }
 
 Card.propTypes = {
-  title: PropTypes.oneOf([PropTypes.string, PropTypes.instanceOf(<div />)]),
-  content: PropTypes.oneOf([PropTypes.string, PropTypes.instanceOf(<div />)]),
-  footer: PropTypes.oneOf([PropTypes.string, PropTypes.instanceOf(<div />)]),
+  title: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  content: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  footer: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export default Card;
