@@ -28,7 +28,7 @@ export const Login = props => {
         <meta name="description" content="FireWork" />
       </Helmet>
       <LoginSection>
-        <LoginTitle>Log in ! </LoginTitle>
+        <LoginTitle>GitHub Login</LoginTitle>
         <SocialLogin
           provider="github"
           gatekeeper="https://firework.localtunnel.me/api/user"
