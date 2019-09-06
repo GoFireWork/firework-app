@@ -33,9 +33,11 @@ export const Container = styled.div`
 `;
 
 export const PreviewContainer = styled.div`
+  top: 65px;
   display: flex;
   flex-grow: 1;
   position: absolute;
+  z-index: 2;
   right: 0px;
   height: 100%;
   width: 40%;
