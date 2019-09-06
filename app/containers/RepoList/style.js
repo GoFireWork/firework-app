@@ -31,4 +31,5 @@ export const RepoType = styled.div`
   box-sizing: border-box;
   border-radius: 10px;
   text-align: center;
+  font-weight: 100;
 `;

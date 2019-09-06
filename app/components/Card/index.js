@@ -15,9 +15,9 @@ import Footer from './footer';
 function Card(props) {
   return (
     <Wrapper>
-      <Header>{props.title}</Header>
-      <Content>{props.content}</Content>
-      <Footer>{props.footer}</Footer>
+      {props.title && <Header>{props.title}</Header>}
+      {props.content && <Content>{props.content}</Content>}
+      {props.footer && <Footer>{props.footer}</Footer>}
     </Wrapper>
   );
 }
