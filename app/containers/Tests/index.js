@@ -14,7 +14,7 @@ import {
 
 import { getSelectedIssueID } from '../Issues/reducer';
 
-import FailingTestsList from './components/FailingTestsList/FailingTestsList';
+import TestsResults from './components/TestsResults';
 import TestsCounts from './components/TestsCounts';
 
 export function Tests(props) {
@@ -27,7 +27,7 @@ export function Tests(props) {
           : 'Select An Issue to Run Tests'}
       </PreviewHeader>
       <TestsCounts {...props} />
-      <FailingTestsList {...props} />
+      <TestsResults {...props} />
     </TestsContainer>
   );
 }

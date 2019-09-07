@@ -12,7 +12,7 @@ function List(props) {
   if (props.items) {
     content = props.items.map(item => (
       <ComponentToRender
-        selectedIssueID={props.selectedIssueID}
+        selecteddIssueID={props.selectedIssueID}
         selectIssue={props.selectIssue}
         key={`${item.url}`}
         item={item}
