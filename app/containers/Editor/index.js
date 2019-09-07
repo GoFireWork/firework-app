@@ -7,12 +7,11 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import H3 from 'components/H3';
 import reducer from './reducer';
 import saga from './saga';
 
 import Files from '../FileBrowser/index';
-import { CenteredSection, Container, LeftSide, MainDiv } from './styles';
+import { Container, LeftSide, MainDiv } from './styles';
 import CodeEditor from './Editor';
 import { openFetchingFile } from './actions';
 import {
@@ -30,12 +29,9 @@ export function Editor(props) {
   return (
     <div>
       <Helmet>
-        <title>Gnarwork</title>
-        <meta name="description" content="Gnarwork" />
+        <title>FireWork</title>
+        <meta name="description" content="FireWork" />
       </Helmet>
-      <CenteredSection>
-        <H3>Repo: {props.repoURL}</H3>
-      </CenteredSection>
       <Container>
         <LeftSide>
           <Files repo={props.repoURL} openFile={props.openFile} />
