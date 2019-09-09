@@ -4,6 +4,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  cursor: pointer;
 `;
 
 export default Wrapper;

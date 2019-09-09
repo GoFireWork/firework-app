@@ -10,6 +10,7 @@ export const List = props => (
     {props.repo.length ? (
       props.repo.map(repo => (
         <Card
+          onClick={() => {}}
           title={
             <>
               <div>{repo.name}</div>
