@@ -162,7 +162,7 @@ module.exports = {
       actions.push({
         type: 'add',
         path: '../../app/containers/{{properCase name}}/Loadable.js',
-        templateFile: './component/loadable.js.hbs',
+        templateFile: './component/Loadable.js.hbs',
         abortOnFail: true,
       });
     }
