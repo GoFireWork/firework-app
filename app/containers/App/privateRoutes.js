@@ -40,7 +40,7 @@ class CRoute extends React.Component {
 
 CRoute.propTypes = {
   token: PropTypes.string,
-  cprivate: PropTypes.string,
+  cprivate: PropTypes.bool,
   component: PropTypes.elementType,
 };
 const mapStateToProps = state => ({
