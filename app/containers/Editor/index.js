@@ -25,7 +25,6 @@ const key = 'open';
 export function Editor(props) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
-
   return (
     <div>
       <Helmet>

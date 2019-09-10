@@ -4,6 +4,7 @@ import {
   LOAD_REPO_ERROR,
   LOAD_REPO_REQUEST,
   LOAD_REPO_SUCCESS,
+  LOAD_REPO_SELECTED,
 } from './constants';
 
 export const initialState = {
@@ -12,9 +13,10 @@ export const initialState = {
   repoList: [],
   error: false,
   loading: false,
+  selectedRepoUrl: '',
 };
 /* eslint-disable default-case, no-param-reassign */
-const RepositorReducer = (state = initialState, action) =>
+const RepositoriesReducer = (state = initialState, action) =>
   /* eslint-disable no-param-reassign */
   produce(state, draft => {
     switch (action.type) {
@@ -31,9 +33,13 @@ const RepositorReducer = (state = initialState, action) =>
       case LOAD_REPO_ERROR:
         draft.error = action.error;
         break;
+      case LOAD_REPO_SELECTED:
+        draft.selectedRepoUrl = action.repo;
+        break;
     }
   });
 
-export default RepositorReducer;
+export default RepositoriesReducer;
 
 export const getRepoList = state => state.repo.repoList;
+export const getSelectedRepo = state => state.repo.selectedRepoUrl;
