@@ -107,7 +107,7 @@ export function clone({
 }) {
   return git.clone({
     dir: directoryName,
-    corsProxy: 'https://cors.isomorphic-git.org',
+    corsProxy: 'http://cors.firework.technology:9999',
     url: repoUrl,
     ref: branch,
     singleBranch: true,
