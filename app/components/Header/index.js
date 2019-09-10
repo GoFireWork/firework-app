@@ -14,10 +14,6 @@ function Header(props) {
   return (
     <div>
       <NavBar>
-        {/* <HeaderLink to="/"> */}
-        {/*  <FormattedMessage {...messages.home} /> */}
-        {/* </HeaderLink> */}
-
         {token === null ? (
           <HeaderLink to="/login">
             <FormattedMessage {...messages.login} />
