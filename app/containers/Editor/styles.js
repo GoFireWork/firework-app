@@ -34,10 +34,8 @@ export const MainDiv = styled.div`
   flex-direction: column;
   .CodeMirror {
     width: 100%;
-    height: calc(100vh - 50px);
-    .CodeMirror-scroll{
-    padding:0;
-    }
+    height: calc(100vh - 37px);
+  }
 `;
 
 export const CodeMirrorWrapper = styled(CodeMirror)`

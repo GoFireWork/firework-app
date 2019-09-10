@@ -6,6 +6,8 @@ export const initialState = {
   loading: false,
   error: false,
   content: '',
+  path: '',
+  name: '',
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -21,6 +23,8 @@ const reducer = (state = initialState, action) =>
       case OPEN_FILE:
         draft.loading = false;
         draft.content = action.content;
+        draft.path = action.path;
+        draft.name = action.name;
         break;
     }
   });

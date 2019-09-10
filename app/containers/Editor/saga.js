@@ -10,11 +10,13 @@ import { OPEN_FILE_REQUEST } from './constants';
 /**
  * Get Github repo files
  */
-export function* openFetchFile(path) {
+export function* openFetchFile(path, fileName) {
   try {
     const realpath = typeof path === 'object' ? path.path : path;
+    const name = typeof path === 'object' ? path.name : fileName;
     const content = yield git.readFile(realpath);
-    yield put(openFile(content));
+    console.log(realpath);
+    yield put(openFile({ content, path: realpath, name }));
   } catch (err) {
     console.log(err);
     yield put(openFileError(err));
@@ -22,7 +24,7 @@ export function* openFetchFile(path) {
 }
 
 export default function* saga() {
-  const { path } = yield take(OPEN_FILE_REQUEST);
-  yield fork(openFetchFile, path);
+  const { path, name } = yield take(OPEN_FILE_REQUEST);
+  yield fork(openFetchFile, path, name);
   yield takeEvery(OPEN_FILE_REQUEST, openFetchFile);
 }

@@ -18,6 +18,8 @@ import {
   makeOpenFile,
   makeOpenFileError,
   makeOpenFileLoading,
+  makeOpenFileName,
+  makeOpenFilePath,
 } from './selectors';
 
 const key = 'open';
@@ -52,13 +54,15 @@ Editor.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   content: makeOpenFile(),
+  name: makeOpenFileName(),
+  path: makeOpenFilePath(),
   loading: makeOpenFileLoading(),
   error: makeOpenFileError(),
 });
 
 export const mapDispatchToProps = dispatch => ({
-  openFile: path => {
-    dispatch(openFetchingFile(path));
+  openFile: (path, name) => {
+    dispatch(openFetchingFile(path, name));
   },
 });
 

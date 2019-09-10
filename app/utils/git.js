@@ -14,7 +14,6 @@ export async function makeDirectory(directoryName) {
   try {
     return await fs.mkdir(directoryName);
   } catch (error) {
-    console.log(error);
     return true;
   }
 }
