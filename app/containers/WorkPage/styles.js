@@ -10,9 +10,7 @@ export const WorkPageContainer = styled.div`
   position: absolute;
   top: 50px;
   bottom: 50px;
-  right: 10px;
   width: 100%;
-  height: 100%;
 `;
 
 export const EditorContainer = styled.div`
@@ -38,8 +36,9 @@ export const PreviewContainer = styled.div`
   flex-grow: 1;
   position: absolute;
   z-index: 2;
+  top: 0;
   right: 0px;
-  height: 100%;
+  height: calc(100vh - 50px);
   width: 40%;
   background-color: ${'rgba(0, 0, 0, 0.8)'};
 `;

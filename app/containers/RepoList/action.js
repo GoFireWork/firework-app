@@ -3,6 +3,7 @@ import {
   LOAD_REPO_REQUEST,
   LOAD_REPO_ERROR,
   LOAD_REPO_SUCCESS,
+  LOAD_REPO_SELECTED,
 } from './constants';
 
 export const changeRepoURL = repoURL => ({
@@ -23,4 +24,9 @@ export const setFetchingRepoContentsError = loadRepoContentsError => ({
 export const setRepositories = repoList => ({
   type: LOAD_REPO_SUCCESS,
   repoList,
+});
+
+export const setSelectedRepositries = repo => ({
+  type: LOAD_REPO_SELECTED,
+  repo,
 });
