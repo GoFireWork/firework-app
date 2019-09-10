@@ -53,12 +53,10 @@ function Editor(props) {
 
   const closedTab = (removedIndex, removedID) => {
     const newTabs = tabs.filter(tab => tab.id !== removedID);
-    // newTabs.splice(removedIndex, 1);
 
     if (tabs[removedIndex].active && newTabs.length !== 0) {
       const newActive = removedIndex === 0 ? 0 : removedIndex - 1;
       newTabs[newActive].active = true;
-      console.log(newTabs);
     }
     setTabs(newTabs);
   };
@@ -96,7 +94,6 @@ function Editor(props) {
 
   useEffect(() => {
     if (props.path) {
-      // debugger
       if (isNewTab(props.name, props.path)) {
         addTab({ ...props });
       } else {
