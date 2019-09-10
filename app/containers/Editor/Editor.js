@@ -53,7 +53,6 @@ function Editor(props) {
 
   const closedTab = (removedIndex, removedID) => {
     const newTabs = tabs.filter(tab => tab.id !== removedID);
-
     if (tabs[removedIndex].active && newTabs.length !== 0) {
       const newActive = removedIndex === 0 ? 0 : removedIndex - 1;
       newTabs[newActive].active = true;

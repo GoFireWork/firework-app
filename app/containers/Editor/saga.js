@@ -16,8 +16,7 @@ export function* openFetchFile(path, fileName) {
     const name = typeof path === 'object' ? path.name : fileName;
     const content = yield git.readFile(realpath);
     console.log(realpath);
-    const file = openFile({ content, path: realpath, name });
-    yield put(file);
+    yield put(openFile({ content, path: realpath, name }));
   } catch (err) {
     console.log(err);
     yield put(openFileError(err));
