@@ -48,7 +48,8 @@ const TreeView = props => {
     setCursor(node);
     setData(Object.assign({}, data));
     if (node.type === 'file') {
-      props.openFile(node.path);
+      console.log(node);
+      props.openFile(node.path, node.name);
     }
   };
 

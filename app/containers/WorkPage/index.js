@@ -1,18 +1,23 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+import { Icon } from 'react-icons-kit';
+import { arrowRightB } from 'react-icons-kit/ionicons/arrowRightB';
+import { arrowLeftB } from 'react-icons-kit/ionicons/arrowLeftB';
 import Issues from '../Issues/index';
 import Tests from '../Tests/index';
-import { Preview, PreviewContainer, WorkPageContainer } from './styles';
+import { Preview, PreviewContainer, WorkPageContainer, Button } from './styles';
 import { setSelectedIssue } from '../Issues/actions';
 import SelectedIssueContextWrapper from './SelectedIssueContextWrapper';
 import { getSelectedIssueID } from '../Issues/reducer';
 import Editor from '../Editor';
 
 export function WorkPage(props) {
+  const [open, setOpen] = useState(false);
+
   return (
     <div>
       <Helmet>
@@ -24,8 +29,16 @@ export function WorkPage(props) {
         <SelectedIssueContextWrapper
           selectedIssueID={props.selectedIssueID || 0}
         >
-          <PreviewContainer>
+          <PreviewContainer open={open}>
             <Preview>
+              <Button onClick={() => setOpen(!open)}>
+                {' '}
+                {open ? (
+                  <Icon icon={arrowRightB} />
+                ) : (
+                  <Icon icon={arrowLeftB} />
+                )}{' '}
+              </Button>
               <Tests />
               <Issues />
             </Preview>

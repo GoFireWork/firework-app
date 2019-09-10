@@ -34,7 +34,7 @@ export const MainDiv = styled.div`
   flex-direction: column;
   .CodeMirror {
     width: 100%;
-    height: calc(100vh);
+    height: calc(100vh - 37px);
   }
 `;
 

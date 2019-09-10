@@ -7,18 +7,19 @@ import { createStructuredSelector } from 'reselect';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import H3 from 'components/H3';
 import reducer from './reducer';
 import saga from './saga';
 
 import Files from '../FileBrowser/index';
-import { CenteredSection, Container, LeftSide, MainDiv } from './styles';
+import { Container, LeftSide, MainDiv } from './styles';
 import CodeEditor from './Editor';
 import { openFetchingFile } from './actions';
 import {
   makeOpenFile,
   makeOpenFileError,
   makeOpenFileLoading,
+  makeOpenFileName,
+  makeOpenFilePath,
 } from './selectors';
 
 const key = 'open';
@@ -33,9 +34,6 @@ export function Editor(props) {
         <title>Gnarwork</title>
         <meta name="description" content="Gnarwork" />
       </Helmet>
-      <CenteredSection>
-        <H3>Repo: {props.repoURL}</H3>
-      </CenteredSection>
       <Container>
         <LeftSide>
           <Files repo={props.repoURL} openFile={props.openFile} />
@@ -59,13 +57,15 @@ Editor.defaultProps = {
 
 const mapStateToProps = createStructuredSelector({
   content: makeOpenFile(),
+  name: makeOpenFileName(),
+  path: makeOpenFilePath(),
   loading: makeOpenFileLoading(),
   error: makeOpenFileError(),
 });
 
 export const mapDispatchToProps = dispatch => ({
-  openFile: path => {
-    dispatch(openFetchingFile(path));
+  openFile: (path, name) => {
+    dispatch(openFetchingFile(path, name));
   },
 });
 

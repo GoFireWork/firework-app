@@ -36,15 +36,17 @@ export const PreviewContainer = styled.div`
   top: 65px;
   display: flex;
   flex-grow: 1;
-  position: absolute;
+  position: fixed;
   z-index: 2;
-  right: 0px;
+  right: ${props => (props.open ? 0 : '-40%')};
+  transition: 2s;
   height: 100%;
   width: 40%;
   background-color: ${'rgba(0, 0, 0, 0.8)'};
 `;
 
 export const Preview = styled.div`
+  position: relative;
   display: flex;
   flex-grow: 1;
   width: 100%;
@@ -59,4 +61,16 @@ export const LeftSide = styled.div`
   > article {
     width: 100%;
   }
+`;
+
+export const Button = styled.div`
+  padding: 0.4em 0.5em;
+  background-color: #41bde9;
+  position: absolute;
+  left: -34px;
+  border: 1px solid #41bde9;
+  opacity: 0.7;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 4px;
+  cursor: pointer;
 `;

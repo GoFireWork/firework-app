@@ -12,6 +12,18 @@ const makeOpenFile = () =>
     state => state.content,
   );
 
+const makeOpenFileName = () =>
+  createSelector(
+    openFile,
+    state => state.name,
+  );
+
+const makeOpenFilePath = () =>
+  createSelector(
+    openFile,
+    state => state.path,
+  );
+
 const makeOpenFileError = () =>
   createSelector(
     openFile,
@@ -24,4 +36,10 @@ const makeOpenFileLoading = () =>
     state => state.loading,
   );
 
-export { makeOpenFile, makeOpenFileLoading, makeOpenFileError };
+export {
+  makeOpenFile,
+  makeOpenFileLoading,
+  makeOpenFileError,
+  makeOpenFileName,
+  makeOpenFilePath,
+};
