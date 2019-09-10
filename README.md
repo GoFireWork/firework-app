@@ -24,7 +24,7 @@
 - `npm install <package-name>` -> Add a new package
 - `npm remove <package-name>` -> Delete a package from package.json
 
-#Redux
+# Redux
 
 -All fetched data from the server should be stored in the Redux store so that it can be fetched once when possible.
 We should have three actions firing for each interaction with the API. Example: In a case to select file , we should have a OPEN_FILE_REQUEST action, a OPEN_FILE and an OPEN_FILE_ERROR.
@@ -40,9 +40,9 @@ Which in a real case scenario could be:
 for fetching an individual order
 const TYPE = 'boilerplate/WorkPage/OPEN_FILE'
 
-#Formatting code for standardization
+# Formatting code for standardization
 
-The formatting will be performed to all .js, .css and .json.
+The formatting will be performed to all .js, .css.
 
 The following configuration is applied:
 
