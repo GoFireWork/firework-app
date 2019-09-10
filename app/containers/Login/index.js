@@ -8,11 +8,14 @@ import { push } from 'connected-react-router';
 
 import SocialLogin from './socialButton';
 import { LoginSection, LoginTitle } from './style';
+import { onLoginSuccess, OnLoginFails } from './actions';
 
 export const Login = props => {
-  const handleSocialLogin = user => {
+  const handleSocialLogin = async user => {
     const { accessToken } = user.token;
     localStorage.setItem('token', accessToken);
+    await props.onLoginSuccess(accessToken);
+
     if (accessToken) {
       props.redirect('/');
     }
@@ -20,6 +23,7 @@ export const Login = props => {
 
   const handleSocialLoginFailure = err => {
     console.error(err);
+    props.OnLoginFails(err);
   };
   return (
     <div>
@@ -51,11 +55,19 @@ export const Login = props => {
 
 Login.propTypes = {
   redirect: PropTypes.func,
+  onLoginSuccess: PropTypes.func,
+  OnLoginFails: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({});
 
 const mapDispatchToProps = dispatch => ({
+  onLoginSuccess: token => {
+    dispatch(onLoginSuccess(token));
+  },
+  OnLoginFails: error => {
+    dispatch(OnLoginFails(error));
+  },
   redirect: bindActionCreators(push, dispatch),
   push,
 });
