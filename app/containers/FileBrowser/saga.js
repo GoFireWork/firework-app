@@ -13,14 +13,20 @@ import { LOAD_FILES_REQUEST } from './constants';
 export function* getRepoFiles(repoUrl) {
   const directoryName = `/${repoUrl.split('/').pop()}`;
   try {
+    let files;
     yield git.makeDirectory(directoryName);
+    if (localStorage.getItem(repoUrl)) {
+      files = JSON.parse(localStorage.getItem(repoUrl));
+      yield put(setFiles(files));
+    }
 
     yield git.clone({
       directoryName,
       repoUrl,
       depth: 10,
     });
-    const files = yield git.listFiles(directoryName);
+    files = yield git.listFiles(directoryName);
+    localStorage.setItem(repoUrl, JSON.stringify(files));
     yield put(setFiles(files));
   } catch (err) {
     console.log(err);
