@@ -1,3 +1,30 @@
 .h-100 {
 	height: 100%;
 }
+
+.react-tabs-tab {
+	border-right: 1px solid #45c3e3;
+	display: flex;
+	justify-content: space-between;
+}
+
+.react-tabs-tab.react-tabs-active {
+	border-left: 4px solid #45c3e3;	
+}
+
+.react-tabs-tab-content,
+.react-tabs-tab-close {
+	width: inherit !important;
+}
+
+.react-tabs-tab-close:hover {
+	cursor: pointer;
+}
+
+.css-1u94gzr {
+	margin: -11px 0 0 -7px !important;
+}
+
+.node-title {
+	white-space: nowrap;
+}

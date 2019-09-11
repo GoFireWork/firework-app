@@ -23,15 +23,14 @@ MirrorEditor.propTypes = {
 };
 
 function Editor(props) {
+  const defaultTab = {
+    id: Date.now(),
+    active: true,
+    content: <span className="tab-title">Untitled</span>,
+    display: renderCodeMirror(''),
+  };
   const [activeTab, setActiveTab] = useState([]);
-  const [tabs, setTabs] = useState([
-    {
-      id: Date.now(),
-      active: true,
-      content: 'Untitled',
-      display: renderCodeMirror(''),
-    },
-  ]);
+  const [tabs, setTabs] = useState([defaultTab]);
 
   function renderCodeMirror(content) {
     return <MirrorEditor content={content} />;
@@ -59,6 +58,9 @@ function Editor(props) {
       const newActive = removedIndex === 0 ? 0 : removedIndex - 1;
       newTabs[newActive].active = true;
       console.log(newTabs);
+    }
+    if (!newTabs.length) {
+      newTabs.push(defaultTab);
     }
     setTabs(newTabs);
   };

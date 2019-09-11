@@ -13,7 +13,7 @@ const Header = ({ style, node }) => {
 
   return (
     <Div style={style.base}>
-      <Div style={style.title}>
+      <Div style={style.title} className="node-title">
         <Icon icon={iconType} style={iconStyle} />
         {node.name}
       </Div>

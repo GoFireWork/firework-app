@@ -10,7 +10,6 @@ export const WorkPageContainer = styled.div`
   position: absolute;
   top: 50px;
   bottom: 50px;
-  right: 10px;
   width: 100%;
   height: 100%;
 `;
