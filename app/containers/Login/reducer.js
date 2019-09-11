@@ -11,6 +11,7 @@ import {
 export const initialState = {
   token: localStorage.getItem('token'),
   error: '',
+  userDetails: {},
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -37,4 +38,7 @@ const reducer = (state = initialState, action) =>
   });
 
 export default reducer;
+
 export const getToken = state => state.user.token;
+
+export const getUserDetails = state => state.user.userDetails;

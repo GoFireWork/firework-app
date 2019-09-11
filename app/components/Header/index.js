@@ -14,64 +14,55 @@ import messages from './messages';
 import Dropdown from '../DropDown';
 import { Profile } from './styled';
 import dropdownIcon from './drop-down-arrow.svg';
-import reducer, { getToken } from '../../containers/Login/reducer';
+import reducer, { getUserDetails } from '../../containers/Login/reducer';
 
 import saga from '../../containers/Login/saga';
 
 const key = 'user';
-const options = [
-  {
-    value: '/profile',
-    label: 'Signed in as',
-    tag: <strong>shubh4solanki</strong>,
-  },
-  { value: '', label: '', component: <hr /> },
-  { value: '/profile', label: 'Your profile' },
-  { value: '/repositories', label: 'Your repositories' },
-  { value: '/project', label: 'Your projects' },
-  { value: '/stars', label: 'Your stars' },
-  { value: '/gits', label: 'Your gists' },
-  { value: '', label: '', component: <hr />, className: 'asd' },
-  { value: '/help', label: 'Help' },
-  { value: '/settings', label: 'Settings' },
-  { value: '/signout', label: 'Sign out' },
-];
 
 function Header(props) {
-  const { token } = props;
+  const { user } = props;
   const [visible, setVisible] = useState(false);
-
+  const options = [
+    {
+      value: '/profile',
+      label: 'Signed in as',
+      tag: <strong>{user.login}</strong>,
+    },
+    { value: '', label: '', component: <hr /> },
+    { value: '/profile', label: 'Your profile' },
+    { value: '/repositories', label: 'Your repositories' },
+    { value: '/project', label: 'Your projects' },
+    { value: '/stars', label: 'Your stars' },
+    { value: '/gits', label: 'Your gists' },
+    { value: '', label: '', component: <hr />, className: 'asd' },
+    { value: '/help', label: 'Help' },
+    { value: '/settings', label: 'Settings' },
+    { value: '/signout', label: 'Sign out' },
+  ];
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
-  console.log(visible);
   return (
     <div>
       <NavBar>
-        {token !== null && (
-          <>
-            <div>
-              <HeaderLink to="/">
-                <FormattedMessage {...messages.workpage} />
-              </HeaderLink>
-              <HeaderLink to="/repositories">
-                <FormattedMessage {...messages.repositories} />
-              </HeaderLink>
-            </div>
-            <Profile onClick={() => setVisible(!visible)}>
-              <img
-                src="https://avatars3.githubusercontent.com/u/29801996?v=4"
-                alt="profile"
-              />
-              <img src={dropdownIcon} alt="drop-arrow" />
-            </Profile>
-            {visible && (
-              <Dropdown
-                options={options}
-                setVisible={setVisible}
-                visible={visible}
-              />
-            )}
-          </>
+        <div>
+          <HeaderLink to="/">
+            <FormattedMessage {...messages.workpage} />
+          </HeaderLink>
+          <HeaderLink to="/repositories">
+            <FormattedMessage {...messages.repositories} />
+          </HeaderLink>
+        </div>
+        <Profile onClick={() => setVisible(!visible)}>
+          <img src={user.avatar_url} alt="profile" />
+          <img src={dropdownIcon} alt="drop-arrow" />
+        </Profile>
+        {visible && (
+          <Dropdown
+            options={options}
+            setVisible={setVisible}
+            visible={visible}
+          />
         )}
       </NavBar>
     </div>
@@ -79,11 +70,11 @@ function Header(props) {
 }
 
 Header.propTypes = {
-  token: PropTypes.string,
+  user: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
-  token: getToken(state),
+  user: getUserDetails(state),
 });
 
 const mapDispatchToProps = () => ({});

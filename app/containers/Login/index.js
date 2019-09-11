@@ -15,7 +15,6 @@ export const Login = props => {
     const { accessToken } = user.token;
     localStorage.setItem('token', accessToken);
     await props.onLoginSuccess(accessToken);
-
     if (accessToken) {
       props.redirect('/');
     }

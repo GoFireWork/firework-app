@@ -4,6 +4,7 @@ import Wrapper from './Wrapper';
 import Li from './li';
 
 function Dropdown(props) {
+  const { options, setVisible } = props;
   const wrapperRef = useRef(null);
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, false);
@@ -14,13 +15,13 @@ function Dropdown(props) {
 
   const handleClickOutside = event => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      props.setVisible(false);
+      setVisible(false);
     }
   };
   return (
     <Wrapper ref={wrapperRef}>
-      {props.options.length &&
-        props.options.map(opt => (
+      {options.length &&
+        options.map(opt => (
           <div>
             {opt.component ? (
               opt.component
