@@ -11,6 +11,8 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import issuesReducer from 'containers/Issues/reducer';
 import codeMirrorReducer from 'containers/CodeMirror/reducer';
 import testsReducer from 'containers/Tests/reducer';
+import Repo from 'containers/RepoList/reducer';
+import user from 'containers/Login/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
@@ -22,6 +24,8 @@ export default function createReducer(injectedReducers = {}) {
     issues: issuesReducer,
     codeMirror: codeMirrorReducer,
     tests: testsReducer,
+    repo: Repo,
+    user,
     router: connectRouter(history),
     ...injectedReducers,
   });

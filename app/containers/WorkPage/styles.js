@@ -11,7 +11,6 @@ export const WorkPageContainer = styled.div`
   top: 50px;
   bottom: 50px;
   width: 100%;
-  height: 100%;
 `;
 
 export const EditorContainer = styled.div`

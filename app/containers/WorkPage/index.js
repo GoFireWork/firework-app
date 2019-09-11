@@ -13,6 +13,8 @@ import { Preview, PreviewContainer, WorkPageContainer, Button } from './styles';
 import { setSelectedIssue } from '../Issues/actions';
 import SelectedIssueContextWrapper from './SelectedIssueContextWrapper';
 import { getSelectedIssueID } from '../Issues/reducer';
+import { getSelectedRepo } from '../RepoList/reducer';
+
 import Editor from '../Editor';
 
 export function WorkPage(props) {
@@ -25,7 +27,7 @@ export function WorkPage(props) {
         <meta name="description" content="FireWork" />
       </Helmet>
       <WorkPageContainer>
-        <Editor />
+        <Editor repoURL={props.SelectedRepoURL} />
         <SelectedIssueContextWrapper
           selectedIssueID={props.selectedIssueID || 0}
         >
@@ -51,10 +53,12 @@ export function WorkPage(props) {
 
 WorkPage.propTypes = {
   selectedIssueID: PropTypes.number,
+  SelectedRepoURL: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   selectedIssueID: getSelectedIssueID(state),
+  SelectedRepoURL: getSelectedRepo(state),
 });
 
 export const mapDispatchToProps = dispatch => ({

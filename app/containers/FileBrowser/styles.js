@@ -21,7 +21,7 @@ export const FileBrowser = styled.div`
   width: 100%;
   position: absolute;
   overflow: auto;
-  height: 100vh;
+  height: calc(100vh - 50px);
   background-color: #21252b;
 
   ul {

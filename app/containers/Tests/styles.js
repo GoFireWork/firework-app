@@ -10,7 +10,6 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  // background-color: ${props => props.theme['sideBar.background']};
   background-color: rgb(28, 32, 34);
   color: ${props =>
     props.theme.light ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)'};

@@ -25,18 +25,19 @@ import {
 const key = 'open';
 
 export function Editor(props) {
+  const repoURL = `https://github.com/Fireworktech/testing-app`;
+
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
-
   return (
     <div>
       <Helmet>
-        <title>Gnarwork</title>
-        <meta name="description" content="Gnarwork" />
+        <title>FireWork</title>
+        <meta name="description" content="FireWork" />
       </Helmet>
       <Container>
         <LeftSide>
-          <Files repo={props.repoURL} openFile={props.openFile} />
+          <Files repo={repoURL} openFile={props.openFile} />
         </LeftSide>
         <MainDiv>
           <CodeEditor {...props} />
@@ -49,10 +50,6 @@ export function Editor(props) {
 Editor.propTypes = {
   repoURL: PropTypes.string,
   openFile: PropTypes.func,
-};
-
-Editor.defaultProps = {
-  repoURL: 'https://github.com/Distense/distense-ui',
 };
 
 const mapStateToProps = createStructuredSelector({

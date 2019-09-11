@@ -20,4 +20,8 @@ export default defineMessages({
     id: `${scope}.workpage`,
     defaultMessage: 'WorkPage',
   },
+  repositories: {
+    id: `${scope}.repositories`,
+    defaultMessage: 'Repositories',
+  },
 });
