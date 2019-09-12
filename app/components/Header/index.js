@@ -30,13 +30,7 @@ function Header(props) {
       tag: <strong>{user.login}</strong>,
     },
     { value: '', label: '', component: <hr /> },
-    { value: '/profile', label: 'Your profile' },
     { value: '/repositories', label: 'Your repositories' },
-    { value: '/project', label: 'Your projects' },
-    { value: '/stars', label: 'Your stars' },
-    { value: '/gits', label: 'Your gists' },
-    { value: '', label: '', component: <hr />, className: 'asd' },
-    { value: '/help', label: 'Help' },
     { value: '/settings', label: 'Settings' },
     { value: '/signout', label: 'Sign out' },
   ];
