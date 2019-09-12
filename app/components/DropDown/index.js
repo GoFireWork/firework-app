@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Wrapper from './Wrapper';
+import Wrapper, { ComponentWrapper } from './Wrapper';
 import Li from './li';
 
 function Dropdown(props) {
@@ -24,7 +24,7 @@ function Dropdown(props) {
         options.map(opt => (
           <div>
             {opt.component ? (
-              opt.component
+              <ComponentWrapper>{opt.component}</ComponentWrapper>
             ) : (
               <Li>
                 <a href={opt.value}>{opt.label && opt.label}</a>

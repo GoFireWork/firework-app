@@ -4,6 +4,7 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_ERROR,
   LOAD_USER_SUCCESS,
+  LOGOUT_USER_SUCCESS,
 } from './constants';
 
 export const onLoginSuccess = token => ({
@@ -28,4 +29,8 @@ export const setFetchingUser = fetching => ({
 export const setFetchingUserError = error => ({
   type: LOAD_USER_ERROR,
   error,
+});
+
+export const setLogout = () => ({
+  type: LOGOUT_USER_SUCCESS,
 });

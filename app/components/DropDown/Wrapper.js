@@ -29,3 +29,22 @@ const Wrapper = styled.div`
 `;
 
 export default Wrapper;
+
+export const ComponentWrapper = styled.div`
+  div {
+    margin: 0;
+    a {
+      border: none;
+      width: 100%;
+      color: #24292e;
+      font-weight: normal;
+      text-align: left;
+      border-radius: 0;
+      padding: 2px 16px;
+      :hover {
+        background-color: #0366d6;
+        color: #fff;
+      }
+    }
+  }
+`;

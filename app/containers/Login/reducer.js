@@ -5,6 +5,7 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_ERROR,
   LOAD_USER_SUCCESS,
+  LOGOUT_USER_SUCCESS,
 } from './constants';
 
 // The initial state of the App
@@ -34,6 +35,9 @@ const reducer = (state = initialState, action) =>
       case LOAD_USER_ERROR:
         draft.error = action.error;
         break;
+      case LOGOUT_USER_SUCCESS:
+        draft.token = '';
+        localStorage.removeItem('token');
     }
   });
 

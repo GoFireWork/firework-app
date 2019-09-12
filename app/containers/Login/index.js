@@ -7,8 +7,10 @@ import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-react-router';
 
 import SocialLogin from './socialButton';
-import { LoginSection, LoginTitle } from './style';
+import { LoginSection, LoginTitle, Loader, Wrapper } from './style';
 import { onLoginSuccess, OnLoginFails } from './actions';
+
+import LoaderSvg from './loaderSvg';
 
 export const Login = props => {
   const handleSocialLogin = async user => {
@@ -30,6 +32,14 @@ export const Login = props => {
         <title>FireWork</title>
         <meta name="description" content="FireWork" />
       </Helmet>
+      {props.location.search && (
+        <Wrapper>
+          <Loader>
+            <LoaderSvg />
+            <p>Redirecting..</p>
+          </Loader>
+        </Wrapper>
+      )}
       <LoginSection>
         <LoginTitle>GitHub Login</LoginTitle>
         <SocialLogin
@@ -53,6 +63,7 @@ export const Login = props => {
 };
 
 Login.propTypes = {
+  location: PropTypes.object,
   redirect: PropTypes.func,
   onLoginSuccess: PropTypes.func,
   OnLoginFails: PropTypes.func,
