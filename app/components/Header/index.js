@@ -42,6 +42,7 @@ function Header(props) {
   ];
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
+  console.log(visible);
   return (
     <div>
       <NavBar>
