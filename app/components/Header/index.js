@@ -15,22 +15,25 @@ import messages from './messages';
 import Dropdown from '../DropDown';
 import { Profile } from './styled';
 import dropdownIcon from './drop-down-arrow.svg';
-import reducer, { getUserDetails } from '../../containers/Login/reducer';
+import reducer, {
+  getUserDetails,
+  getToken,
+} from '../../containers/Login/reducer';
 
 import saga from '../../containers/Login/saga';
-import { setLogout } from '../../containers/Login/actions';
+import { setLogout, setFetchingUser } from '../../containers/Login/actions';
 
 const key = 'user';
 
 function Header(props) {
-  const { user } = props;
+  const { user, token } = props;
   const [visible, setVisible] = useState(false);
 
   const options = [
     {
       value: '/profile',
       label: 'Signed in as',
-      tag: <strong>{user.login}</strong>,
+      tag: <strong>{user && user.login}</strong>,
     },
     { value: '', label: '', component: <hr /> },
     { value: '/repositories', label: 'Your repositories' },
@@ -39,27 +42,36 @@ function Header(props) {
   ];
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
+
+  if (Object.keys(user).length === 0) {
+    props.setFetchingUser();
+  }
+
   return (
     <div>
       <NavBar>
-        <div>
-          <HeaderLink to="/">
-            <FormattedMessage {...messages.workpage} />
-          </HeaderLink>
-          <HeaderLink to="/repositories">
-            <FormattedMessage {...messages.repositories} />
-          </HeaderLink>
-        </div>
-        <Profile onClick={() => setVisible(!visible)}>
-          <img src={user.avatar_url} alt="profile" />
-          <img src={dropdownIcon} alt="drop-arrow" />
-        </Profile>
-        {visible && (
-          <Dropdown
-            options={options}
-            setVisible={setVisible}
-            visible={visible}
-          />
+        {token && (
+          <>
+            <div>
+              <HeaderLink to="/">
+                <FormattedMessage {...messages.workpage} />
+              </HeaderLink>
+              <HeaderLink to="/repositories">
+                <FormattedMessage {...messages.repositories} />
+              </HeaderLink>
+            </div>
+            <Profile onClick={() => setVisible(!visible)}>
+              <img src={user && user.avatar_url} alt="profile" />
+              <img src={dropdownIcon} alt="drop-arrow" />
+            </Profile>
+            {visible && (
+              <Dropdown
+                options={options}
+                setVisible={setVisible}
+                visible={visible}
+              />
+            )}
+          </>
         )}
       </NavBar>
     </div>
@@ -68,16 +80,22 @@ function Header(props) {
 
 Header.propTypes = {
   user: PropTypes.object,
+  token: PropTypes.string,
   Logout: PropTypes.func,
+  setFetchingUser: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   user: getUserDetails(state),
+  token: getToken(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   Logout: () => {
     dispatch(setLogout());
+  },
+  setFetchingUser: () => {
+    dispatch(setFetchingUser());
   },
 });
 
