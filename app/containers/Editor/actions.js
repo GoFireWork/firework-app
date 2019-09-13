@@ -1,19 +1,29 @@
-import { OPEN_FILE, OPEN_FILE_REQUEST, OPEN_FILE_ERROR } from './constants';
+import {
+  CURRENT_FILE,
+  CURRENT_FILE_REQUEST,
+  CURRENT_FILE_ERROR,
+  UPDATE_CURRENT_FILE_CONTENTS,
+} from './constants';
 
 export const openFetchingFile = (path, name) => ({
-  type: OPEN_FILE_REQUEST,
+  type: CURRENT_FILE_REQUEST,
   path,
   name,
 });
 
-export const openFileError = error => ({
-  type: OPEN_FILE_ERROR,
+export const currentFileError = error => ({
+  type: CURRENT_FILE_ERROR,
   error,
 });
 
-export const openFile = ({ content, path, name }) => ({
-  type: OPEN_FILE,
+export const currentFile = ({ content, path, name }) => ({
+  type: CURRENT_FILE,
   content,
   path,
   name,
+});
+
+export const updateCurrentFileContents = content => ({
+  type: UPDATE_CURRENT_FILE_CONTENTS,
+  content,
 });

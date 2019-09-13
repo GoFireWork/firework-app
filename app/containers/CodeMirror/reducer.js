@@ -1,3 +1,4 @@
+/*
 import produce from 'immer';
 import { CODE_MIRROR_STATE } from './constants';
 
@@ -8,7 +9,7 @@ export const initialState = {
   codeMirrorState: '',
 };
 
-/* eslint-disable default-case, no-param-reassign */
+/!* eslint-disable default-case, no-param-reassign *!/
 const codeMirrorReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
@@ -19,3 +20,4 @@ const codeMirrorReducer = (state = initialState, action) =>
   });
 
 export default codeMirrorReducer;
+*/

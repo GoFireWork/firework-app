@@ -12,6 +12,8 @@ import issuesReducer from 'containers/Issues/reducer';
 import codeMirrorReducer from 'containers/CodeMirror/reducer';
 import testsReducer from 'containers/Tests/reducer';
 import Repo from 'containers/RepoList/reducer';
+import Files from 'containers/FileBrowser/reducer';
+import Editor from 'containers/Editor/reducer';
 import user from 'containers/Login/reducer';
 
 /**
@@ -19,6 +21,8 @@ import user from 'containers/Login/reducer';
  */
 export default function createReducer(injectedReducers = {}) {
   return combineReducers({
+    files: Files,
+    editor: Editor,
     global: globalReducer,
     language: languageProviderReducer,
     issues: issuesReducer,

@@ -1,45 +1,42 @@
-/**
- * Issues selectors
- */
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const openFile = state => state.open || initialState;
+const currentFile = state => state.editor || initialState;
 
-const makeOpenFile = () =>
+const makeCurrentFileContent = () =>
   createSelector(
-    openFile,
+    currentFile,
     state => state.content,
   );
 
-const makeOpenFileName = () =>
+const makeCurrentFileName = () =>
   createSelector(
-    openFile,
+    currentFile,
     state => state.name,
   );
 
-const makeOpenFilePath = () =>
+const makeCurrentFilePath = () =>
   createSelector(
-    openFile,
+    currentFile,
     state => state.path,
   );
 
-const makeOpenFileError = () =>
+const makeCurrentFileError = () =>
   createSelector(
-    openFile,
+    currentFile,
     state => state.error,
   );
 
-const makeOpenFileLoading = () =>
+const makeCurrentFileLoading = () =>
   createSelector(
-    openFile,
+    currentFile,
     state => state.loading,
   );
 
 export {
-  makeOpenFile,
-  makeOpenFileLoading,
-  makeOpenFileError,
-  makeOpenFileName,
-  makeOpenFilePath,
+  makeCurrentFileContent,
+  makeCurrentFileLoading,
+  makeCurrentFileError,
+  makeCurrentFileName,
+  makeCurrentFilePath,
 };

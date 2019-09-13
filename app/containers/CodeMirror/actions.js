@@ -1,3 +1,4 @@
+/*
 import { CODE_MIRROR_ERROR, CODE_MIRROR_STATE } from './constants';
 
 export const changeCodeMirrorState = codeMirrorState => ({
@@ -8,3 +9,4 @@ export const changeCodeMirrorError = codeMirrorError => ({
   type: CODE_MIRROR_ERROR,
   codeMirrorError,
 });
+*/

@@ -11,18 +11,19 @@ import reducer from './reducer';
 import saga from './saga';
 
 import Files from '../FileBrowser/index';
+import FileTabs from './Editor';
 import { Container, LeftSide, MainDiv } from './styles';
-import CodeEditor from './Editor';
+import CodeMirrorEditor from '../CodeMirror';
 import { openFetchingFile } from './actions';
 import {
-  makeOpenFile,
-  makeOpenFileError,
-  makeOpenFileLoading,
-  makeOpenFileName,
-  makeOpenFilePath,
+  makeCurrentFileName,
+  makeCurrentFileLoading,
+  makeCurrentFileError,
+  makeCurrentFileContent,
+  makeCurrentFilePath,
 } from './selectors';
 
-const key = 'open';
+const key = 'editor';
 
 export function Editor(props) {
   const repoURL = `https://github.com/Fireworktech/testing-app`;
@@ -40,7 +41,8 @@ export function Editor(props) {
           <Files repo={repoURL} openFile={props.openFile} />
         </LeftSide>
         <MainDiv>
-          <CodeEditor {...props} />
+          <FileTabs {...props} />
+          <CodeMirrorEditor {...props} />
         </MainDiv>
       </Container>
     </div>
@@ -53,11 +55,11 @@ Editor.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  content: makeOpenFile(),
-  name: makeOpenFileName(),
-  path: makeOpenFilePath(),
-  loading: makeOpenFileLoading(),
-  error: makeOpenFileError(),
+  content: makeCurrentFileContent(),
+  name: makeCurrentFileName(),
+  path: makeCurrentFilePath(),
+  loading: makeCurrentFileLoading(),
+  error: makeCurrentFileError(),
 });
 
 export const mapDispatchToProps = dispatch => ({

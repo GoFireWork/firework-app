@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const CodeMirrorWrapper = styled.div`
   position: absolute;
   right: 0px;
-  width: 65%;
+  // width: 65%;
   height: 100%;
   display: flex;
   flex-direction: 'column';

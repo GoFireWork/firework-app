@@ -1,57 +1,51 @@
-import React, { useEffect, memo } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
 import { Controlled as ControlledCodeMirror } from 'react-codemirror2';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { changeCodeMirrorState } from './actions';
-import { selectCodeMirrorState, selectCodeMirrorError } from './selectors';
-import { CodeMirrorWrapper } from './CodeMirrorWrapper';
+import { makeCurrentFileContent } from '../Editor/selectors';
+import { updateCurrentFileContents } from '../Editor/actions';
 
 require('codemirror/mode/javascript/javascript');
 
-export function CodeMirror(props) {
-  useEffect(() => {}, []);
-
+export function CodeMirrorEditor(props) {
   return (
-    <CodeMirrorWrapper>
-      <ControlledCodeMirror
-        value={props.codeMirrorState}
-        options={{
-          mode: 'javascript',
-          lineNumbers: true,
-          theme: 'material',
-        }}
-        onBeforeChange={(editor, data, value) => {
-          props.onChangeCodeMirror(value);
-        }}
-        onChange={(editor, data, value) => {
-          props.onChangeCodeMirror(value);
-        }}
-      />
-    </CodeMirrorWrapper>
+    <ControlledCodeMirror
+      value={props.content}
+      options={{
+        mode: 'javascript',
+        lineNumbers: true,
+        theme: 'material',
+      }}
+      onBeforeChange={(editor, data, value) => {
+        props.changeContent(value);
+      }}
+      onChange={(editor, data, value) => {
+        props.changeContent(value);
+      }}
+    />
   );
 }
 
-CodeMirror.propTypes = {
-  codeMirrorState: PropTypes.string,
-  onChangeCodeMirror: PropTypes.func,
-  // codeMirrorError: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+CodeMirrorEditor.propTypes = {
+  content: PropTypes.string,
+  changeContent: PropTypes.func,
 };
+
 const mapStateToProps = createStructuredSelector({
-  codeMirrorState: selectCodeMirrorState(),
-  codeMirrorError: selectCodeMirrorError(),
+  content: makeCurrentFileContent(),
 });
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    onChangeCodeMirror: value => dispatch(changeCodeMirrorState(value)),
-  };
-}
+export const mapDispatchToProps = dispatch => ({
+  changeContent: content => {
+    dispatch(updateCurrentFileContents(content));
+  },
+});
 
 const withConnect = connect(
   mapStateToProps,
@@ -61,4 +55,4 @@ const withConnect = connect(
 export default compose(
   withConnect,
   memo,
-)(CodeMirror);
+)(CodeMirrorEditor);

@@ -22,19 +22,14 @@ MirrorEditor.propTypes = {
   content: PropTypes.string,
 };
 
-function Editor(props) {
+function FileTabs(props) {
   const defaultTab = {
     id: Date.now(),
     active: true,
-    content: <span className="tab-title">Untitled</span>,
-    display: renderCodeMirror(''),
+    content: <span className="tab-title">new file</span>,
   };
   const [activeTab, setActiveTab] = useState([]);
   const [tabs, setTabs] = useState([defaultTab]);
-
-  function renderCodeMirror(content) {
-    return <MirrorEditor content={content} />;
-  }
 
   const moveTab = (dragIndex, hoverIndex) => {
     const newTabs = [...tabs];
@@ -62,7 +57,7 @@ function Editor(props) {
     setTabs(newTabs);
   };
 
-  const addTab = ({ name, path, content }) => {
+  const addTab = ({ name, path }) => {
     const newTabs = tabs.map(tab => ({ ...tab, active: false }));
 
     newTabs.push({
@@ -70,17 +65,15 @@ function Editor(props) {
       content: name,
       path,
       active: true,
-      display: renderCodeMirror(content),
     });
     setTabs(newTabs);
   };
 
-  const putTab = ({ name, path, content }) => {
+  const putTab = ({ name, path }) => {
     const newTabs = tabs.map(tab => ({ ...tab, active: false }));
     setTabs(
       newTabs.map(tab => ({
         ...tab,
-        display: renderCodeMirror(content),
         active: tab.content === name && tab.path === path,
       })),
     );
@@ -116,9 +109,9 @@ function Editor(props) {
   );
 }
 
-Editor.propTypes = {
+FileTabs.propTypes = {
   name: PropTypes.string,
   path: PropTypes.string,
 };
 
-export default memo(Editor);
+export default memo(FileTabs);

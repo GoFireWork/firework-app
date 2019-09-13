@@ -1,5 +1,10 @@
 import produce from 'immer';
-import { OPEN_FILE, OPEN_FILE_REQUEST, OPEN_FILE_ERROR } from './constants';
+import {
+  CURRENT_FILE,
+  CURRENT_FILE_REQUEST,
+  CURRENT_FILE_ERROR,
+  UPDATE_CURRENT_FILE_CONTENTS,
+} from './constants';
 
 // The initial state of the App
 export const initialState = {
@@ -14,17 +19,20 @@ export const initialState = {
 const reducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case OPEN_FILE_ERROR:
+      case CURRENT_FILE_ERROR:
         draft.error = action.error;
         break;
-      case OPEN_FILE_REQUEST:
+      case CURRENT_FILE_REQUEST:
         draft.loading = true;
         break;
-      case OPEN_FILE:
+      case CURRENT_FILE:
         draft.loading = false;
         draft.content = action.content;
         draft.path = action.path;
         draft.name = action.name;
+        break;
+      case UPDATE_CURRENT_FILE_CONTENTS:
+        draft.content = action.content;
         break;
     }
   });
