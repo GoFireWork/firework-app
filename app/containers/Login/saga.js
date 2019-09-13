@@ -13,17 +13,19 @@ function* ProfileWatcherSaga() {
 
 function* getUserDetails() {
   const token = localStorage.getItem('token');
-  const repoURL = `https://api.github.com/user`;
-  const options = {
-    headers: {
-      Authorization: `bearer ${token}`,
-    },
-  };
-  try {
-    const repo = yield call(request, repoURL, options);
-    yield put(setUserDetails(repo));
-  } catch (err) {
-    yield put(setFetchingUserError(err));
+  if (token) {
+    const repoURL = `https://api.github.com/user`;
+    const options = {
+      headers: {
+        Authorization: `bearer ${token}`,
+      },
+    };
+    try {
+      const repo = yield call(request, repoURL, options);
+      yield put(setUserDetails(repo));
+    } catch (err) {
+      yield put(setFetchingUserError(err));
+    }
   }
 }
 

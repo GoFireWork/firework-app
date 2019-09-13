@@ -46,7 +46,7 @@ export const Login = props => {
           provider="github"
           gatekeeper="http://165.22.161.137/api/user"
           appId="19252cbe925bab898bda"
-          redirect="http://localhost:3000"
+          redirect="http://localhost:3000/login"
           onLoginSuccess={handleSocialLogin}
           onLoginFailure={handleSocialLoginFailure}
           key="github"
