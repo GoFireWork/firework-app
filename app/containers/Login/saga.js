@@ -2,16 +2,16 @@
  * Gets Github user's information
  */
 
-import { call, put, fork } from 'redux-saga/effects';
+import { call, put, all, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
-import {
-  setUserDetails,
-  setFetchingUser,
-  setFetchingUserError,
-} from './actions';
+import { setUserDetails, setFetchingUserError } from './actions';
+import { LOAD_USER_REQUEST } from './constants';
+
+function* ProfileWatcherSaga() {
+  yield takeLatest(LOAD_USER_REQUEST, getUserDetails);
+}
 
 function* getUserDetails() {
-  // get  Access Token
   const token = localStorage.getItem('token');
   const repoURL = `https://api.github.com/user`;
   const options = {
@@ -28,6 +28,5 @@ function* getUserDetails() {
 }
 
 export default function* saga() {
-  yield put(setFetchingUser());
-  yield fork(getUserDetails);
+  yield all([getUserDetails(), ProfileWatcherSaga()]);
 }
