@@ -32,3 +32,23 @@ export const LoginTitle = styled.h3`
   margin: 0;
   color: white;
 `;
+
+export const Wrapper = styled.div`
+  height: 100vh;
+  background-color: black;
+  position: absolute;
+  width: 100%;
+`;
+
+export const Loader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  p {
+    color: #fff;
+  }
+`;

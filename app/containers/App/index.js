@@ -3,10 +3,13 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import React from 'react';
+import React, { memo } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 import WorkPage from 'containers/WorkPage/Loadable';
 import Login from 'containers/Login';
@@ -17,6 +20,8 @@ import CRoute from './privateRoutes';
 
 import GlobalStyle from '../../global-styles';
 
+import { getToken } from '../Login/reducer';
+
 const AppWrapper = styled.div`
   margin: 0;
   display: flex;
@@ -24,13 +29,14 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-export default function App() {
+function App(props) {
   return (
     <AppWrapper>
       <Helmet titleTemplate="%s" defaultTitle="FireWork">
         <meta name="description" content="Change Me" />
       </Helmet>
-      <Header />
+      {props.token && <Header />}
+
       <Switch>
         <CRoute exact path="/" component={WorkPage} cprivate />
         <CRoute exact path="/login" component={Login} />
@@ -41,3 +47,23 @@ export default function App() {
     </AppWrapper>
   );
 }
+
+App.propTypes = {
+  token: PropTypes.string,
+};
+
+const mapStateToProps = state => ({
+  token: getToken(state),
+});
+
+const mapDispatchToProps = () => ({});
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(App);
