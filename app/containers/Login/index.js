@@ -44,7 +44,7 @@ export const Login = props => {
         <LoginTitle>GitHub Login</LoginTitle>
         <SocialLogin
           provider="github"
-          gatekeeper="https://firework.localtunnel.me/api/user"
+          gatekeeper="http://165.22.161.137/api/user"
           appId="19252cbe925bab898bda"
           redirect="http://localhost:3000/login"
           onLoginSuccess={handleSocialLogin}
