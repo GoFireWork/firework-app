@@ -6,7 +6,7 @@ import Icon from 'react-icons-kit';
 import { folder } from 'react-icons-kit/feather/folder';
 import { file } from 'react-icons-kit/feather/file';
 import LoadingIndicator from 'components/LoadingIndicator';
-
+import { DecoratorsContainer } from '../styles';
 const Header = ({ style, node }) => {
   const iconType = node.children ? folder : file;
   const iconStyle = { marginRight: '5px' };
@@ -24,6 +24,18 @@ const Header = ({ style, node }) => {
 Header.propTypes = {
   style: PropTypes.object,
   node: PropTypes.object,
+};
+
+const CustomContainer = ({ style, onClick, node }) => (
+  <DecoratorsContainer onClick={onClick}>
+    <decorators.Header node={node} style={style.header} />
+  </DecoratorsContainer>
+);
+
+CustomContainer.propTypes = {
+  style: PropTypes.object,
+  node: PropTypes.object,
+  onClick: PropTypes.func,
 };
 
 const TreeView = props => {
@@ -57,13 +69,10 @@ const TreeView = props => {
     return <LoadingIndicator />;
   }
 
-  return (
-    <Treebeard
-      data={data}
-      onToggle={onToggle}
-      decorators={{ ...decorators, Header }}
-    />
-  );
+  decorators.Header = Header;
+  decorators.Container = CustomContainer;
+
+  return <Treebeard data={data} onToggle={onToggle} decorators={decorators} />;
 };
 
 TreeView.propTypes = {

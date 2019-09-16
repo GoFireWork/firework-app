@@ -28,3 +28,10 @@ export const FileBrowser = styled.div`
     width: 100%;
   }
 `;
+
+export const DecoratorsContainer = styled.div`
+  cursor: pointer;
+  display: block;
+  padding: 0px 5px;
+  position: relative;
+`;
