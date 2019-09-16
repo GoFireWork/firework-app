@@ -12,10 +12,8 @@ import 'sanitize.css/sanitize.css';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import './global.css';
-// Import root app
-import App from 'containers/App';
 
-// Import Language Provider
+import App from 'containers/App';
 import LanguageProvider from 'containers/LanguageProvider';
 
 // Load the favicon and the .htaccess file
@@ -27,6 +25,13 @@ import configureStore from './configureStore';
 // Import i18n messages
 import { translationMessages } from './i18n';
 
+import('./keyboardJS');
+
+// Create redux store with history
+const initialState = {};
+const store = configureStore(initialState, history);
+window.store = store;
+
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
 const openSansObserver = new FontFaceObserver('Open Sans', {});
@@ -36,9 +41,6 @@ openSansObserver.load().then(() => {
   document.body.classList.add('fontLoaded');
 });
 
-// Create redux store with history
-const initialState = {};
-const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = messages => {

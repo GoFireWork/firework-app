@@ -84,6 +84,7 @@
     "isomorphic-git": "^0.64.5",
     "jest": "^24.9.0",
     "jest-lite": "^1.0.0-alpha.4",
+    "keyboardjs": "^2.5.1",
     "lodash": "^4.17.11",
     "minimist": "1.2.0",
     "monaco-editor": "^0.17.1",
