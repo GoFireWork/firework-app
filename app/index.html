@@ -25,16 +25,6 @@
   <div id="app"></div>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
-  <!-- A lot of magic happens in this file. HtmlWebpackPlugin automatically injects all assets (e.g. bundle.js, main.css) with the correct HTML tags, which is why they are missing in this file. Don't add any assets here! (Check out webpack.dev.babel.js and webpack.prod.babel.js if you want to know more) -->
-</body>
 <script src="https://unpkg.com/@isomorphic-git/lightning-fs"></script>
-<script src="https://unpkg.com/browserfs@beta"></script>
 <script src="https://unpkg.com/isomorphic-git"></script>
-<script>
-// Initialize isomorphic-git with a file system
-window.fs = new LightningFS('fs');
-git.plugins.set('fs', window.fs);
-// I prefer using the Promisified version honestly
-window.pfs = window.fs.promises
-</script>
 </html>

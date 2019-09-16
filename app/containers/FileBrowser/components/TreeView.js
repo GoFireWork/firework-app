@@ -60,7 +60,6 @@ const TreeView = props => {
     setCursor(node);
     setData(Object.assign({}, data));
     if (node.type === 'file') {
-      console.log(node);
       props.openFile(node.path, node.name);
     }
   };

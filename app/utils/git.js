@@ -1,19 +1,30 @@
 import * as git from 'isomorphic-git';
 import FS from '@isomorphic-git/lightning-fs';
 
-const name = 'remoto-app';
-
-export default function init() {
-  const fs = new FS(name);
-  git.plugins.set('fs', fs);
-  return fs.promises;
-}
+const fs = new FS('/testing-app');
+export const fsPromisified = fs.promises;
+git.plugins.set('fs', fsPromisified);
 
 export async function makeDirectory(directoryName) {
-  const fs = init();
   try {
-    return await fs.mkdir(directoryName);
+    return await fsPromisified.mkdir(directoryName);
   } catch (error) {
+    console.error(error);
+    return true;
+  }
+}
+
+export async function writeFile(filePath, content) {
+  try {
+    console.log(`Writing file: ${filePath}`);
+    const fsWriteFileResult = await fsPromisified.writeFile(
+      filePath,
+      content,
+      'utf8',
+    );
+    return fsWriteFileResult;
+  } catch (error) {
+    console.error(error);
     return true;
   }
 }
@@ -24,10 +35,9 @@ export async function readRecursiveDirectory(
   type = 'dir',
   filename = 'root',
 ) {
-  const fs = init();
   let item;
   let subStat;
-  const stat = await fs.lstat(directoryName);
+  const stat = await fsPromisified.lstat(directoryName);
   const root = {
     id: stat.ino,
     name: filename,
@@ -38,10 +48,10 @@ export async function readRecursiveDirectory(
 
   if (type === 'dir') {
     root.children = [];
-    const rootFiles = await fs.readdir(directoryName);
+    const rootFiles = await fsPromisified.readdir(directoryName);
     for (let index = 0; index < rootFiles.length; index += 1) {
       item = rootFiles[index];
-      subStat = await fs.lstat(`${directoryName}/${item}`);
+      subStat = await fsPromisified.lstat(`${directoryName}/${item}`);
       root.children.push(
         await readRecursiveDirectory(
           `${directoryName}/${item}`,
@@ -60,11 +70,10 @@ export async function readDirectory(
   type = 'dir',
   filename = 'root',
 ) {
-  const fs = init();
   let item;
   let subStat;
   let file;
-  const stat = await fs.lstat(directoryName);
+  const stat = await fsPromisified.lstat(directoryName);
   const root = {
     id: stat.ino,
     name: filename,
@@ -76,10 +85,10 @@ export async function readDirectory(
 
   if (type === 'dir') {
     root.children = [];
-    const rootFiles = await fs.readdir(directoryName);
+    const rootFiles = await fsPromisified.readdir(directoryName);
     for (let index = 0; index < rootFiles.length; index += 1) {
       item = rootFiles[index];
-      subStat = await fs.lstat(`${directoryName}/${item}`);
+      subStat = await fsPromisified.lstat(`${directoryName}/${item}`);
       file = {
         id: subStat.ino,
         name: item,
@@ -115,8 +124,8 @@ export function clone({
 }
 
 export async function readFile(path) {
-  const fs = init();
-  const content = await fs.readFile(path, 'utf8');
+  const content = await fsPromisified.readFile(path, 'utf8');
+  // console.log(content);
   return content;
 }
 
