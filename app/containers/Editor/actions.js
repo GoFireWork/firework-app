@@ -1,11 +1,10 @@
-import * as git from '../../utils/git';
+import { writeFile } from '../../utils/git';
 
 import {
   CURRENT_FILE,
   CURRENT_FILE_REQUEST,
   CURRENT_FILE_ERROR,
   UPDATE_CURRENT_FILE_CONTENTS,
-  SAVE_FILE,
 } from './constants';
 
 export const openFetchingFile = (path, name) => ({
@@ -31,14 +30,11 @@ export const updateCurrentFileContents = content => ({
   content,
 });
 
-export const saveFile = path => ({
-  type: SAVE_FILE,
-  path,
-});
-
 export const saveCurrentFile = async () => {
-  const currentFilePath = window.store.getState().editor.path;
-  const currentFileContent = window.store.getState().editor.content;
-  if (currentFilePath && currentFileContent)
-    await git.writeFile(currentFilePath, currentFileContent);
+  const editorState = window.store.getState();
+  const currentFilePath = editorState.path;
+  const currentFileContent = editorState.content;
+  if (currentFilePath && currentFileContent) {
+    await writeFile(currentFilePath, currentFileContent);
+  }
 };
