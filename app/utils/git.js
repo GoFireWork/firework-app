@@ -106,7 +106,7 @@ export function clone({
 }) {
   return git.clone({
     dir: directoryName,
-    corsProxy: 'http://cors.firework.technology:9999',
+    corsProxy: 'http://cors.gofirework.com:9999',
     url: repoUrl,
     ref: branch,
     singleBranch: true,
