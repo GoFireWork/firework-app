@@ -5,12 +5,15 @@ import { Div } from 'react-treebeard/dist/components/common';
 import Icon from 'react-icons-kit';
 import { folder } from 'react-icons-kit/feather/folder';
 import { file } from 'react-icons-kit/feather/file';
+import { ic_create_new_folder as createFolder } from 'react-icons-kit/md/ic_create_new_folder';
+import { ic_insert_drive_file as createFile } from 'react-icons-kit/md/ic_insert_drive_file';
+
 import LoadingIndicator from 'components/LoadingIndicator';
-import { DecoratorsContainer } from '../styles';
+import { DecoratorsContainer, InputWrapper } from '../styles';
+
 const Header = ({ style, node }) => {
   const iconType = node.children ? folder : file;
   const iconStyle = { marginRight: '5px' };
-
   return (
     <Div style={style.base}>
       <Div style={style.title} className="node-title">
@@ -26,11 +29,55 @@ Header.propTypes = {
   node: PropTypes.object,
 };
 
-const CustomContainer = ({ style, onClick, node }) => (
-  <DecoratorsContainer onClick={onClick}>
-    <decorators.Header node={node} style={style.header} />
-  </DecoratorsContainer>
-);
+const CustomContainer = props => {
+  const { style, onClick, node } = props;
+  const [click, setClick] = useState('');
+  const inputRef = React.createRef();
+  useEffect(() => {
+    if (click) {
+      inputRef.current.focus();
+    }
+  }, [click]);
+
+  const onIconClick = (e, key) => {
+    setClick(key);
+    e.stopPropagation();
+  };
+
+  const FocusChange = () => {
+    setClick('');
+  };
+  console.log(click);
+  return (
+    <DecoratorsContainer onClick={onClick}>
+      <decorators.Header node={node} style={style.header} />
+      <span>
+        {props.node.type === 'folder' && (
+          <>
+            <Icon
+              icon={createFile}
+              onClick={e => {
+                onIconClick(e, 'file');
+              }}
+            />
+            <Icon
+              icon={createFolder}
+              onClick={e => {
+                onIconClick(e, 'folder');
+              }}
+            />
+          </>
+        )}
+      </span>
+      {click && (
+        <InputWrapper>
+          <Icon icon={click === 'folder' ? folder : createFile} />
+          <input onBlur={FocusChange} ref={inputRef} />
+        </InputWrapper>
+      )}
+    </DecoratorsContainer>
+  );
+};
 
 CustomContainer.propTypes = {
   style: PropTypes.object,
