@@ -10,25 +10,28 @@ import { createStructuredSelector } from 'reselect';
 
 import { makeCurrentFileContent } from '../Editor/selectors';
 import { updateCurrentFileContents } from '../Editor/actions';
+import { CodeMirrorWrapper } from './CodeMirrorWrapper';
 
 require('codemirror/mode/javascript/javascript');
 
 export function CodeMirrorEditor(props) {
   return (
-    <ControlledCodeMirror
-      value={props.content}
-      options={{
-        mode: 'javascript',
-        lineNumbers: true,
-        theme: 'material',
-      }}
-      onBeforeChange={(editor, data, value) => {
-        props.changeContent(value);
-      }}
-      onChange={(editor, data, value) => {
-        props.changeContent(value);
-      }}
-    />
+    <CodeMirrorWrapper>
+      <ControlledCodeMirror
+        value={props.content}
+        options={{
+          mode: 'javascript',
+          lineNumbers: true,
+          theme: 'material',
+        }}
+        onBeforeChange={(editor, data, value) => {
+          props.changeContent(value);
+        }}
+        onChange={(editor, data, value) => {
+          props.changeContent(value);
+        }}
+      />
+    </CodeMirrorWrapper>
   );
 }
 

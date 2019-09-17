@@ -13,3 +13,18 @@ const Wrapper = styled.li`
 `;
 
 export default Wrapper;
+
+export const Span = styled.span`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  div {
+    margin: 0;
+    margin-top: 5px;
+    text-align: right;
+    a {
+      font-size: 14px;
+      padding: 0.25em 1.2em;
+    }
+  }
+`;
