@@ -26,7 +26,7 @@ import {
 const key = 'editor';
 
 export function Editor(props) {
-  const repoURL = `https://github.com/Fireworktech/testing-app`;
+  const repoURL = `https://github.com/GoFireWork/firework-app`;
 
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
