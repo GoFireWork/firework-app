@@ -8,12 +8,8 @@ import Wrapper, { Span } from './Wrapper';
 
 function ListItem(props) {
   const [visible, setVisible] = useState(false);
+  const [amount, setAmount] = useState('');
   const issue = props.item;
-
-  const SetItem = item => {
-    setVisible(true);
-    console.log(item);
-  };
 
   return (
     <Wrapper onClick={() => props.selectIssue(issue.id)}>
@@ -26,17 +22,22 @@ function ListItem(props) {
             display: 'flex',
             justifyContent: 'flex-end',
           }}
-          onClick={() => SetItem(issue)}
+          onClick={() => setVisible(true)}
           role="presentation"
         >
-          $: ?
+          $: {amount || '?'}
         </div>
         {visible && (
           <Popup
             content={
               <div>
                 Enter an amount to pay on successful
-                <input />
+                <input
+                  name="amount"
+                  type="number"
+                  value={amount}
+                  onChange={e => setAmount(e.target.value)}
+                />
                 <Span>
                   <Button>Submit</Button>
                 </Span>
