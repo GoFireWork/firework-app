@@ -7,6 +7,7 @@ const Item = styled.div`
   height: 100%;
   align-items: center;
   padding: 5px 0 5px 15px;
+   position: relative;
   border-bottom: 2px solid #263238;
   color: ${props =>
     props.theme.light ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)'};

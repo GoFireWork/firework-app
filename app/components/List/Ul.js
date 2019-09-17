@@ -6,6 +6,7 @@ const Ul = styled.ul`
   width: 100%;
   max-height: 30em;
   overflow-y: auto;
+  overflow: visible;
   padding: 0;
   ::-webkit-scrollbar-track {
     background-color: #191d1f;
