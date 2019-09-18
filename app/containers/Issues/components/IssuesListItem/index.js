@@ -3,43 +3,39 @@ import PropTypes from 'prop-types';
 
 import Popup from 'components/Popup';
 import Button from 'components/Button';
+import CloseIcon from 'components/CloseIcon';
 import Item from './Item';
-import Wrapper, { Span } from './Wrapper';
+import Wrapper, { Span, Test, Title, Header } from './Wrapper';
 
 function ListItem(props) {
   const [visible, setVisible] = useState(false);
   const [amount, setAmount] = useState('');
   const issue = props.item;
-
   return (
     <Wrapper onClick={() => props.selectIssue(issue.id)}>
       <Item {...props}>
-        <span> {issue.title}</span>
-        <div
-          style={{
-            flex: 1,
-            whiteSpace: 'nowrap',
-            display: 'flex',
-            justifyContent: 'flex-end',
-          }}
-          onClick={() => setVisible(true)}
-          role="presentation"
-        >
+        <Title> {issue.title}</Title>
+        <Test onClick={() => setVisible(true)} role="presentation">
           $: {amount || '?'}
-        </div>
+        </Test>
         {visible && (
           <Popup
             content={
               <div>
-                Enter an amount to pay on successful
+                <Header>
+                  <span>
+                    Enter an amount to pay upon successful completion of the
+                    issue
+                  </span>
+                  <CloseIcon click={setVisible} />
+                </Header>
                 <input
                   name="amount"
-                  type="number"
                   value={amount}
                   onChange={e => setAmount(e.target.value)}
                 />
                 <Span>
-                  <Button>Submit</Button>
+                  <Button onClick={() => setVisible(false)}>Submit</Button>
                 </Span>
               </div>
             }

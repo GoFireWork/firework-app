@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { PopupWrraper, PopupContent } from './styled';
+import { Wrapper, Content } from './styled';
 
 function Popup(props) {
   const { setVisible } = props;
@@ -19,9 +19,9 @@ function Popup(props) {
     }
   };
   return (
-    <PopupWrraper ref={wrapperRef}>
-      <PopupContent>{props.content}</PopupContent>
-    </PopupWrraper>
+    <Wrapper ref={wrapperRef}>
+      <Content>{props.content}</Content>
+    </Wrapper>
   );
 }
 

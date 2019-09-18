@@ -1,4 +1,5 @@
 import produce from 'immer';
+import _ from 'lodash';
 import { SELECTED_ISSUE_ID, LOAD_ISSUES, ISSUES } from './constants';
 
 // The initial state of the App
@@ -6,6 +7,7 @@ export const initialState = {
   loading: false,
   error: false,
   selectedIssueID: 0,
+  selectedIndex: 0,
   issues: [],
 };
 
@@ -15,6 +17,11 @@ const issuesReducer = (state = initialState, action) =>
     switch (action.type) {
       case SELECTED_ISSUE_ID:
         draft.selectedIssueID = action.selectedIssueID;
+        draft.selectedIndex = _.findIndex(state.issues, function getIndex(
+          issue,
+        ) {
+          return issue.id === action.selectedIssueID;
+        });
         break;
       case LOAD_ISSUES:
         draft.loading = true;
@@ -29,6 +36,7 @@ const issuesReducer = (state = initialState, action) =>
 export default issuesReducer;
 
 export const getSelectedIssueID = state => state.issues.selectedIssueID;
+export const getSelectedIssueIndex = state => state.issues.selectedIndex;
 export const getIssuesLoading = state => state.issues.loading;
 export const getIssuesError = state => state.issues.error;
 export const getIssues = state => state.issues.issues;
