@@ -5,7 +5,7 @@ import Popup from 'components/Popup';
 import Button from 'components/Button';
 import CloseIcon from 'components/CloseIcon';
 import Item from './Item';
-import Wrapper, { Span, Test, Title, Header } from './Wrapper';
+import Wrapper, { Span, Content, Title, Header } from './Wrapper';
 
 function ListItem(props) {
   const [visible, setVisible] = useState(false);
@@ -15,9 +15,9 @@ function ListItem(props) {
     <Wrapper onClick={() => props.selectIssue(issue.id)}>
       <Item {...props}>
         <Title> {issue.title}</Title>
-        <Test onClick={() => setVisible(true)} role="presentation">
+        <Content onClick={() => setVisible(true)} role="presentation">
           $: {amount || '?'}
-        </Test>
+        </Content>
         {visible && (
           <Popup
             content={

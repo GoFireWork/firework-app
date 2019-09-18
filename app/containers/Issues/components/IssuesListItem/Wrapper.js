@@ -37,7 +37,7 @@ export const Span = styled.span`
   }
 `;
 
-export const Test = styled.div`
+export const Content = styled.div`
   display: flex;
   width: 30%;
   padding-left: 15px;
@@ -45,10 +45,6 @@ export const Test = styled.div`
 
 export const Title = styled.div`
   width: 70%;
-`;
-
-export const Close = styled.div`
-  color: #bbb;
 `;
 
 export const Header = styled.div`
