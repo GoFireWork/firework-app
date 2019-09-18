@@ -9,7 +9,6 @@ function ListItem(props) {
   return (
     <Wrapper onClick={() => props.selectIssue(issue.id)}>
       <Item {...props}>{issue.title}</Item>
-      <em>{issue.body}</em>
     </Wrapper>
   );
 }
