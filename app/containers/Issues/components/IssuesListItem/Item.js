@@ -6,7 +6,7 @@ const Item = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  padding: 5px 0 5px 15px;
+  padding: 5px 10px 5px 10px;
   position: relative;
   border-bottom: 2px solid #263238;
   color: ${props =>

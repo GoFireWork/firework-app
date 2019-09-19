@@ -24,13 +24,13 @@ function ListItem(props) {
               <div>
                 <Header>
                   <span>
-                    Enter an amount to pay upon successful completion of the
-                    issue
+                    Enter dollar amount to pay upon completion of issue
                   </span>
                   <CloseIcon click={setVisible} />
                 </Header>
                 <input
                   name="amount"
+                  placeholder="$"
                   value={amount}
                   onChange={e => setAmount(e.target.value)}
                 />
