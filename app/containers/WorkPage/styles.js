@@ -31,7 +31,7 @@ export const Container = styled.div`
 `;
 
 export const PreviewContainer = styled.div`
-  top: 65px;
+  top: 50px;
   display: flex;
   flex-grow: 1;
   position: fixed;
