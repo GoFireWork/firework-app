@@ -51,9 +51,6 @@ function FileTabs(props) {
       const newActive = removedIndex === 0 ? 0 : removedIndex - 1;
       newTabs[newActive].active = true;
     }
-    if (!newTabs.length) {
-      newTabs.push(defaultTab);
-    }
     setTabs(newTabs);
   };
 
