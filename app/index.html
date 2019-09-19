@@ -11,20 +11,31 @@
   <!-- Allow installing the app to the homescreen -->
   <meta name="mobile-web-app-capable" content="yes">
 
-  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" href="/favicon.ico"/>
 
   <title>FireWork</title>
 </head>
 
 <body>
-  <!-- Display a message if JS has been disabled on the browser. -->
-  <noscript>If you're seeing this message, that means
-    <strong>JavaScript has been disabled on your browser</strong>, please
-    <strong>enable JS</strong> to make this app work.</noscript>
+<!-- Display a message if JS has been disabled on the browser. -->
+<noscript>If you're seeing this message, that means
+  <strong>JavaScript has been disabled on your browser</strong>, please
+  <strong>enable JS</strong> to make this app work.
+</noscript>
 
-  <div id="app"></div>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-
-<script src="https://unpkg.com/@isomorphic-git/lightning-fs"></script>
+<div id="app"></div>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 <script src="https://unpkg.com/isomorphic-git"></script>
+<script src="https://unpkg.com/browserfs@1.4.3/dist/browserfs.js"></script>
+<script type="text/javascript">
+  BrowserFS.install(window);
+  BrowserFS.configure({
+    fs: "LocalStorage"
+  }, function(e) {
+    if (e) {
+      throw e;
+    }
+  });
+</script>
+</body>
 </html>
