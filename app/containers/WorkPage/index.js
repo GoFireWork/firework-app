@@ -34,7 +34,6 @@ export function WorkPage(props) {
           <PreviewContainer open={open}>
             <Preview>
               <Button onClick={() => setOpen(!open)}>
-                {' '}
                 {open ? (
                   <Icon icon={arrowRightB} />
                 ) : (
