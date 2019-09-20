@@ -128,12 +128,17 @@ export function clone({
   directoryName = '/',
   depth = 1,
   branch = 'master',
+  Token,
+  userName,
 }) {
   try {
+    // let credentials = git.utils.oauth2('github', Token);
     console.log(`Cloning repo: ${repoUrl}`);
     const cloneResult = git.clone({
       dir: directoryName,
-      corsProxy: 'http://cors.gofirework.com:9999',
+      corsProxy: 'https://firework.localtunnel.me/',
+      username: userName,
+      token: Token,
       url: repoUrl,
       ref: branch,
       singleBranch: true,
@@ -142,7 +147,7 @@ export function clone({
     });
     return cloneResult;
   } catch (error) {
-    console.error('clone', error);
+    return console.error('clone', error);
   }
 }
 

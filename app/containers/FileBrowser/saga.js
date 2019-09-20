@@ -12,6 +12,8 @@ import { LOAD_FILES_REQUEST } from './constants';
  */
 export function* getRepoFiles(repoUrl) {
   const directoryName = `/${repoUrl.split('/').pop()}`;
+  const accessToken = localStorage.getItem('token');
+  const name = localStorage.getItem('name');
   try {
     let files;
     yield git.makeDirectory(directoryName);
@@ -24,6 +26,8 @@ export function* getRepoFiles(repoUrl) {
       directoryName,
       repoUrl,
       depth: 10,
+      Token: accessToken,
+      userName: name,
     });
     files = yield git.listFiles(directoryName);
     localStorage.setItem(repoUrl, JSON.stringify(files));

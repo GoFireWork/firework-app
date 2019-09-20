@@ -15,7 +15,9 @@ import LoaderSvg from './loaderSvg';
 export const Login = props => {
   const handleSocialLogin = async user => {
     const { accessToken } = user.token;
+    const { name } = user.profile;
     localStorage.setItem('token', accessToken);
+    localStorage.setItem('name', name);
     await props.onLoginSuccess(accessToken);
     if (accessToken) {
       props.redirect('/');
