@@ -4,8 +4,11 @@ const Wrapper = styled.div`
   padding: 0;
   margin: 0;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
   height: calc(100vh - 90px);
+  ul {
+    overflow: visible;
+  }
 `;
 
 export default Wrapper;

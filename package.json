@@ -65,10 +65,11 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.4.3",
+    "@isomorphic-git/lightning-fs": "^3.3.2",
     "browserfs": "^1.4.3",
     "chai": "^4.2.0",
     "chalk": "^2.4.2",
-    "codemirror": "^5.48.2",
+    "codemirror": "^5.48.4",
     "compression": "1.7.4",
     "connected-react-router": "6.4.0",
     "cross-env": "5.2.0",
@@ -80,7 +81,7 @@
     "intl": "1.2.5",
     "invariant": "2.2.4",
     "ip": "1.1.5",
-    "isomorphic-git": "^0.64.5",
+    "isomorphic-git": "^0.64.6",
     "jest": "^24.9.0",
     "jest-lite": "^1.0.0-alpha.4",
     "keyboardjs": "^2.5.1",
@@ -106,7 +107,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "4.0.0",
     "sanitize.css": "8.0.0",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.3.2"
   },
   "devDependencies": {
     "@babel/cli": "7.4.3",

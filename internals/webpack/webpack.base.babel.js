@@ -1,11 +1,13 @@
+/**
+ * COMMON WEBPACK CONFIGURATION
+ */
+
 const path = require('path');
 const webpack = require('webpack');
 
 module.exports = options => ({
   node: {
     fs: 'empty',
-    process: false,
-    Buffer: false,
   },
 
   mode: options.mode,
@@ -21,7 +23,6 @@ module.exports = options => ({
   ), // Merge with env dependent settings
   optimization: options.optimization,
   module: {
-    noParse: /browserfs\.js/,
     rules: [
       {
         test: /\.jsx?$/, // Transform all .js and .jsx files required somewhere with Babel
@@ -118,26 +119,13 @@ module.exports = options => ({
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
     }),
-    new webpack.ProvidePlugin({
-      BrowserFS: 'bfsGlobal',
-      process: 'processGlobal',
-      Buffer: 'bufferGlobal',
-    }),
   ]),
   resolve: {
-    alias: {
-      fs: 'browserfs/dist/shims/fs.js',
-      buffer: 'browserfs/dist/shims/buffer.js',
-      path: 'browserfs/dist/shims/path.js',
-      processGlobal: 'browserfs/dist/shims/process.js',
-      bufferGlobal: 'browserfs/dist/shims/bufferGlobal.js',
-      bfsGlobal: require.resolve('browserfs'),
-    },
     modules: ['node_modules', 'app'],
     extensions: ['.js', '.jsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main'],
   },
-  devtool: 'source-map',
+  devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
   performance: options.performance || {},
 });

@@ -142,7 +142,7 @@ export function clone({
     });
     return cloneResult;
   } catch (error) {
-    console.error('clone', error);
+    return console.error('clone', error);
   }
 }
 

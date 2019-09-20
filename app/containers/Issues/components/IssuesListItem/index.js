@@ -1,14 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import Popup from 'components/Popup';
+import Button from 'components/Button';
+import CloseIcon from 'components/CloseIcon';
 import Item from './Item';
-import Wrapper from './Wrapper';
+import Wrapper, { Span, Content, Title, Header } from './Wrapper';
 
 function ListItem(props) {
+  const [visible, setVisible] = useState(false);
+  const [amount, setAmount] = useState('');
   const issue = props.item;
   return (
     <Wrapper onClick={() => props.selectIssue(issue.id)}>
-      <Item {...props}>{issue.title}</Item>
+      <Item {...props}>
+        <Title> {issue.title}</Title>
+        <Content onClick={() => setVisible(true)} role="presentation">
+          $: {amount || '?'}
+        </Content>
+        {visible && (
+          <Popup
+            content={
+              <div>
+                <Header>
+                  <span>
+                    Enter dollar amount to pay upon completion of issue
+                  </span>
+                  <CloseIcon click={setVisible} />
+                </Header>
+                <input
+                  name="amount"
+                  placeholder="$"
+                  value={amount}
+                  onChange={e => setAmount(e.target.value)}
+                />
+                <Span>
+                  <Button onClick={() => setVisible(false)}>Submit</Button>
+                </Span>
+              </div>
+            }
+            visible={visible}
+            setVisible={setVisible}
+          />
+        )}
+      </Item>
     </Wrapper>
   );
 }

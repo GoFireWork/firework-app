@@ -6,7 +6,14 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import IssueListItem from 'containers/Issues/components/IssuesListItem';
 
 function IssuesList(props) {
-  const { loading, error, issues, selectedIssueID, selectIssue } = props;
+  const {
+    loading,
+    error,
+    issues,
+    selectedIssueID,
+    selectIssue,
+    selectedIssueIndex,
+  } = props;
   if (loading) {
     return <List component={LoadingIndicator} />;
   }
@@ -23,6 +30,7 @@ function IssuesList(props) {
       <List
         selectedIssueID={selectedIssueID}
         selectIssue={selectIssue}
+        selectedIssueIndex={selectedIssueIndex}
         items={issues}
         component={IssueListItem}
       />
@@ -37,6 +45,7 @@ IssuesList.propTypes = {
   error: PropTypes.any,
   issues: PropTypes.array,
   selectedIssueID: PropTypes.number,
+  selectedIssueIndex: PropTypes.number,
   selectIssue: PropTypes.func,
 };
 

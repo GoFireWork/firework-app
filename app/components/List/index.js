@@ -14,6 +14,7 @@ function List(props) {
       <ComponentToRender
         selectedIssueID={props.selectedIssueID}
         selectIssue={props.selectIssue}
+        selectedIssueIndex={props.selectedIssueIndex}
         key={`${item.url}`}
         item={item}
       />
@@ -35,6 +36,7 @@ List.propTypes = {
   items: PropTypes.array,
   selectIssue: PropTypes.func,
   selectedIssueID: PropTypes.number,
+  selectedIssueIndex: PropTypes.number,
 };
 
 export default List;
