@@ -136,7 +136,7 @@ export function clone({
     console.log(`Cloning repo: ${repoUrl}`);
     const cloneResult = git.clone({
       dir: directoryName,
-      corsProxy: 'https://firework.localtunnel.me/',
+      corsProxy: 'http://cors.gofirework.com:9999',
       username: userName,
       token: Token,
       url: repoUrl,
