@@ -1,15 +1,28 @@
 import * as git from 'isomorphic-git';
-import FS from '@isomorphic-git/lightning-fs';
 
-const initialFS = new FS('/testing-app');
-export const fs = initialFS.promises;
+// eslint-disable-next-line no-undef
+const fs = BrowserFS.BFSRequire('fs');
+// eslint-disable-next-line no-undef
+fs.initialize(new BrowserFS.FileSystem.LocalStorage());
 git.plugins.set('fs', fs);
 
 export async function makeDirectory(directoryName) {
   try {
-    return await fs.mkdir(directoryName);
+    console.log(`makeDirectory`);
+    const mkdirResult = await fs.mkdir(directoryName);
+    return mkdirResult;
   } catch (error) {
-    console.error(error);
+    console.error('makeDirectory', error);
+    return true;
+  }
+}
+
+export async function statDirectory(directoryName) {
+  try {
+    const result = await fs.stat(directoryName);
+    return result;
+  } catch (error) {
+    console.error('statDirectory', error);
     return true;
   }
 }
@@ -20,9 +33,16 @@ export async function writeFile(filePath, content) {
     const fsWriteFileResult = await fs.writeFile(filePath, content, 'utf8');
     return fsWriteFileResult;
   } catch (error) {
-    console.error(error);
+    console.error('writeFile', error);
     return true;
   }
+}
+
+export async function readFile(filePath) {
+  console.log(`Reading file with file path: ${filePath}`);
+  const content = await fs.readFile(filePath, 'utf8');
+  console.log(`${filePath} content: ${content}`);
+  return content;
 }
 
 /* eslint-disable no-await-in-loop */
@@ -109,20 +129,21 @@ export function clone({
   depth = 1,
   branch = 'master',
 }) {
-  return git.clone({
-    dir: directoryName,
-    corsProxy: 'http://cors.gofirework.com:9999',
-    url: repoUrl,
-    ref: branch,
-    singleBranch: true,
-    depth,
-  });
-}
-
-export async function readFile(path) {
-  const content = await fs.readFile(path, 'utf8');
-  // console.log(content);
-  return content;
+  try {
+    console.log(`Cloning repo: ${repoUrl}`);
+    const cloneResult = git.clone({
+      dir: directoryName,
+      corsProxy: 'http://cors.gofirework.com:9999',
+      url: repoUrl,
+      ref: branch,
+      singleBranch: true,
+      noTags: true,
+      depth,
+    });
+    return cloneResult;
+  } catch (error) {
+    return console.error('clone', error);
+  }
 }
 
 function searchOrCreate(dir, idx, arr, path) {
