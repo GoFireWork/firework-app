@@ -61,7 +61,8 @@ export const WrappenHeader = styled.div`
 
 export const InputWrapper = styled.div`
    {
-    margin: 0 0 0 25px;
+    padding-left: 20px;
+    display: flex;
     input {
       background-color: #263238;
       border: none;
