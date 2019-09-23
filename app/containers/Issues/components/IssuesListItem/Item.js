@@ -14,13 +14,12 @@ const Item = styled.div`
   background: ${props =>
     props.selectedIssueID === props.item.id ? '#2d8daf' : 'rgb(28, 32, 34)'};
   div:nth-child(3) {
-    top: ${props => props.selectedIssueIndex === 0 && '35px'};
+    top: ${props => props.selectedIndex < 4 && '35px'};
       div {
       &:before {
-  transform: ${props =>
-    props.selectedIssueIndex === 0 ? 'rotate(180deg)' : 'unset'};
-        top: ${props => props.selectedIssueIndex === 0 && '-10px'};
-        bottom: ${props => props.selectedIssueIndex === 0 && '140px'};
+  transform: ${props => (props.selectedIndex < 4 ? 'rotate(180deg)' : 'unset')};
+        top: ${props => props.selectedIndex < 4 && '-10px'};
+        bottom: ${props => props.selectedIndex < 4 && '153px'};
        }
       }
     }

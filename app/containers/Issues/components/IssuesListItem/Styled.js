@@ -52,6 +52,7 @@ export const Content = styled.div`
 
 export const Title = styled.div`
   width: 70%;
+  cursor: pointer;
 `;
 
 export const Header = styled.div`
@@ -61,5 +62,13 @@ export const Header = styled.div`
       width: 20px;
       height: 20px;
     }
+  }
+`;
+
+export const ModalWrapper = styled.div`
+  pre {
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-size: 14px;
   }
 `;

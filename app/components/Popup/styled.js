@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
     position: absolute;
     top: -140px;
     z-index: 999;
-    left: -30px;
+    left: 10px;
     right: 10px;
     border-radius: 10px;
   }
