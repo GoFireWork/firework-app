@@ -8,15 +8,20 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { makeCurrentFileContent } from '../Editor/selectors';
+import {
+  makeCurrentFileContent,
+  OpenSearchComponent,
+} from '../Editor/selectors';
 import { updateCurrentFileContents } from '../Editor/actions';
-import { CodeMirrorWrapper } from './CodeMirrorWrapper';
+import Search from '../../components/Search';
 
 require('codemirror/mode/javascript/javascript');
 
 export function CodeMirrorEditor(props) {
   return (
-    <CodeMirrorWrapper>
+    <div>
+      {props.search && <Search />}
+
       <ControlledCodeMirror
         value={props.content}
         options={{
@@ -31,17 +36,19 @@ export function CodeMirrorEditor(props) {
           props.changeContent(value);
         }}
       />
-    </CodeMirrorWrapper>
+    </div>
   );
 }
 
 CodeMirrorEditor.propTypes = {
   content: PropTypes.string,
   changeContent: PropTypes.func,
+  search: PropTypes.bool,
 };
 
 const mapStateToProps = createStructuredSelector({
   content: makeCurrentFileContent(),
+  search: OpenSearchComponent(),
 });
 
 export const mapDispatchToProps = dispatch => ({

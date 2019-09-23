@@ -4,3 +4,5 @@ export const CURRENT_FILE_REQUEST = 'boilerplate/WorkPage/CURRENT_FILE_REQUEST';
 export const CURRENT_FILE_ERROR = 'boilerplate/WorkPage/CURRENT_FILE_ERROR';
 export const UPDATE_CURRENT_FILE_CONTENTS =
   'boilerplate/WorkPage/UPDATE_CURRENT_FILE_CONTENTS';
+export const OPEN_SEARCH_COMPONENT =
+  'boilerplate/WorkPage/OPEN_SEARCH_COMPONENT';

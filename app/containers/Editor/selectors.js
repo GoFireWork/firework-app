@@ -33,10 +33,17 @@ const makeCurrentFileLoading = () =>
     state => state.loading,
   );
 
+const OpenSearchComponent = () =>
+  createSelector(
+    currentFile,
+    state => state.search,
+  );
+
 export {
   makeCurrentFileContent,
   makeCurrentFileLoading,
   makeCurrentFileError,
   makeCurrentFileName,
   makeCurrentFilePath,
+  OpenSearchComponent,
 };

@@ -4,6 +4,7 @@ import {
   CURRENT_FILE_REQUEST,
   CURRENT_FILE_ERROR,
   UPDATE_CURRENT_FILE_CONTENTS,
+  OPEN_SEARCH_COMPONENT,
 } from './constants';
 
 // The initial state of the App
@@ -13,11 +14,13 @@ export const initialState = {
   content: '',
   path: '',
   name: '',
+  search: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
 const reducer = (state = initialState, action) =>
   produce(state, draft => {
+    console.log(action);
     switch (action.type) {
       case CURRENT_FILE_ERROR:
         draft.error = action.error;
@@ -33,6 +36,10 @@ const reducer = (state = initialState, action) =>
         break;
       case UPDATE_CURRENT_FILE_CONTENTS:
         draft.content = action.content;
+        break;
+      case OPEN_SEARCH_COMPONENT:
+        console.log('in reducer');
+        draft.search = action.value;
         break;
     }
   });

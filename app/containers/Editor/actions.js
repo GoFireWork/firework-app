@@ -5,6 +5,7 @@ import {
   CURRENT_FILE_REQUEST,
   CURRENT_FILE_ERROR,
   UPDATE_CURRENT_FILE_CONTENTS,
+  OPEN_SEARCH_COMPONENT,
 } from './constants';
 
 export const openFetchingFile = (path, name) => ({
@@ -38,3 +39,8 @@ export const saveCurrentFile = async () => {
     await writeFile(currentFilePath, currentFileContent);
   }
 };
+
+export const setSearchFile = value => ({
+  type: OPEN_SEARCH_COMPONENT,
+  value,
+});
