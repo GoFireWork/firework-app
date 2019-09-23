@@ -41,7 +41,7 @@ Issues.propTypes = {
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   issues: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   selectedIssueID: PropTypes.number,
-  selectedIssueIndex: PropTypes.number,
+  selectedIndex: PropTypes.number,
   selectIssue: PropTypes.func,
 };
 
@@ -50,7 +50,7 @@ const mapStateToProps = state => ({
   error: getIssuesError(state),
   issues: getIssues(state),
   selectedIssueID: getSelectedIssueID(state),
-  selectedIssueIndex: getSelectedIssueIndex(state),
+  selectedIndex: getSelectedIssueIndex(state),
 });
 
 export const mapDispatchToProps = dispatch => ({

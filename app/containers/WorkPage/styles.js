@@ -63,10 +63,10 @@ export const LeftSide = styled.div`
 
 export const Button = styled.div`
   padding: 0.4em 0.5em;
-  background-color: #41bde9;
+  background-color: var(--dark-blue-color);
   position: absolute;
   left: -34px;
-  border: 1px solid #41bde9;
+  border: 1px solid var(--dark-blue-color);
   opacity: 0.7;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 4px;

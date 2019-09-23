@@ -12,7 +12,7 @@ function IssuesList(props) {
     issues,
     selectedIssueID,
     selectIssue,
-    selectedIssueIndex,
+    selectedIndex,
   } = props;
   if (loading) {
     return <List component={LoadingIndicator} />;
@@ -30,7 +30,7 @@ function IssuesList(props) {
       <List
         selectedIssueID={selectedIssueID}
         selectIssue={selectIssue}
-        selectedIssueIndex={selectedIssueIndex}
+        selectedIndex={selectedIndex}
         items={issues}
         component={IssueListItem}
       />
@@ -45,7 +45,7 @@ IssuesList.propTypes = {
   error: PropTypes.any,
   issues: PropTypes.array,
   selectedIssueID: PropTypes.number,
-  selectedIssueIndex: PropTypes.number,
+  selectedIndex: PropTypes.number,
   selectIssue: PropTypes.func,
 };
 
