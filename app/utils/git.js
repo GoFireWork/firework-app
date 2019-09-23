@@ -128,12 +128,16 @@ export function clone({
   directoryName = '/',
   depth = 1,
   branch = 'master',
+  Token,
+  Name,
 }) {
   try {
     console.log(`Cloning repo: ${repoUrl}`);
     const cloneResult = git.clone({
       dir: directoryName,
       corsProxy: 'http://cors.gofirework.com:9999',
+      username: Name,
+      token: Token,
       url: repoUrl,
       ref: branch,
       singleBranch: true,
