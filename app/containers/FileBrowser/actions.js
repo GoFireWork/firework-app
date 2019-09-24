@@ -4,6 +4,7 @@ import {
   LOAD_FILES,
   GIT_DIR_SETTING_ERROR,
   SELECTED_FILE_ID,
+  UPDATE_FILES,
 } from './constants';
 
 export const setFetchingFiles = repoURL => ({
@@ -34,3 +35,8 @@ export const setSelectedFile = selectedFileID => ({
 export const selectFile = selectedFileID => dispatch => {
   dispatch(setSelectedFile(selectedFileID));
 };
+
+export const updateFile = files => ({
+  type: UPDATE_FILES,
+  files,
+});

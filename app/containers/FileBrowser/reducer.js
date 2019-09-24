@@ -4,6 +4,7 @@ import {
   LOAD_FILES_REQUEST,
   FILES_LOADING_ERROR,
   GIT_DIR_SETTING_ERROR,
+  UPDATE_FILES,
 } from './constants';
 
 // The initial state of the App
@@ -28,6 +29,8 @@ const filesReducer = (state = initialState, action) =>
         draft.loading = false;
         draft.files = action.files;
         break;
+      case UPDATE_FILES:
+        draft.files = action.files;
     }
   });
 

@@ -5,3 +5,4 @@ export const SELECTED_FILE_ID = 'boilerplate/WorkPage/SELECTED_FILE_ID';
 export const GIT_DIR_SETTING_ERROR =
   'boilerplate/WorkPage/GIT_DIR_SETTING_ERROR';
 export const FILES = 'boilerplate/WorkPage/FILES';
+export const UPDATE_FILES = 'boilerplate/WorkPage/UPDATE_FILES';
