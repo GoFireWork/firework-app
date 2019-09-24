@@ -9,7 +9,7 @@ import { ic_insert_drive_file as createFile } from 'react-icons-kit/md/ic_insert
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import Icon from 'react-icons-kit';
-import { setFetchingFiles, selectFile } from './actions';
+import { setFetchingFiles, selectFile, updateFile } from './actions';
 import {
   makeSelectFiles,
   makeSelectFilesLoading,
@@ -31,7 +31,7 @@ export function FileBrowserContainer(props) {
   useEffect(() => {
     props.setFetchingFiles(props.repo);
   }, []);
-  console.log(click);
+  console.log(click, updateFile);
   return (
     <FileBrowser>
       <WrappenHeader>
@@ -53,6 +53,7 @@ FileBrowserContainer.propTypes = {
   setFetchingFiles: PropTypes.func,
   selectFile: PropTypes.func,
   repo: PropTypes.string,
+  updateFile: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -67,6 +68,9 @@ export const mapDispatchToProps = dispatch => ({
   },
   selectFile: selectedIssueID => {
     dispatch(selectFile(selectedIssueID));
+  },
+  updateFile: files => {
+    dispatch(updateFile(files));
   },
 });
 
