@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
+import Landing from 'components/Landing';
 import WorkPage from 'containers/WorkPage/Loadable';
 import Login from 'containers/Login';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -27,7 +28,8 @@ function App() {
       </Helmet>
       <Header />
       <Switch>
-        <CRoute exact path="/" component={WorkPage} cprivate />
+        <CRoute exact path="/" component={Landing} />
+        <CRoute exact path="/work" component={WorkPage} cprivate />
         <CRoute exact path="/login" component={Login} />
         <CRoute exact path="/repositories" component={Repo} cprivate />
         <Route path="" component={NotFoundPage} />
