@@ -7,9 +7,26 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'UA-148453160-2');
+    gtag('config', 'AW-1002730443');
   </script>
+  <!-- Event snippet for Email Signup conversion page
+  In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+  <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-1002730443/YRsBCIGOoKwBEMvnkd4D',
+          'event_callback': callback
+      });
+      return false;
+    }
+  </script>
+
   <!-- The first thing in any HTML file should be the charset -->
   <meta charset="utf-8">
 
