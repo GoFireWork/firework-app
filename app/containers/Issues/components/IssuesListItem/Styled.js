@@ -66,9 +66,15 @@ export const Header = styled.div`
 `;
 
 export const ModalWrapper = styled.div`
-  pre {
-    white-space: pre-wrap;
-    word-break: break-all;
-    font-size: 14px;
+  ul {
+    li {
+      background-color: unset;
+      color: unset;
+    }
+  }
+  p {
+    a {
+      color: #959798;
+    }
   }
 `;
