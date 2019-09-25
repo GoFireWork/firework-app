@@ -33,4 +33,5 @@ export const SubHeading = styled.p`
 
 export const SubSubHeading = styled.p`
   font-size: 20px;
+  margin: 0px 0 5px 0;
 `;
