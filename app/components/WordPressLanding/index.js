@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import { Box, Feature, Flex, Hero, Section } from 'react-landing-page';
 import Mailchimp from 'react-mailchimp-form';
 
-import { MailChimpForm } from './styles';
+import { MailChimpForm, SubSubHeading } from './styles';
 import H2 from '../H2';
 
 const WordPressLanding = () => {
@@ -14,7 +14,7 @@ const WordPressLanding = () => {
     error: 'An unexpected internal error has occurred.',
     empty: 'You must enter an e-mail.',
     duplicate: `You're already subscribed`,
-    button: 'Get notified when we launch',
+    button: 'Subscribe',
   };
   return (
     <div>
@@ -31,6 +31,7 @@ const WordPressLanding = () => {
               heading="FireWork"
               subhead="Quickly solve WordPress issues"
             >
+              <SubSubHeading>Get notified when we launch</SubSubHeading>
               <MailChimpForm>
                 <Mailchimp
                   action="https://gmail.us20.list-manage.com/subscribe/post?u=080e7d76c1af33a59c13126db&amp;id=36a30fa311"
