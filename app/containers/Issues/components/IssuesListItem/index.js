@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import parse from 'html-react-parser';
+import marked from 'marked';
 
 import Popup from 'components/Popup';
 import Button from 'components/Button';
@@ -21,9 +22,9 @@ function ListItem(props) {
   );
   const content = (
     <ModalWrapper>
-      <pre>
-        {issue.body.length ? parse(issue.body) : 'No description provided.'}
-      </pre>
+      {issue.body.length
+        ? parse(marked(issue.body))
+        : 'No description provided.'}
     </ModalWrapper>
   );
   return (
