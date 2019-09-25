@@ -12,6 +12,8 @@ function Notifications(props) {
     toast.warn(props.title, props.toastOptions);
   } else if (props.info) {
     toast.info(props.title, props.toastOptions);
+  } else {
+    toast(props.title, props.toastOptions);
   }
 
   return (

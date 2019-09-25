@@ -30,7 +30,7 @@ const filesReducer = (state = initialState, action) =>
         draft.files = action.files;
         break;
       case UPDATE_FILES:
-        draft.files = action.files;
+        draft.files = action.file;
     }
   });
 

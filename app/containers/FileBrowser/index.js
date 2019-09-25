@@ -1,15 +1,13 @@
-import React, { useEffect, memo, useState } from 'react';
+import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { ic_create_new_folder as createFolder } from 'react-icons-kit/md/ic_create_new_folder';
-import { ic_insert_drive_file as createFile } from 'react-icons-kit/md/ic_insert_drive_file';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import Icon from 'react-icons-kit';
-import { setFetchingFiles, selectFile, updateFile } from './actions';
+
+import { setFetchingFiles, selectFile } from './actions';
 import {
   makeSelectFiles,
   makeSelectFilesLoading,
@@ -26,20 +24,14 @@ export function FileBrowserContainer(props) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  const [click, setClick] = useState('');
-
   useEffect(() => {
     props.setFetchingFiles(props.repo);
   }, []);
-  console.log(click, updateFile);
+
   return (
     <FileBrowser>
       <WrappenHeader>
         <span>Explore</span>
-        <div>
-          <Icon icon={createFile} onClick={() => setClick('file')} />
-          <Icon icon={createFolder} onClick={() => setClick('folder')} />
-        </div>
       </WrappenHeader>
       <TreeView {...props} />
     </FileBrowser>
@@ -68,9 +60,6 @@ export const mapDispatchToProps = dispatch => ({
   },
   selectFile: selectedIssueID => {
     dispatch(selectFile(selectedIssueID));
-  },
-  updateFile: files => {
-    dispatch(updateFile(files));
   },
 });
 

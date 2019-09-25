@@ -36,7 +36,10 @@ export const selectFile = selectedFileID => dispatch => {
   dispatch(setSelectedFile(selectedFileID));
 };
 
-export const updateFile = files => ({
-  type: UPDATE_FILES,
-  files,
-});
+export const updateFile = () => (dispatch, getState) => {
+  const { files } = getState().files;
+  dispatch({
+    type: UPDATE_FILES,
+    file: files,
+  });
+};
