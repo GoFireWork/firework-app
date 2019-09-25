@@ -1,27 +1,20 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import {
-  Box,
-  Feature,
-  Flex,
-  Hero,
-  CallToAction,
-  Section,
-} from 'react-landing-page';
+import { Box, Feature, Flex, Hero, Section } from 'react-landing-page';
 import Mailchimp from 'react-mailchimp-form';
 
 import { MailChimpForm } from './styles';
 import H2 from '../H2';
 
-const Landing = () => {
+const WordPressLanding = () => {
   const messages = {
     sending: 'Sending...',
     success: 'Thank you for subscribing!',
     error: 'An unexpected internal error has occurred.',
     empty: 'You must enter an e-mail.',
     duplicate: `You're already subscribed`,
-    button: 'Subscribe',
+    button: 'Get notified when we launch',
   };
   return (
     <div>
@@ -36,7 +29,7 @@ const Landing = () => {
               color="black"
               bg="white"
               heading="FireWork"
-              subhead="Get work done instead of hiring developers"
+              subhead="Quickly solve WordPress issues"
             >
               <MailChimpForm>
                 <Mailchimp
@@ -56,28 +49,16 @@ const Landing = () => {
               <Flex flexWrap="wrap" justifyContent="center">
                 <Feature
                   icon="🗒"
-                  description="Connect your tasks with our API through Github or Jira"
+                  description="Simply type in what you need done to your site"
                 >
-                  Connect your tasks
+                  Tell us your problem
                 </Feature>
-                <Feature icon="💰" description="You pay how much you want">
-                  Prepay for each task
+                <Feature icon="💰" description="Pay how much you want">
+                  Specify how much to pay
                 </Feature>
-                <Feature
-                  icon="👌"
-                  description="Tests and review show when task is complete"
-                >
-                  Code is tested
+                <Feature icon="👌" description="We guarantee work">
+                  Pay when satisfied
                 </Feature>
-              </Flex>
-              <Flex mt={3} flexWrap="wrap" justifyContent="center">
-                <CallToAction
-                  onClick={window.gtag_report_conversion}
-                  href="/"
-                  mt={3}
-                >
-                  Connect your tasks
-                </CallToAction>
               </Flex>
             </Section>
           </Box>
@@ -86,4 +67,4 @@ const Landing = () => {
     </div>
   );
 };
-export default Landing;
+export default WordPressLanding;
