@@ -7,9 +7,10 @@ import { folder } from 'react-icons-kit/feather/folder';
 import { file } from 'react-icons-kit/feather/file';
 import { ic_create_new_folder as createFolder } from 'react-icons-kit/md/ic_create_new_folder';
 import { ic_insert_drive_file as createFile } from 'react-icons-kit/md/ic_insert_drive_file';
-import Notification from 'components/Notification';
 
+import Notification from 'components/Notification';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { updateFile } from '../actions';
 import { DecoratorsContainer, InputWrapper } from '../styles';
 
 const Header = ({ style, node }) => {
@@ -92,6 +93,8 @@ const CustomContainer = props => {
             children: [],
           });
         }
+        console.log(node);
+        window.store.dispatch(updateFile(node));
       }
       setName('');
       setClick(false);
@@ -167,7 +170,7 @@ CustomContainer.propTypes = {
 const TreeView = props => {
   const [data, setData] = useState(props.files || {});
   const [cursor, setCursor] = useState(false);
-
+  console.log(props.files);
   useEffect(() => {
     if (props.files) {
       setData(props.files);
