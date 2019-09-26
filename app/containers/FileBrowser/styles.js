@@ -28,16 +28,34 @@ export const FileBrowser = styled.div`
   ul {
     width: 100%;
   }
+  ::-webkit-scrollbar-track {
+    background-color: #191d1f;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    background-color: #191d1f;
+  }
+  ::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #333637;
+  }
 `;
 
 export const DecoratorsContainer = styled.div`
   cursor: pointer;
   display: block;
-  padding: 0px 5px;
+  padding: 0.3rem 1rem 0.4rem calc(1rem - 2px);
+  border-left: 2px solid transparent;
   position: relative;
   &:hover {
+  background-color:  ${props =>
+    props.focus === 'edit' ? 'none' : 'rgb(38, 50, 56);'}
+    border-left: 2px solid transparent;
+  border-color: ${props =>
+    props.focus === 'edit' ? 'none' : 'rgb(97, 218, 251);'};
     span {
-      display: unset;
+      display: ${props => (props.focus === 'edit' ? 'none' : 'unset')};
     }
   }
   span {
@@ -63,13 +81,59 @@ export const InputWrapper = styled.div`
    {
     padding-left: 20px;
     display: flex;
+    background-color: rgba(131, 226, 252, 0.2);
+    padding: 0.3rem 1rem 0.4rem calc(1rem - 2px);
     input {
+      width: 100%;
       background-color: #263238;
       border: none;
       color: #fff;
       &:focus {
         border: none;
+        outline: none;
       }
     }
+    i {
+      color: #6a9eb5;
+    }
+  }
+`;
+
+export const DeleteWrapper = styled.div`
+   {
+    color: rgba(255, 255, 255, 0.9);
+    div:nth-child(3) {
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      margin-top: 1rem;
+      div {
+        margin: 0;
+      }
+      div:nth-child(2) {
+        a {
+          background-color: rgb(220, 53, 69);
+          color: #fff;
+          border: 2px solid #dc3545;
+        }
+      }
+    }
+  }
+`;
+
+export const Title = styled.div`
+   {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+`;
+
+export const Content = styled.div`
+   {
+    font-size: 14px;
+    text-align: center;
   }
 `;

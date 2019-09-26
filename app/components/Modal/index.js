@@ -9,7 +9,8 @@ import ModalBody from './ModalBody';
 import ModalFooter from './ModalFooter';
 
 function Modal(props) {
-  const { onClose } = props;
+  const { onClose, content, footer, title, width } = props;
+  console.log(footer || true);
   const wrapperRef = useRef(null);
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, false);
@@ -25,13 +26,15 @@ function Modal(props) {
   };
   return (
     <ModalDialog>
-      <ModalContent width={props.width} ref={wrapperRef}>
-        <ModalHeader>
-          <h4>{props.title}</h4>
-          <CloseIcon click={() => onClose(false)} />
-        </ModalHeader>
-        <ModalBody>{props.content}</ModalBody>
-        <ModalFooter />
+      <ModalContent width={width} ref={wrapperRef}>
+        {title && (
+          <ModalHeader>
+            <h4>{title}</h4>
+            <CloseIcon click={() => onClose(false)} />
+          </ModalHeader>
+        )}
+        {content && <ModalBody>{content}</ModalBody>}
+        {footer && <ModalFooter>{footer}</ModalFooter>}
       </ModalContent>
     </ModalDialog>
   );
@@ -40,8 +43,9 @@ function Modal(props) {
 Modal.propTypes = {
   width: PropTypes.number,
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  onClose: PropTypes.func,
+  footer: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  onClose: PropTypes.func,
 };
 
 export default Modal;
