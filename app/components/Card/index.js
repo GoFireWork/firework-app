@@ -14,7 +14,7 @@ import Footer from './footer';
 
 function Card(props) {
   return (
-    <Wrapper onClick={props.onClick}>
+    <Wrapper width={props.width} height={props.height} onClick={props.onClick}>
       {props.title && <Header>{props.title}</Header>}
       {props.content && <Content>{props.content}</Content>}
       {props.footer && <Footer>{props.footer}</Footer>}
@@ -27,6 +27,8 @@ Card.propTypes = {
   title: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   content: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   footer: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  width: PropTypes.string,
+  height: PropTypes.string,
 };
 
 export default Card;
