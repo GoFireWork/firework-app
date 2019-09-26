@@ -8,6 +8,7 @@ import Login from 'containers/Login';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Repo from 'containers/RepoList/Loadable';
+import Setting from 'containers/Setting';
 import CRoute from './privateRoutes';
 
 import GlobalStyle from '../../global-styles';
@@ -30,6 +31,7 @@ function App() {
         <CRoute exact path="/" component={WorkPage} cprivate />
         <CRoute exact path="/login" component={Login} />
         <CRoute exact path="/repositories" component={Repo} cprivate />
+        <CRoute exact path="/settings" component={Setting} cprivate />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
