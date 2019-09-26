@@ -261,7 +261,6 @@ CustomContainer.propTypes = {
   node: PropTypes.object,
   onClick: PropTypes.func,
 };
-
 const TreeView = props => {
   const [data, setData] = useState(props.files || {});
   const [cursor, setCursor] = useState(false);
