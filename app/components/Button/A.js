@@ -7,3 +7,11 @@ const A = styled.a`
 `;
 
 export default A;
+
+export const Disabled = styled.a`
+  ${buttonStyles};
+  color: currentColor;
+  cursor: unset;
+  opacity: 0.5;
+  text-decoration: none;
+`;
