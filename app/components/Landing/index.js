@@ -9,20 +9,13 @@ import {
   CallToAction,
   Section,
 } from 'react-landing-page';
-import Mailchimp from 'react-mailchimp-form';
 
-import { MailChimpForm } from './styles';
+import { MailChimpStyles } from '../MailChimpForm/styles';
 import H2 from '../H2';
+import { MailChimpForm } from '../MailChimpForm/index';
 
 const Landing = () => {
-  const messages = {
-    sending: 'Sending...',
-    success: 'Thank you for subscribing!',
-    error: 'An unexpected internal error has occurred.',
-    empty: 'You must enter an e-mail.',
-    duplicate: `You're already subscribed`,
-    button: 'Subscribe',
-  };
+  const isMainMailChimpGroup = true;
   return (
     <div>
       <Helmet>
@@ -38,20 +31,9 @@ const Landing = () => {
               heading="FireWork"
               subhead="Get work done instead of hiring developers"
             >
-              <MailChimpForm>
-                <Mailchimp
-                  action="https://gmail.us20.list-manage.com/subscribe/post?u=080e7d76c1af33a59c13126db&amp;id=36a30fa311"
-                  fields={[
-                    {
-                      name: 'EMAIL',
-                      placeholder: 'email',
-                      type: 'email',
-                      required: true,
-                    },
-                  ]}
-                  messages={messages}
-                />
-              </MailChimpForm>
+              <MailChimpStyles>
+                <MailChimpForm isMainMailChimpGroup={isMainMailChimpGroup} />
+              </MailChimpStyles>
               <H2 textalign="center">How does it work?</H2>
               <Flex flexWrap="wrap" justifyContent="center">
                 <Feature

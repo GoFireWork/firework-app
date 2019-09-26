@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MailChimpForm = styled.div`
+export const MailChimpStyles = styled.div`
   > form {
     max-width: 400px;
     margin: 10px auto;
@@ -33,5 +33,4 @@ export const SubHeading = styled.p`
 
 export const SubSubHeading = styled.p`
   font-size: 20px;
-  margin: 0px 0 5px 0;
 `;
