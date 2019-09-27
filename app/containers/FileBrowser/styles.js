@@ -52,10 +52,19 @@ export const DecoratorsContainer = styled.div`
   background-color:  ${props =>
     props.focus === 'edit' ? 'none' : 'rgb(38, 50, 56);'}
     border-left: 2px solid transparent;
-  border-color: ${props =>
-    props.focus === 'edit' ? 'none' : 'rgb(97, 218, 251);'};
     span {
       display: ${props => (props.focus === 'edit' ? 'none' : 'unset')};
+      i {
+        margin: 0 3px 0 3px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      div {
+      &:hover {
+        visibility: visible;
+        }
+      }
     }
   }
   span {
@@ -83,6 +92,7 @@ export const InputWrapper = styled.div`
     display: flex;
     background-color: rgba(131, 226, 252, 0.2);
     padding: 0.3rem 1rem 0.4rem calc(1rem - 2px);
+    margin-left: ${props => (props.type === 'add' ? '15px' : '-15px')};
     input {
       width: 100%;
       background-color: #263238;

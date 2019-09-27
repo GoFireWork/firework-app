@@ -31,7 +31,7 @@ export function FileBrowserContainer(props) {
   return (
     <FileBrowser>
       <WrappenHeader>
-        <span>Explore</span>
+        <span>Repository Files</span>
       </WrappenHeader>
       <TreeView {...props} />
     </FileBrowser>

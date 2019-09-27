@@ -14,6 +14,7 @@ import Notification from 'components/Notification';
 import LoadingIndicator from 'components/LoadingIndicator';
 import Modal from 'components/Modal';
 import Button from 'components/Button';
+import Tooltip from 'components/Tooltip';
 import { updateFile } from '../actions';
 import {
   DecoratorsContainer,
@@ -44,7 +45,7 @@ const Header = ({
   return (
     <Div style={style.base}>
       {type === 'edit' ? (
-        <InputWrapper>
+        <InputWrapper type={type}>
           <Icon icon={iconType} style={iconStyle} />
           <input
             onBlur={FocusChange}
@@ -57,7 +58,7 @@ const Header = ({
       ) : (
         <Div style={style.title} className="node-title">
           <Icon icon={iconType} style={iconStyle} />
-          {node.name}
+          {node.name === 'root' ? node.path.split('/')[1] : node.name}
         </Div>
       )}
     </Div>
@@ -154,15 +155,15 @@ const CustomContainer = props => {
   };
   const content = (
     <DeleteWrapper>
-      <Title>DELETE FILE</Title>
+      <Title>DELETE {types === 'file' ? 'FILE' : 'DIRECTORY'}</Title>
       <Content>
         <span>
           Are you sure you want to delete <b>{node.name}</b> ? <br />
-          The file will be permanently removed.
+          The {types} will be permanently removed.
         </span>
       </Content>
       <div>
-        <Button>Cancel</Button>
+        <Button onClick={() => setClick('')}>Cancel</Button>
         <Button>Confirm</Button>
       </div>
     </DeleteWrapper>
@@ -188,38 +189,52 @@ const CustomContainer = props => {
         <span>
           {props.node.type === 'folder' ? (
             <>
-              <Icon
-                icon={edit}
-                onClick={e => {
-                  onIconClick(e, '', 'edit');
-                }}
-              />
-              <Icon
-                icon={createFile}
-                onClick={e => {
-                  onIconClick(e, 'file', 'add');
-                }}
-              />
-              <Icon
-                icon={createFolder}
-                onClick={e => {
-                  onIconClick(e, 'folder', 'add');
-                }}
-              />
-              <Icon icon={close} />
-            </>
-          ) : (
-            <>
-              <Icon
-                icon={edit}
-                onClick={e => {
-                  onIconClick(e, '', 'edit');
-                }}
-              />
+              <Tooltip text="Rename" classic width={60}>
+                <Icon
+                  icon={edit}
+                  onClick={e => {
+                    onIconClick(e, '', 'edit');
+                  }}
+                />
+              </Tooltip>
+              <Tooltip text="Add File" classic width={60}>
+                <Icon
+                  icon={createFile}
+                  onClick={e => {
+                    onIconClick(e, 'file', 'add');
+                  }}
+                />
+              </Tooltip>
+              <Tooltip text="Add Folder" classic width={120}>
+                <Icon
+                  icon={createFolder}
+                  onClick={e => {
+                    onIconClick(e, 'folder', 'add');
+                  }}
+                />
+              </Tooltip>
               <Icon
                 icon={close}
                 onClick={e => {
-                  onIconClick(e, '', 'close');
+                  onIconClick(e, 'directory', 'close');
+                }}
+              />
+            </>
+          ) : (
+            <>
+              {' '}
+              <Tooltip text="Rename" classic>
+                <Icon
+                  icon={edit}
+                  onClick={e => {
+                    onIconClick(e, '', 'edit');
+                  }}
+                />
+              </Tooltip>
+              <Icon
+                icon={close}
+                onClick={e => {
+                  onIconClick(e, 'file', 'close');
                 }}
               />
             </>
@@ -227,7 +242,7 @@ const CustomContainer = props => {
         </span>
       </DecoratorsContainer>
       {clickType === 'add' && (
-        <InputWrapper>
+        <InputWrapper type={clickType}>
           <Icon icon={types === 'folder' ? folder : createFile} />
           <input
             onBlur={FocusChange}
