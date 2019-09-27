@@ -13,7 +13,7 @@ import Button from '../Button';
 import HeaderLink from './HeaderLink';
 import messages from './messages';
 import Dropdown from '../DropDown';
-import { Profile } from './styled';
+import { Profile, RempoName } from './styled';
 import dropdownIcon from './drop-down-arrow.svg';
 import reducer, {
   getUserDetails,
@@ -28,6 +28,9 @@ const key = 'user';
 function Header(props) {
   const { user, token } = props;
   const [visible, setVisible] = useState(false);
+
+  const splitUrl = props.repo.split('/');
+  const repoName = splitUrl[splitUrl.length - 1];
 
   const options = [
     {
@@ -60,6 +63,9 @@ function Header(props) {
                 <FormattedMessage {...messages.repositories} />
               </HeaderLink>
             </div>
+            <RempoName>
+              {repoName && props.location === '/' ? repoName : ''}
+            </RempoName>
             <Profile onClick={() => setVisible(!visible)}>
               <img src={user && user.avatar_url} alt="profile" />
               <img src={dropdownIcon} alt="drop-arrow" />
@@ -83,11 +89,15 @@ Header.propTypes = {
   token: PropTypes.string,
   Logout: PropTypes.func,
   setFetchingUser: PropTypes.func,
+  repo: PropTypes.string,
+  location: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   user: getUserDetails(state),
   token: getToken(state),
+  repo: state.repo.selectedRepoUrl,
+  location: state.router.location.pathname,
 });
 
 const mapDispatchToProps = dispatch => ({

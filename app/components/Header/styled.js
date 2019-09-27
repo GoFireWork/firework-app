@@ -12,3 +12,8 @@ export const Profile = styled.div`
     width: 10px;
   }
 `;
+
+export const RempoName = styled.div`
+  color: var(--light-blue-color);
+  font-size: 20px;
+`;
