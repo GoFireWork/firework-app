@@ -24,32 +24,26 @@ const WordPressLanding = () => {
       </Helmet>
       <Hero bg="white" bgOpacity={0.5}>
         <Flex flexWrap="wrap" alignItems="center">
-          <Box width={800} p={3}>
+          <Box width={900} p={3}>
             <Section
               color="black"
               bg="white"
               heading="FireWork"
-              subhead="Get work done instead of hiring developers"
+              subhead="Quickly hire WordPress developers"
             >
               <MailChimpStyles>
                 <MailChimpForm isMainMailChimpGroup={isMainMailChimpGroup} />
               </MailChimpStyles>
               <H2 textalign="center">How does it work?</H2>
               <Flex flexWrap="wrap" justifyContent="center">
-                <Feature
-                  icon="🗒"
-                  description="Connect your tasks with our API through Github or Jira"
-                >
-                  Connect your tasks
+                <Feature icon="🗒" description="So developers can work on it">
+                  Connect your site
                 </Feature>
-                <Feature icon="💰" description="You pay how much you want">
-                  Prepay for each task
+                <Feature icon="💰" description="So they know what to work on">
+                  Enter task details
                 </Feature>
-                <Feature
-                  icon="👌"
-                  description="Tests and review show when task is complete"
-                >
-                  Code is tested
+                <Feature icon="👌" description="before paying">
+                  View results
                 </Feature>
               </Flex>
               <Flex mt={3} flexWrap="wrap" justifyContent="center">
