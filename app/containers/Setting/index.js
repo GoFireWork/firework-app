@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Card from 'components/Card';
+import Button from 'components/Button';
 import Loading from 'components/LoadingIndicator';
 import Sidebar from './sidebar';
 import { Wrapper, Workspace, Form, Row } from './Styled';
@@ -62,6 +63,7 @@ function Setting(props) {
       <Row>
         <h6>You will be paid by this payment method</h6>
       </Row>
+      <Button>Confirm Paypal Email</Button>
     </Form>
   );
   return props.loading ? (
