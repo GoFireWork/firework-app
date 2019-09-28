@@ -13,7 +13,7 @@ export const Profile = styled.div`
   }
 `;
 
-export const RempoName = styled.div`
+export const RepoName = styled.div`
   color: var(--light-blue-color);
   font-size: 20px;
 `;

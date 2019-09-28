@@ -13,7 +13,7 @@ import Button from '../Button';
 import HeaderLink from './HeaderLink';
 import messages from './messages';
 import Dropdown from '../DropDown';
-import { Profile, RempoName } from './styled';
+import { Profile, RepoName } from './styled';
 import dropdownIcon from './drop-down-arrow.svg';
 import reducer, {
   getUserDetails,
@@ -63,9 +63,9 @@ function Header(props) {
                 <FormattedMessage {...messages.repositories} />
               </HeaderLink>
             </div>
-            <RempoName>
+            <RepoName>
               {repoName && props.location === '/' ? repoName : ''}
-            </RempoName>
+            </RepoName>
             <Profile onClick={() => setVisible(!visible)}>
               <img src={user && user.avatar_url} alt="profile" />
               <img src={dropdownIcon} alt="drop-arrow" />
