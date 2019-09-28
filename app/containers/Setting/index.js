@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Card from 'components/Card';
-import Button from 'components/Button';
 import Loading from 'components/LoadingIndicator';
 import Sidebar from './sidebar';
-import { Wrapper, Workspace, Form, Row } from './Style';
+import { Wrapper, Workspace, Form, Row } from './Styled';
 
 function Setting(props) {
   const [email, setEmail] = useState('');
@@ -38,8 +37,11 @@ function Setting(props) {
   const content = (
     <Form>
       <Row>
-        <label htmlFor="email">Email</label>
+        <span>Please confirm your Paypal email address</span>
+      </Row>
+      <Row>
         <input
+          type="email"
           name="email"
           placeholder="Email"
           defaultValue={email}
@@ -47,12 +49,19 @@ function Setting(props) {
           onBlur={e => validateEmail(e.target.value)}
         />
       </Row>
-      <Row>{error ? <p>Invalid Email Address</p> : <span>.</span>}</Row>
+      <Row>{error ? <h5>Invalid Email Address</h5> : <h5 />}</Row>
       <Row>
-        <input type="radio" name="payment" defaultChecked />
-        <label htmlFor="payment">PayPal</label>
+        <p>
+          <input type="radio" name="payment" defaultChecked />
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/230px-PayPal.svg.png"
+            alt="Loading error"
+          />
+        </p>
       </Row>
-      <Button disabled={!email.length || error}>Payment</Button>
+      <Row>
+        <h6>You will be paid by this payment method</h6>
+      </Row>
     </Form>
   );
   return props.loading ? (
@@ -66,7 +75,7 @@ function Setting(props) {
     <Wrapper>
       <Sidebar />
       <Workspace>
-        <Card width="350px" height="230px" title="Payment" content={content} />
+        <Card width="350px" height="auto" title="Payment" content={content} />
       </Workspace>
     </Wrapper>
   );

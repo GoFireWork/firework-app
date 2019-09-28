@@ -2,14 +2,13 @@ import React, { memo } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Sidemenu } from './Style';
+import { Sidemenu } from './Styled';
 
 function Sidebar() {
   return (
     <Sidemenu>
       <ul>
-        <li>Payment</li>
-        <li>Other settings</li>
+        <li>Settings</li>
       </ul>
     </Sidemenu>
   );
