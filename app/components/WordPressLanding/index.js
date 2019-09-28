@@ -24,7 +24,7 @@ const WordPressLanding = () => {
       </Helmet>
       <Hero bg="white" bgOpacity={0.5}>
         <Flex flexWrap="wrap" alignItems="center">
-          <Box width={900} p={3}>
+          <Box width={900} p={2}>
             <Section
               color="black"
               bg="white"
@@ -36,13 +36,13 @@ const WordPressLanding = () => {
               </MailChimpStyles>
               <H2 textalign="center">How does it work?</H2>
               <Flex flexWrap="wrap" justifyContent="center">
-                <Feature icon="🗒" description="So developers can work on it">
+                <Feature icon="🗒" description="">
                   Connect your site
                 </Feature>
-                <Feature icon="💰" description="So they know what to work on">
-                  Enter task details
+                <Feature icon="💰" description="">
+                  Enter your task
                 </Feature>
-                <Feature icon="👌" description="before paying">
+                <Feature icon="👌" description="">
                   View results
                 </Feature>
               </Flex>

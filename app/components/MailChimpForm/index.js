@@ -6,7 +6,7 @@ export const MailChimpForm = props => {
   return (
     <div>
       <link
-        href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css"
+        href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css"
         rel="stylesheet"
         type="text/css"
       />
@@ -23,10 +23,11 @@ export const MailChimpForm = props => {
           <div id="mc_embed_signup_scroll">
             <h3>Get Notified When We Launch</h3>
             <div className="mc-field-group">
-              <label htmlFor="mce-EMAIL">Email</label>
               <input
+                style={{ marginTop: '-3px', width: '280px' }}
                 type="email"
                 defaultValue=""
+                placeholder="email"
                 name="EMAIL"
                 className="required email"
                 id="mce-EMAIL"
@@ -75,6 +76,7 @@ export const MailChimpForm = props => {
                 value="Subscribe"
                 name="subscribe"
                 id="mc-embedded-subscribe"
+                style={{ marginLeft: '10px' }}
                 className="button"
               />
             </div>
