@@ -30,7 +30,3 @@ export const MailChimpStyles = styled.div`
 export const SubHeading = styled.p`
   font-size: 30px;
 `;
-
-export const SubSubHeading = styled.p`
-  font-size: 20px;
-`;
