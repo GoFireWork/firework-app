@@ -45,21 +45,6 @@ export const Form = styled.div`
    {
     div {
       margin: 0px;
-      &:last-child {
-        a {
-          background: linear-gradient(
-            to bottom,
-            rgba(147, 206, 222, 1) 0%,
-            rgba(72, 146, 166, 1) 50%,
-            rgba(147, 206, 222, 1) 100%
-          );
-          color: #ddd;
-          &:hover {
-            background: transparent;
-            color: #fff;
-          }
-        }
-      }
     }
   }
 `;
