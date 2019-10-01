@@ -12,7 +12,6 @@ import Repo from 'containers/RepoList/Loadable';
 import CRoute from './privateRoutes';
 
 import GlobalStyle from '../../global-styles';
-import WordPressLanding from '../../components/WordPressLanding';
 
 const AppWrapper = styled.div`
   margin: 0;
@@ -30,7 +29,6 @@ function App() {
       <Header />
       <Switch>
         <CRoute exact path="/" component={Landing} />
-        <CRoute exact path="/wordpress" component={WordPressLanding} />
         <CRoute exact path="/work" component={WorkPage} cprivate />
         <CRoute exact path="/login" component={Login} />
         <CRoute exact path="/repositories" component={Repo} cprivate />
