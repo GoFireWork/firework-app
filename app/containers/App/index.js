@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import Landing from 'components/Landing';
+import Landing from 'containers/Landing';
 import WorkPage from 'containers/WorkPage/Loadable';
 import Login from 'containers/Login';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';

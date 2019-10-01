@@ -24,6 +24,10 @@ export const MailChimpStyles = styled.div`
     display: inline-block;
     border: none;
     transition: all 0.4s ease 0s;
+    @media (max-width: 768px) {
+      width: 86%;
+      margin-left: 0 !important;
+    }
   }
 `;
 

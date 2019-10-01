@@ -27,7 +27,7 @@ export const MailChimpForm = props => {
                 style={{ marginTop: '-3px', width: '280px' }}
                 type="email"
                 defaultValue=""
-                placeholder="email"
+                placeholder="Email"
                 name="EMAIL"
                 className="required email"
                 id="mce-EMAIL"
@@ -76,7 +76,6 @@ export const MailChimpForm = props => {
                 value="Subscribe"
                 name="subscribe"
                 id="mc-embedded-subscribe"
-                style={{ marginLeft: '10px' }}
                 className="button"
               />
             </div>
