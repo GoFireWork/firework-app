@@ -103,6 +103,7 @@
     "react-redux": "7.0.2",
     "react-router-dom": "5.0.0",
     "react-social-login": "^3.4.4",
+    "react-stripe-checkout": "^2.6.3",
     "react-treebeard": "^3.2.4",
     "redux": "4.0.1",
     "redux-saga": "1.0.2",
