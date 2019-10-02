@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 
-import { Link, Text, Box } from 'rebass';
+import { Text, Box } from 'rebass';
 
 import NavBar from './NavBar';
 import Button from '../Button';
@@ -58,9 +58,6 @@ function Header(props) {
                 <img src={icon} alt="logo" height="20px" /> FireWork
               </Text>
               <Box mx="auto" />
-              <Link variant="nav" href="/" color="white">
-                Sign in /Join
-              </Link>
             </div>
             {/* <Profile onClick={() => setVisible(!visible)}> */}
             {/*  <img src={user && user.avatar_url} alt="profile" /> */}
