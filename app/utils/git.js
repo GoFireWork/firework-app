@@ -1,10 +1,11 @@
-import * as git from 'isomorphic-git';
+/*
+// import * as git from 'isomorphic-git';
 
 // eslint-disable-next-line no-undef
-const fs = BrowserFS.BFSRequire('fs');
+// const fs = BrowserFS.BFSRequire('fs');
 // eslint-disable-next-line no-undef
-fs.initialize(new BrowserFS.FileSystem.LocalStorage());
-git.plugins.set('fs', fs);
+// fs.initialize(new BrowserFS.FileSystem.LocalStorage());
+// git.plugins.set('fs', fs);
 
 export async function makeDirectory(directoryName) {
   try {
@@ -45,7 +46,7 @@ export async function readFile(filePath) {
   return content;
 }
 
-/* eslint-disable no-await-in-loop */
+/!* eslint-disable no-await-in-loop *!/
 export async function readRecursiveDirectory(
   directoryName,
   type = 'dir',
@@ -221,3 +222,4 @@ export async function listFiles(path) {
     children: result,
   };
 }
+*/

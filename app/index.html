@@ -5,23 +5,28 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148453160-2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-148453160-2');
-    gtag('config', 'AW-1002730443');
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag("js", new Date());
+    gtag("config", "UA-148453160-2");
+    gtag("config", "AW-1002730443");
   </script>
   <!-- Event snippet for Email Signup conversion page
   In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
   <script>
     function gtag_report_conversion(url) {
-      var callback = function () {
-        if (typeof(url) != 'undefined') {
+      console.log(`conversion reported`);
+      var callback = function() {
+        if (typeof (url) != "undefined") {
           window.location = url;
         }
       };
-      gtag('event', 'conversion', {
-          'send_to': 'AW-1002730443/YRsBCIGOoKwBEMvnkd4D',
-          'event_callback': callback
+      gtag("event", "conversion", {
+        "send_to": "AW-1002730443/YRsBCIGOoKwBEMvnkd4D",
+        "event_callback": callback
       });
       return false;
     }
@@ -36,7 +41,7 @@
   <!-- Allow installing the app to the homescreen -->
   <meta name="mobile-web-app-capable" content="yes">
 
-  <link rel="icon" href="/favicon.ico"/>
+<!--  <link rel="icon" href="/favicon.ico"/>-->
 
   <title>FireWork</title>
 </head>
@@ -50,17 +55,5 @@
 
 <div id="app"></div>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-<script src="https://unpkg.com/isomorphic-git"></script>
-<script src="https://unpkg.com/browserfs@1.4.3/dist/browserfs.js"></script>
-<script type="text/javascript">
-  BrowserFS.install(window);
-  BrowserFS.configure({
-    fs: "LocalStorage"
-  }, function(e) {
-    if (e) {
-      throw e;
-    }
-  });
-</script>
 </body>
 </html>
