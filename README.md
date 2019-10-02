@@ -17,6 +17,9 @@
 - Promises
 - CSS
 
+# Coding/VCS Conventions
+
+- Please keep branch names to two words, hyphenated, all lowercase.  E.g. `settings-page`
 # Available Scripts
 
 - `npm install` -> Install all packages needed
