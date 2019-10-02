@@ -1,5 +1,4 @@
 import React, { memo, useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -10,8 +9,8 @@ import { useInjectSaga } from 'utils/injectSaga';
 
 import NavBar from './NavBar';
 import Button from '../Button';
-import HeaderLink from './HeaderLink';
-import messages from './messages';
+// import HeaderLink from './HeaderLink';
+// import messages from './messages';
 import Dropdown from '../DropDown';
 import { Profile } from './styled';
 import dropdownIcon from './drop-down-arrow.svg';
@@ -53,12 +52,9 @@ function Header(props) {
         {token && (
           <>
             <div>
-              <HeaderLink to="/">
-                <FormattedMessage {...messages.workpage} />
-              </HeaderLink>
-              <HeaderLink to="/repositories">
-                <FormattedMessage {...messages.repositories} />
-              </HeaderLink>
+              {/* <HeaderLink to="/"> */}
+              {/*  <FormattedMessage {...messages.workpage} /> */}
+              {/* </HeaderLink> */}
             </div>
             <Profile onClick={() => setVisible(!visible)}>
               <img src={user && user.avatar_url} alt="profile" />
