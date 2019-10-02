@@ -12,12 +12,8 @@ export default defineMessages({
     id: `${scope}.home`,
     defaultMessage: 'Home',
   },
-  workpage: {
-    id: `${scope}.workpage`,
-    defaultMessage: 'WorkPage',
-  },
-  repositories: {
-    id: `${scope}.repositories`,
-    defaultMessage: 'Repositories',
+  getStarted: {
+    id: `${scope}.getStarted`,
+    defaultMessage: 'Get Started',
   },
 });

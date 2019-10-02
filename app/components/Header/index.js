@@ -1,17 +1,18 @@
 import React, { memo } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { FormattedMessage } from 'react-intl';
 
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 
-import { Text, Box } from 'rebass';
-
-import NavBar from './NavBar';
 import reducer from '../../containers/Login/reducer';
 
 import saga from '../../containers/Login/saga';
-import A from './A';
+
+import NavBar from './NavBar';
+import HeaderLink from './HeaderLink';
+import messages from './messages';
 
 const key = 'user';
 
@@ -22,20 +23,12 @@ function Header() {
   return (
     <div>
       <NavBar>
-        <>
-          <div>
-            <Text p={2} fontWeight="bold" color="white">
-              <A href="/">FireWork</A>
-            </Text>
-            <Box mx="auto" />
-          </div>
-          <div>
-            <Text p={2} fontWeight="bold" color="white">
-              <A href="/get-started">Get Started</A>
-            </Text>
-            <Box mx="auto" />
-          </div>
-        </>
+        <HeaderLink to="/">
+          <FormattedMessage {...messages.home} />
+        </HeaderLink>
+        <HeaderLink to="/get-started">
+          <FormattedMessage {...messages.getStarted} />
+        </HeaderLink>
       </NavBar>
     </div>
   );
