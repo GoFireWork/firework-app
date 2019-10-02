@@ -7,13 +7,15 @@ import PropTypes from 'prop-types';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 
+import { Link, Text, Box } from 'rebass';
+
 import NavBar from './NavBar';
 import Button from '../Button';
 // import HeaderLink from './HeaderLink';
 // import messages from './messages';
 import Dropdown from '../DropDown';
-import { Profile } from './styled';
-import dropdownIcon from './drop-down-arrow.svg';
+// import { Profile } from './styled';
+// import dropdownIcon from './drop-down-arrow.svg';
 import reducer, {
   getUserDetails,
   getToken,
@@ -21,6 +23,7 @@ import reducer, {
 
 import saga from '../../containers/Login/saga';
 import { setLogout, setFetchingUser } from '../../containers/Login/actions';
+import icon from '../../images/icon-512x512.png';
 
 const key = 'user';
 
@@ -35,7 +38,6 @@ function Header(props) {
       tag: <strong>{user && user.login}</strong>,
     },
     { value: '', label: '', component: <hr /> },
-    { value: '/repositories', label: 'Your repositories' },
     { value: '/settings', label: 'Settings' },
     { value: '', component: <Button onClick={props.Logout}>Sign out</Button> },
   ];
@@ -52,14 +54,18 @@ function Header(props) {
         {token && (
           <>
             <div>
-              {/* <HeaderLink to="/"> */}
-              {/*  <FormattedMessage {...messages.workpage} /> */}
-              {/* </HeaderLink> */}
+              <Text p={2} fontWeight="bold" color="white">
+                <img src={icon} alt="logo" height="20px" /> FireWork
+              </Text>
+              <Box mx="auto" />
+              <Link variant="nav" href="/" color="white">
+                Sign in /Join
+              </Link>
             </div>
-            <Profile onClick={() => setVisible(!visible)}>
-              <img src={user && user.avatar_url} alt="profile" />
-              <img src={dropdownIcon} alt="drop-arrow" />
-            </Profile>
+            {/* <Profile onClick={() => setVisible(!visible)}> */}
+            {/*  <img src={user && user.avatar_url} alt="profile" /> */}
+            {/*  <img src={dropdownIcon} alt="drop-arrow" /> */}
+            {/* </Profile> */}
             {visible && (
               <Dropdown
                 options={options}
