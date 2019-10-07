@@ -30,7 +30,7 @@ function App() {
       <Switch>
         <CRoute exact path="/" component={Landing} />
         <CRoute exact path="/login" component={Login} />
-        <CRoute exact path="/get-started" component={GetStarted} />
+        <Route exact path="/get-started" component={GetStarted} />
         <CRoute exact path="/credit-card-signup" component={CreditCardSignup} />
         <Route path="" component={NotFoundPage} />
       </Switch>
