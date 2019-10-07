@@ -6,6 +6,10 @@
   --light-gray-border-color: rgba(255, 255, 255, 0.1);
   --header-font-color: rgba(255, 255, 255, 0.9);
   --body-font-color: rgba(255, 255, 255, 0.5);
+  --light-green-color:#5cb85c;
+  --dark-green-color:#008000;
+  --light-red-color:#db2828;
+  --dark-red-color:#d01919;
 }
 
 .h-100 {
