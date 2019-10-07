@@ -9,6 +9,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import GetStarted from '../GetStartedPage';
 import CreditCardSignup from '../CreditCardSignupPage';
+import Setting from '../Setting';
 import CRoute from './privateRoutes';
 
 import GlobalStyle from '../../global-styles';
@@ -32,6 +33,7 @@ function App() {
         <CRoute exact path="/login" component={Login} />
         <CRoute exact path="/get-started" component={GetStarted} />
         <CRoute exact path="/credit-card-signup" component={CreditCardSignup} />
+        <Route exact path="/settings" component={Setting} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

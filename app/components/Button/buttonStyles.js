@@ -14,11 +14,35 @@ const buttonStyles = css`
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 16px;
-  border: 2px solid #41addd;
-  color: #41addd;
-
+  border: ${props => {
+    if (props.negative) {
+      return '2px solid var(--light-red-color);';
+    }
+    if (props.positive) {
+      return '2px solid var(--light-green-color);';
+    }
+    return '2px solid var(--light-blue-color);';
+  }}
+  color: white;
+  background-color: ${props => {
+    if (props.negative) {
+      return 'var(--light-red-color);';
+    }
+    if (props.positive) {
+      return 'var(--light-green-color);';
+    }
+    return 'var(--light-blue-color);';
+  }}
   &:active {
-    background: #41addd;
+  background-color: ${props => {
+    if (props.negative) {
+      return 'var(--dark-red-color);';
+    }
+    if (props.positive) {
+      return 'var(--dark-green-color);';
+    }
+    return 'var(--dark-blue-color);';
+  }}
     color: #fff;
   }
 `;

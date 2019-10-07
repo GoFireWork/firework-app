@@ -15,11 +15,10 @@ import Wrapper from './Wrapper';
 
 function Button(props) {
   // Render an anchor tag
-  console.log(props);
   let button = props.disabled ? (
     <Disabled> {Children.toArray(props.children)}</Disabled>
   ) : (
-    <A href={props.href} onClick={props.onClick}>
+    <A href={props.href} onClick={props.onClick} {...props}>
       {Children.toArray(props.children)}
     </A>
   );
