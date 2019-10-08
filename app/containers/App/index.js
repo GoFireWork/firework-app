@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
 import Landing from 'containers/Landing';
+import Pricing from 'containers/Pricing';
+// import Subscribe from 'containers/Subscribe';
 import Login from 'containers/Login';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
@@ -29,6 +31,8 @@ function App() {
       <Header />
       <Switch>
         <CRoute exact path="/" component={Landing} />
+        <CRoute exact path="/pricing" component={Pricing} />
+        {/* <CRoute exact path="/signup" component={Subscribe} /> */}
         <CRoute exact path="/login" component={Login} />
         <CRoute exact path="/get-started" component={GetStarted} />
         <CRoute exact path="/credit-card-signup" component={CreditCardSignup} />

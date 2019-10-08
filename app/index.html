@@ -3,6 +3,8 @@
 
 <head>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-148453160-2"></script>
+  <script async src="https://js.stripe.com/v3/" id="stripe-js"></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -14,8 +16,6 @@
     gtag("config", "UA-148453160-2");
     gtag("config", "AW-1002730443");
   </script>
-  <!-- Event snippet for Email Signup conversion page
-  In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
   <script>
     function gtag_report_conversion(url) {
       console.log(`conversion reported`);
@@ -32,7 +32,6 @@
     }
   </script>
 
-  <!-- The first thing in any HTML file should be the charset -->
   <meta charset="utf-8">
 
   <!-- Make the page mobile compatible -->
@@ -42,6 +41,7 @@
   <meta name="mobile-web-app-capable" content="yes">
 
 <!--  <link rel="icon" href="/favicon.ico"/>-->
+<!--  <meta name="description" content="">-->
 
   <title>FireWork</title>
 </head>
