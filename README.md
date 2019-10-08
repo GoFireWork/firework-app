@@ -1,58 +1,39 @@
-#Firework App
 
-# Table of Contents
+ ## Code Conventions
+- Only use descriptive, specific capitalized commit messages. 
+  - E.g.: 
+    - `Add stripe-elements package`, not `add package`
+    - `Create user account route when entering website` `create user account`
+-  If a commit makes more than one change (which is generally not preferred by most companies but I don't mind), please include those changes on another line. ([example](https://github.com/GoFireWork/firework-api/commit/720affeeed87a8ce8feb0433af771108609b56e5))
+- Use `Present tense verb change`, not `Past tense change`
+    - `Remove default open file tab in editor` not `No default tab` or `Removed default tab` (Note the extra specificity in the first commit message).
+- Component names should be capitalized in commit messages; this makes it clear that what you're referring to is a component, not an element or something else
+- Check spelling, especially of component names
+- Pull requests should complete issues, therefore, please include the issue your PR completes in parentheses at the end of your PR title if your PR does complete an issue. Another reason to do this is that GitHub provides some automated features when you include issues.  This will help keep the issues list clean.
+  - Add Stripe checkout (#147)
+- Please use 2-3 word branch names. All lowercase. They should be two words usually, three if the branch really deserves it.
 
-- [Stack](#stack)
-- [Available Scripts](#available-scripts)
-- [Redux](#redux)
-- [Formatting code for standardization](#formatting-code-for-standardization)
+## Interpersonal Guidelines
+- You can respond to messages with a reaction, and not another message so others are not notified of messages that only acknowledge receipt of another message.
+  - E.g.: react with '👍🏼' instead of typing 'okay'
+- Please don't link to PRs in Slack unless I have asked for one or the PR is somehow relevant.  I will check PRs soon in GitHub notifications. If a PR does block someone feel free to override this rule.
 
-# Stack
+## Work Conventions
 
-- React
-- Redux
-- connected-react-router
-- Reselect
-- ES6
-- Promises
-- CSS
+- I would like to see code that is being worked on pushed to GH every day at the end of your day. There are three reasons for this:
+  1. So someone else can make sure you're on the right track with your approach
+  2. So someone else can make changes to get you on track; course corrections as they say in maritime contexts
+  3. Someone else may want to get you to the next level or __need to use your code the following day__. If we don't have access to your code every day, we may be blocked for 24 hours from making progress on something we are working on.
+- You should probably `git pull` master and `git --rebase master` every day. At the current very early stage of this project, there are dramatic changes made often.  This prevents later need for merge conflicts, ensures you
+- Unless otherwise specified, when you submit a pull request, the pull request should complete a feature.  In other words, the feature is ready to be used in production.
+  - You can ask yourself "Is this pull request ready to be used or does it just add code?"
+  - This prevents others from having to figure your code out to get it ready for production
+- Please only work on things that have been requested. There are quite a few reasons for this:
+  1. There is likely a plan to add what hasn't been requested
+  2. The change or addition could be unnecessary
+- Generally, the UI should look like other professional SAAS websites. 
+  - For instance, does our pricing page look like any of the pricing pages found in a blog post about some successful pricing pages?  How can we make it look more like the others?
+  - Does our header look like how professional websites look? Do we have buttons in our header or just plain, undecorated text?
 
-# Coding/VCS Conventions
 
-- Please keep branch names to two words, hyphenated, all lowercase.  E.g. `settings-page`
-# Available Scripts
 
-- `npm install` -> Install all packages needed
-- `npm start` -> Start project in development mode
-- `npm install <package-name>` -> Add a new package
-- `npm remove <package-name>` -> Delete a package from package.json
-
-# Redux
-
--All fetched data from the server should be stored in the Redux store so that it can be fetched once when possible.
-We should have three actions firing for each interaction with the API. Example: In a case to select file , we should have a OPEN_FILE_REQUEST action, a OPEN_FILE and an OPEN_FILE_ERROR.
-
-Action Types
-
-Include the path of the folder, then what it is doing and a verb that indicates the status of it. Example:
-
-const TYPE = 'boilerplate/folderName/OPEN_FILE'
-
-Which in a real case scenario could be:
-
-for fetching an individual order
-const TYPE = 'boilerplate/WorkPage/OPEN_FILE'
-
-# Formatting code for standardization
-
-The formatting will be performed to all .js, .css.
-
-The following configuration is applied:
-
-- Always add end comma to objects and arrays.
-- Always use tabs instead of spaces to indent.
-- Always add parenthesis to arrow functions.
-- Tab width of 2 spaces.
-- Semicolons will be added at the end of every statement.
-- Lines with over 80 characters will be wrapped.
-- Spaces between brackets will be added in object literals.
