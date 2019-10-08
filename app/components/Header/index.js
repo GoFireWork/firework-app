@@ -23,12 +23,19 @@ function Header() {
   return (
     <div>
       <NavBar>
-        <HeaderLink to="/">
-          <FormattedMessage {...messages.home} />
-        </HeaderLink>
-        <HeaderLink to="/get-started">
-          <FormattedMessage {...messages.getStarted} />
-        </HeaderLink>
+        <div>
+          <HeaderLink to="/" link>
+            <FormattedMessage {...messages.home} />
+          </HeaderLink>
+        </div>
+        <div>
+          <HeaderLink to="/setting" link>
+            <FormattedMessage {...messages.settings} />
+          </HeaderLink>
+          <HeaderLink to="/get-started">
+            <FormattedMessage {...messages.getStarted} />
+          </HeaderLink>
+        </div>
       </NavBar>
     </div>
   );

@@ -55,3 +55,13 @@ export const Footer = styled.div`
     height: 100%;
   }
 `;
+export const Wrapper = styled.div`
+  background-image: linear-gradient(
+    to right bottom,
+    #013058,
+    #0a3c67,
+    #134876,
+    #1b5486,
+    #236196
+  );
+`;
