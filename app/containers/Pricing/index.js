@@ -1,64 +1,106 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Flex } from 'rebass';
-import { CallToAction, PricingTier } from 'react-landing-page';
+import { CallToAction, PricingTier, Heading } from 'react-landing-page';
+import './index.css';
 
-function Pricing() {
-  return (
-    <div>
-      <Flex justifyContent="space-around">
-        <PricingTier
-          bg="silver"
-          tierName="Basic"
-          price="Free"
-          billingType="forever"
-          sellingPoints={[
-            '🔥 < 1000 page views / day',
-            '🔥 Title Optimization',
-            '🔥 Description Optimization',
-          ]}
-        >
-          <CallToAction bg="black" width={1} mt="auto">
-            Subscribe
-          </CallToAction>
-        </PricingTier>
+const Pricing = withRouter(({ history }) => (
+  <div className="wrapper">
+    <Heading className="heading" textAlign="center" align-content="center">
+      Our Plans
+    </Heading>
 
-        <PricingTier
-          bg="green"
-          tierName="Basic"
-          price="$9"
-          billingType="forever"
-          sellingPoints={[
-            '🔥 > 1000 page views / day',
-            '🔥 Title Optimization',
-            '🔥 Description Optimization',
-          ]}
+    <Flex justifyContent="space-around" padding="7% 5%">
+      <PricingTier
+        bg="#fff"
+        width={1 / 5}
+        className="price-tier"
+        tierName="Basic"
+        price="Free"
+        billingType="forever"
+        sellingPoints={[
+          '🔥 < 1000 page views / day',
+          '🔥 Title Optimization',
+          '🔥 Description Optimization',
+        ]}
+      >
+        <CallToAction
+          bg="black"
+          width={1}
+          className="subscribe-button"
+          mt="auto"
+          onClick={() => {
+            history.push({
+              pathname: '/subscribe',
+              state: { detail: 'free' },
+            });
+          }}
         >
-          <CallToAction bg="black" width={1} mt="auto">
-            Subscribe
-          </CallToAction>
-        </PricingTier>
+          Subscribe
+        </CallToAction>
+      </PricingTier>
 
-        <PricingTier
-          bg="gold"
-          tierName="Pro"
-          price="$29"
-          billingType="Monthly"
-          sellingPoints={[
-            '🔥 > 5000 page views / day',
-            '🔥 Title Optimization',
-            '🔥 Description Optimization',
-            '📑 Comprehensive docs',
-            '😌 Future updates',
-            '👩‍⚖️ Commercial license',
-          ]}
+      <PricingTier
+        bg="#fff"
+        width={1 / 5}
+        className="price-tier"
+        tierName="Basic"
+        price="$9"
+        billingType="Monthly"
+        sellingPoints={[
+          '🔥 > 1000 page views / day',
+          '🔥 Title Optimization',
+          '🔥 Description Optimization',
+        ]}
+      >
+        <CallToAction
+          bg="black"
+          width={1}
+          className="subscribe-button"
+          mt="auto"
+          onClick={() => {
+            history.push({
+              pathname: '/subscribe',
+              state: { detail: 'basic' },
+            });
+          }}
         >
-          <CallToAction bg="black" width={1}>
-            Subscribe
-          </CallToAction>
-        </PricingTier>
-      </Flex>
-    </div>
-  );
-}
+          Subscribe
+        </CallToAction>
+      </PricingTier>
+
+      <PricingTier
+        bg="#fff"
+        width={1 / 5}
+        className="price-tier"
+        tierName="Pro"
+        price="$19"
+        billingType="Monthly"
+        sellingPoints={[
+          '🔥 > 5000 page views / day',
+          '🔥 Title Optimization',
+          '🔥 Description Optimization',
+          '📑 Comprehensive docs',
+          '😌 Future updates',
+          '👩‍⚖️ Commercial license',
+        ]}
+      >
+        <CallToAction
+          bg="black"
+          width={1}
+          className="subscribe-button"
+          onClick={() => {
+            history.push({
+              pathname: '/subscribe',
+              state: { detail: 'pro' },
+            });
+          }}
+        >
+          Subscribe
+        </CallToAction>
+      </PricingTier>
+    </Flex>
+  </div>
+));
 
 export default Pricing;

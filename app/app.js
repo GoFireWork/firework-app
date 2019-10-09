@@ -15,6 +15,7 @@ import './global.css';
 
 import App from 'containers/App';
 import LanguageProvider from 'containers/LanguageProvider';
+import { StripeProvider } from 'react-stripe-elements';
 
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
@@ -48,7 +49,9 @@ const render = messages => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <StripeProvider apiKey="pk_test_kZchocYXj84zPvWUXzn2C7hV00xJaXlDdw">
+            <App />
+          </StripeProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
