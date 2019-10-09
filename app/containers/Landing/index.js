@@ -4,12 +4,19 @@ import { Hero, Section, Heading, Subhead } from 'react-landing-page';
 import PageLoad from '../../images/page-load-time.png';
 import PageSpeed from '../../images/pagespeed.png';
 import SearchEngine from '../../images/search-rank.png';
-import { TextTitle, BoxSection, Image, Container, Services } from './styled';
+import {
+  TextTitle,
+  BoxSection,
+  Image,
+  Container,
+  Services,
+  Wrapper,
+} from './styled';
 
 function Landing() {
   return (
-    <div>
-      <Hero color="white" bg="#013058" width="100%">
+    <Wrapper>
+      <Hero color="white">
         <Heading fontSize={[5, 6, 7]}>FireWork</Heading>
         <Subhead color="#969b9f">Optimize Your Site</Subhead>
         <Section width={1}>
@@ -37,7 +44,7 @@ function Landing() {
           </Container>
         </Section>
       </Hero>
-    </div>
+    </Wrapper>
   );
 }
 

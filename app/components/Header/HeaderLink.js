@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default styled(Link)`
   display: inline-flex;
-  padding: 0.25em 2em;
+   padding: ${props => (props.link ? '0.25em 0em;' : '0.25em 2em;')} 
   margin: 0.5em;
   text-decoration: none;
   border-radius: 4px;
@@ -15,11 +15,10 @@ export default styled(Link)`
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 16px;
-  border: 2px solid #41addd;
-  color: #41addd;
-
+  border: ${props => (props.link ? 'none;' : '2px solid #41addd;')}
+  color: ${props => (props.link ? 'white;' : '#41addd;')}
   &:active {
-    background: #41addd;
-    color: #fff;
+    background: ${props => (props.link ? 'none;' : '2px solid #41addd;')} 
+    color: ${props => (props.link ? 'none;' : '2px solid #fff;')} 
   }
 `;
