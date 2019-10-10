@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import {
   injectStripe,
   CardNumberElement,
@@ -11,6 +12,7 @@ import './CheckoutForm.css';
 import { Wrapper, ContentModal, Header } from './styled';
 
 const CheckoutForm = props => {
+  const [subSuccess, setSubSuccess] = useState(false);
   const { plan, email } = props;
   const handleSubmit = ev => {
     ev.preventDefault();
@@ -20,7 +22,7 @@ const CheckoutForm = props => {
           plan,
           email,
         });
-        fetch('https://firework.localtunnel.me/subscribe', {
+        fetch('https://gofirework.com/api/subscribe', {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -28,7 +30,8 @@ const CheckoutForm = props => {
           body: JSON.stringify(stripeBody),
         })
           .then(res => {
-            console.log('stripe', res);
+            console.log('subscription successful', res);
+            setSubSuccess(true);
           })
           .catch(res => {
             console.log('stripe', res);
@@ -56,7 +59,9 @@ const CheckoutForm = props => {
       },
     },
   });
-  return (
+  return subSuccess ? (
+    <Redirect to="/get-started" />
+  ) : (
     <ContentModal>
       <Wrapper>
         <Header>Checkout</Header>
