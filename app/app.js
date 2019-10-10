@@ -15,6 +15,7 @@ import './global.css';
 
 import App from 'containers/App';
 import LanguageProvider from 'containers/LanguageProvider';
+import { StripeProvider } from 'react-stripe-elements';
 
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
@@ -24,8 +25,6 @@ import configureStore from './configureStore';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
-
-import('./keyboardJS');
 
 // Create redux store with history
 const initialState = {};
@@ -48,7 +47,9 @@ const render = messages => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <StripeProvider apiKey="pk_test_8V1hXWIWlo9l6Sd6aeH46POA006CKa8izt">
+            <App />
+          </StripeProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,

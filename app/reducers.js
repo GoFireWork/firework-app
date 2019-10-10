@@ -1,19 +1,9 @@
-/**
- * Combine all reducers in this file and export the combined reducers.
- */
-
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
 import history from 'utils/history';
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import issuesReducer from 'containers/Issues/reducer';
-import codeMirrorReducer from 'containers/CodeMirror/reducer';
-import testsReducer from 'containers/Tests/reducer';
-import Repo from 'containers/RepoList/reducer';
-import Files from 'containers/FileBrowser/reducer';
-import Editor from 'containers/Editor/reducer';
 import user from 'containers/Login/reducer';
 
 /**
@@ -21,14 +11,8 @@ import user from 'containers/Login/reducer';
  */
 export default function createReducer(injectedReducers = {}) {
   return combineReducers({
-    files: Files,
-    editor: Editor,
     global: globalReducer,
     language: languageProviderReducer,
-    issues: issuesReducer,
-    codeMirror: codeMirrorReducer,
-    tests: testsReducer,
-    repo: Repo,
     user,
     router: connectRouter(history),
     ...injectedReducers,
