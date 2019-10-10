@@ -16,4 +16,8 @@ export default defineMessages({
     id: `${scope}.getStarted`,
     defaultMessage: 'Get Started',
   },
+  pricing: {
+    id: `${scope}.pricing`,
+    defaultMessage: 'Pricing',
+  },
 });

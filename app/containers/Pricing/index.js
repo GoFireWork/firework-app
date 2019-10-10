@@ -1,38 +1,42 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Flex } from 'rebass';
-import { CallToAction, PricingTier, Heading } from 'react-landing-page';
-import './index.css';
+import { CallToAction, Heading, PricingTier } from 'react-landing-page';
+import { PricingWrapper } from './styles';
+import './styles.css';
 
 const Pricing = withRouter(({ history }) => (
-  <div className="wrapper">
-    <Heading className="heading" textAlign="center" align-content="center">
-      Our Plans
+  <PricingWrapper>
+    <Heading
+      style={{ marginTop: '50px', marginBottom: '-70px' }}
+      textAlign="center"
+    >
+      Pricing
     </Heading>
 
     <Flex justifyContent="space-around" padding="7% 5%">
       <PricingTier
-        bg="#fff"
+        bg="lightgray"
         width={1 / 5}
         className="price-tier"
         tierName="Basic"
         price="Free"
         billingType="forever"
         sellingPoints={[
-          '🔥 < 1000 page views / day',
+          '🔥 < 1000 daily page views',
           '🔥 Title Optimization',
           '🔥 Description Optimization',
         ]}
       >
         <CallToAction
-          bg="black"
+          // bg="black"
           width={1}
           className="subscribe-button"
           mt="auto"
           onClick={() => {
             history.push({
               pathname: '/subscribe',
-              state: { detail: 'free' },
+              state: { plan: 'free' },
             });
           }}
         >
@@ -41,27 +45,27 @@ const Pricing = withRouter(({ history }) => (
       </PricingTier>
 
       <PricingTier
-        bg="#fff"
+        bg="lightgray"
         width={1 / 5}
         className="price-tier"
         tierName="Basic"
         price="$9"
         billingType="Monthly"
         sellingPoints={[
-          '🔥 > 1000 page views / day',
+          '🔥 > 1000 daily page views',
           '🔥 Title Optimization',
           '🔥 Description Optimization',
+          '‍😌 Priority Support',
         ]}
       >
         <CallToAction
-          bg="black"
           width={1}
           className="subscribe-button"
           mt="auto"
           onClick={() => {
             history.push({
               pathname: '/subscribe',
-              state: { detail: 'basic' },
+              state: { plan: 'basic' },
             });
           }}
         >
@@ -70,29 +74,27 @@ const Pricing = withRouter(({ history }) => (
       </PricingTier>
 
       <PricingTier
-        bg="#fff"
+        bg="lightgray"
         width={1 / 5}
         className="price-tier"
         tierName="Pro"
         price="$19"
         billingType="Monthly"
         sellingPoints={[
-          '🔥 > 5000 page views / day',
+          '🔥 > 1000 daily page views',
           '🔥 Title Optimization',
           '🔥 Description Optimization',
-          '📑 Comprehensive docs',
-          '😌 Future updates',
-          '👩‍⚖️ Commercial license',
+          '‍😌 Priority Support',
         ]}
       >
         <CallToAction
-          bg="black"
+          // bg="black"
           width={1}
           className="subscribe-button"
           onClick={() => {
             history.push({
               pathname: '/subscribe',
-              state: { detail: 'pro' },
+              state: { plan: 'pro' },
             });
           }}
         >
@@ -100,7 +102,7 @@ const Pricing = withRouter(({ history }) => (
         </CallToAction>
       </PricingTier>
     </Flex>
-  </div>
+  </PricingWrapper>
 ));
 
 export default Pricing;

@@ -30,8 +30,8 @@ function App() {
       </Helmet>
       <Header />
       <Switch>
-        <CRoute exact path="/" component={Landing} />
-        <CRoute exact path="/pricing" component={Pricing} />
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/pricing" component={Pricing} />
         {/* <CRoute exact path="/signup" component={Subscribe} /> */}
         <CRoute exact path="/login" component={Login} />
         <CRoute exact path="/get-started" component={GetStarted} />
