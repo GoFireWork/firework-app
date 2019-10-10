@@ -1,11 +1,12 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Elements } from 'react-stripe-elements';
-import InjectedPaymentForm from './payment-form';
+import CheckoutForm from './payment-form';
 
-const Subscribe = () => (
+const Subscribe = withRouter(({ history }) => (
   <Elements>
-    <InjectedPaymentForm fontSize="15" />
+    <CheckoutForm plan={history.location.state.plan} fontSize="15" />
   </Elements>
-);
+));
 
 export default Subscribe;

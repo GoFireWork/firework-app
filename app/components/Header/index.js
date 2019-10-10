@@ -26,6 +26,9 @@ function Header() {
         <HeaderLink to="/">
           <FormattedMessage {...messages.home} />
         </HeaderLink>
+        <HeaderLink to="/pricing">
+          <FormattedMessage {...messages.pricing} />
+        </HeaderLink>
         <HeaderLink to="/get-started">
           <FormattedMessage {...messages.getStarted} />
         </HeaderLink>

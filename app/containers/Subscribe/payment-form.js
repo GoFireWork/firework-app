@@ -11,24 +11,28 @@ import './payment-form.css';
 import { Wrapper, ContentModal, Header } from './styled';
 
 const CheckoutForm = props => {
+  const { plan } = props;
   const handleSubmit = ev => {
-    console.log('inside handle');
     ev.preventDefault();
     if (props.stripe) {
       props.stripe.createToken().then(payload => {
-        console.log('[token]', payload);
-        fetch('https://firework.localtunnel.me/payment/charge', {
+        const email = 'john@gmail.com';
+        const stripeBody = Object.assign({}, payload, {
+          plan,
+          email,
+        });
+        fetch('https://fireworkss.localtunnel.me/subscribe', {
           headers: {
             'Content-Type': 'application/json',
           },
           method: 'POST',
-          body: JSON.stringify(payload),
+          body: JSON.stringify(stripeBody),
         })
           .then(res => {
-            console.log(res);
+            console.log('stripe', res);
           })
           .catch(res => {
-            console.log(res);
+            console.log('stripe', res);
           });
       });
     } else {
@@ -87,6 +91,7 @@ const CheckoutForm = props => {
 };
 
 CheckoutForm.propTypes = {
+  plan: PropTypes.string,
   stripe: PropTypes.object,
   fontSize: PropTypes.string,
 };
