@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Elements } from 'react-stripe-elements';
-import CheckoutForm from './payment-form';
+import CheckoutForm from './CheckoutForm';
 
 const Subscribe = withRouter(({ history }) => (
   <Elements>

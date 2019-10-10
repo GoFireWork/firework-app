@@ -6,22 +6,21 @@ import {
   CardExpiryElement,
   CardCVCElement,
 } from 'react-stripe-elements';
-import './payment-form.css';
+import './CheckoutForm.css';
 
 import { Wrapper, ContentModal, Header } from './styled';
 
 const CheckoutForm = props => {
-  const { plan } = props;
+  const { plan, email } = props;
   const handleSubmit = ev => {
     ev.preventDefault();
     if (props.stripe) {
       props.stripe.createToken().then(payload => {
-        const email = 'john@gmail.com';
         const stripeBody = Object.assign({}, payload, {
           plan,
           email,
         });
-        fetch('https://fireworkss.localtunnel.me/subscribe', {
+        fetch('https://firework.localtunnel.me/subscribe', {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -62,6 +61,10 @@ const CheckoutForm = props => {
       <Wrapper>
         <Header>Checkout</Header>
         <form onSubmit={handleSubmit}>
+          <label>
+            <span>Email</span>
+            <input className="field" placeholder="john@gofirework.com" />
+          </label>
           <label htmlFor="card-number">
             Card number
             <CardNumberElement
@@ -91,6 +94,7 @@ const CheckoutForm = props => {
 };
 
 CheckoutForm.propTypes = {
+  email: PropTypes.string,
   plan: PropTypes.string,
   stripe: PropTypes.object,
   fontSize: PropTypes.string,
