@@ -9,14 +9,16 @@
 import React, { Children } from 'react';
 import PropTypes from 'prop-types';
 
-import A from './A';
+import A, { Disabled } from './A';
 import StyledButton from './StyledButton';
 import Wrapper from './Wrapper';
 
 function Button(props) {
   // Render an anchor tag
-  let button = (
-    <A href={props.href} onClick={props.onClick}>
+  let button = props.disabled ? (
+    <Disabled> {Children.toArray(props.children)}</Disabled>
+  ) : (
+    <A href={props.href} onClick={props.onClick} {...props}>
       {Children.toArray(props.children)}
     </A>
   );
@@ -38,6 +40,7 @@ Button.propTypes = {
   href: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default Button;
