@@ -19,4 +19,8 @@ export default defineMessages({
     id: `${scope}.pricing`,
     defaultMessage: 'Pricing',
   },
+  login: {
+    id: `${scope}.login`,
+    defaultMessage: 'Login',
+  },
 });

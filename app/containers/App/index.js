@@ -9,7 +9,6 @@ import Login from 'containers/Login';
 import Subscribe from 'containers/Subscribe';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
-// import GetStarted from '../GetStarted';
 import SEOSettings from '../SEOSettings';
 
 import CRoute from './privateRoutes';
@@ -33,7 +32,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/pricing" component={Pricing} />
-        <CRoute exact path="/login" component={Login} />
+        <Route exact path="/login" component={Login} />
         <Route exact path="/seo" component={SEOSettings} />
         <CRoute exact path="/subscribe" component={Subscribe} />
         <Route path="" component={NotFoundPage} />

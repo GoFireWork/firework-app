@@ -60,7 +60,7 @@ const CheckoutForm = props => {
     },
   });
   return subSuccess ? (
-    <Redirect to="/get-started" />
+    <Redirect to="/seo" />
   ) : (
     <ContentModal>
       <Wrapper>

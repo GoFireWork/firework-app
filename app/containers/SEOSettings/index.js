@@ -5,14 +5,7 @@ import { Helmet } from 'react-helmet';
 import Button from '../../components/Button';
 import metaDescriptionImage from './metaDescription.png';
 
-import {
-  Wrapper,
-  Label,
-  Tips,
-  Title,
-  Content,
-  Input,
-} from './styled';
+import { Wrapper, Label, Tips, Title, Content, Input } from './styled';
 
 function SEOSettings() {
   const [title, setTitle] = useState('');
