@@ -2,5 +2,6 @@ import styled from 'styled-components';
 
 export default styled.div`
   display: flex;
-  background-color: #263238;
+  width: 90%;
+  justify-content: flex-end;
 `;

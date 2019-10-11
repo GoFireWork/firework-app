@@ -1,11 +1,11 @@
 {
   "boilerplate.components.Footer.author.message": "Made with love by {author}.",
   "boilerplate.components.Footer.license.message": "This project is licensed under the MIT license.",
-  "boilerplate.components.Footer.company.name": "FireWork",
   "boilerplate.components.Header.features": "Features",
   "boilerplate.components.Header.home": "Home",
+  "boilerplate.components.Header.brand": "FireWork",
+  "boilerplate.components.Header.seo": "SEO Settings",
   "boilerplate.components.Header.login": "Login",
-  "boilerplate.containers.Header.workpage": "WorkPage",
   "boilerplate.containers.FeaturePage.css.header": "Features",
   "boilerplate.containers.FeaturePage.css.message": "Next generation CSS",
   "boilerplate.containers.FeaturePage.feedback.header": "Instant feedback",

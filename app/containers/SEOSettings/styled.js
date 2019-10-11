@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     width: 60%;
+    // position: relative;
     margin: 30px auto;
     h3 {
       margin: 40px 0px 5px 0px;
@@ -44,8 +45,7 @@ export const Content = styled.div`
     margin: 0 0 0 0;
   }
 `;
-export const FooterButton = styled.div`
-  div {
-    margin: 1rem 0;
-  }
-`;
+
+export const Label = styled.label``;
+
+export const Input = styled.input``;

@@ -11,7 +11,7 @@ function Landing() {
     <div>
       <Hero color="white" bg="#013058" width="100%">
         <Heading fontSize={[5, 6, 7]}>FireWork</Heading>
-        <Subhead color="#969b9f">Automated SEO</Subhead>
+        <Subhead color="#969b9f">Automate Your SEO</Subhead>
         <Section width={1}>
           <Container>
             <Services>

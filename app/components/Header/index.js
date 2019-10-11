@@ -12,6 +12,7 @@ import saga from '../../containers/Login/saga';
 
 import NavBar from './NavBar';
 import HeaderLink from './HeaderLink';
+import NavLinks from './NavLinks';
 import messages from './messages';
 
 const key = 'user';
@@ -24,32 +25,23 @@ function Header() {
     <div>
       <NavBar>
         <HeaderLink to="/">
-          <FormattedMessage {...messages.home} />
+          <FormattedMessage {...messages.brand} />
         </HeaderLink>
-        <HeaderLink to="/pricing">
-          <FormattedMessage {...messages.pricing} />
-        </HeaderLink>
-        <HeaderLink to="/get-started">
-          <FormattedMessage {...messages.getStarted} />
-        </HeaderLink>
+        <NavLinks>
+          <HeaderLink to="/seo">
+            <FormattedMessage {...messages.seo} />
+          </HeaderLink>
+          <HeaderLink to="/pricing">
+            <FormattedMessage {...messages.pricing} />
+          </HeaderLink>
+          {/* <HeaderLink to="/get-started"> */}
+          {/*  <FormattedMessage {...messages.getStarted} /> */}
+          {/* </HeaderLink> */}
+        </NavLinks>
       </NavBar>
     </div>
   );
 }
-
-/* const mapStateToProps = state => ({
-  user: getUserDetails(state),
-  token: getToken(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  Logout: () => {
-    dispatch(setLogout());
-  },
-  setFetchingUser: () => {
-    dispatch(setFetchingUser());
-  },
-}); */
 
 const withConnect = connect(
   null,
