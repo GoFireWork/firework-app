@@ -13,6 +13,7 @@ export const initialState = {
   token: localStorage.getItem('token'),
   error: '',
   userDetails: {},
+  isLoggedIn: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -20,7 +21,10 @@ const reducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case LOGIN_SUCCESS:
-        draft.token = action.token;
+        // eslint-disable-next-line no-underscore-dangle
+        draft.token = action.user._token;
+        draft.isLoggedIn = true;
+        draft.userDetails = action.user;
         break;
       case LOGIN_FAILS:
         draft.error = action.error;
@@ -37,7 +41,9 @@ const reducer = (state = initialState, action) =>
         break;
       case LOGOUT_USER_SUCCESS:
         draft.token = '';
-        localStorage.removeItem('token');
+        draft.userDetails = {};
+        draft.isLoggedIn = false;
+        localStorage.removeItem('googleAccessToken');
     }
   });
 

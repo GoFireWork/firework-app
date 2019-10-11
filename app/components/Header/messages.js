@@ -23,4 +23,8 @@ export default defineMessages({
     id: `${scope}.login`,
     defaultMessage: 'Login',
   },
+  logout: {
+    id: `${scope}.logout`,
+    defaultMessage: 'Logout',
+  },
 });

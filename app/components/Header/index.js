@@ -1,15 +1,15 @@
 import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { FormattedMessage } from 'react-intl';
 
 import { useInjectReducer } from 'utils/injectReducer';
-import { useInjectSaga } from 'utils/injectSaga';
 
-import reducer from '../../containers/Login/reducer';
+import reducer from '../../containers/Auth/reducer';
 
-import saga from '../../containers/Login/saga';
-
+import { makeSelectIsLoggedIn, setLogout } from '../../containers/Auth/actions';
 import NavBar from './NavBar';
 import HeaderLink from './HeaderLink';
 import NavLinks from './NavLinks';
@@ -17,9 +17,9 @@ import messages from './messages';
 
 const key = 'user';
 
-function Header() {
+const Header = props => {
+  const { isLoggedIn, logout } = props;
   useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
 
   return (
     <div>
@@ -28,27 +28,49 @@ function Header() {
           <FormattedMessage {...messages.brand} />
         </HeaderLink>
         <NavLinks>
-          <HeaderLink to="/seo">
-            <FormattedMessage {...messages.seo} />
-          </HeaderLink>
-          <HeaderLink to="/pricing">
-            <FormattedMessage {...messages.pricing} />
-          </HeaderLink>
-          <HeaderLink to="/login">
-            <FormattedMessage {...messages.login} />
-          </HeaderLink>
-          {/* <HeaderLink to="/get-started"> */}
-          {/*  <FormattedMessage {...messages.getStarted} /> */}
-          {/* </HeaderLink> */}
+          {isLoggedIn ? (
+            <HeaderLink to="/seo">
+              <FormattedMessage {...messages.seo} />
+            </HeaderLink>
+          ) : (
+            <HeaderLink to="/pricing">
+              <FormattedMessage {...messages.pricing} />
+            </HeaderLink>
+          )}
+
+          {isLoggedIn ? (
+            <HeaderLink to="/" onClick={logout}>
+              <FormattedMessage {...messages.logout} />
+            </HeaderLink>
+          ) : (
+            <HeaderLink to="/login">
+              <FormattedMessage {...messages.login} />
+            </HeaderLink>
+          )}
         </NavLinks>
       </NavBar>
     </div>
   );
-}
+};
+
+Header.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  logout: PropTypes.func,
+};
+
+const mapStateToProps = createStructuredSelector({
+  isLoggedIn: makeSelectIsLoggedIn(),
+});
+
+export const mapDispatchToProps = dispatch => ({
+  logout: () => {
+    dispatch(setLogout());
+  },
+});
 
 const withConnect = connect(
-  null,
-  null,
+  mapStateToProps,
+  mapDispatchToProps(),
 );
 
 export default compose(

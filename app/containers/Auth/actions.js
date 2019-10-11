@@ -1,3 +1,5 @@
+import { createSelector } from 'reselect';
+
 import {
   LOGIN_SUCCESS,
   LOGIN_FAILS,
@@ -7,9 +9,24 @@ import {
   LOGOUT_USER_SUCCESS,
 } from './constants';
 
-export const onLoginSuccess = token => ({
+import { initialState } from './reducer';
+
+const selectUser = state => state.user || initialState;
+
+export const makeSelectIsLoggedIn = () =>
+  createSelector(
+    selectUser,
+    state => state.isLoggedIn,
+  );
+
+export const logout = () => {
+  localStorage.removeItem('googleAccessToken');
+  console.log(`Logging out`);
+};
+
+export const onLoginSuccess = user => ({
   type: LOGIN_SUCCESS,
-  token,
+  user,
 });
 
 export const OnLoginFails = error => ({

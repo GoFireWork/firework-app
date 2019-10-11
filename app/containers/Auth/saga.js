@@ -1,6 +1,7 @@
-/**
+/*
+/!**
  * Gets Github user's information
- */
+ *!/
 
 import { call, put, all, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
@@ -32,3 +33,4 @@ function* getUserDetails() {
 export default function* saga() {
   yield all([getUserDetails(), ProfileWatcherSaga()]);
 }
+*/
