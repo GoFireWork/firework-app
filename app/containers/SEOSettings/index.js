@@ -1,19 +1,63 @@
-import React, { useState } from 'react';
-
+import React, { memo, useEffect, useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 import { Helmet } from 'react-helmet';
 
 import Button from '../../components/Button';
-import metaDescriptionImage from './metaDescription.png';
 
-import { Wrapper, Label, Tips, Title, Content, Input } from './styled';
+import { Column, Wrapper, Input } from './styled';
+import { makeSelectCurrentUser } from '../App/selectors';
 
-function SEOSettings() {
+function SEOSettings(props) {
+  const { user } = props;
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  function saveData() {
-    console.log(`updating website data`);
-  }
+  // const getUserSettings = () => {
+  //   const userId = '1';
+  //   const apiURL = `https://firework.localtunnel.me/api/user/settings/${userId}`;
+  //   fetch(apiURL)
+  //     .then(res => res.json())
+  //     .then(res => {
+  //       console.log(`user: ${res.title}`);
+  //       this.setState({ title: res.title, description: res.description });
+  //     })
+  //     .catch(err => {
+  //       console.error(`user settings api error: ${err}`);
+  //     });
+  // };
+
+  // useEffect(() => {});
+
+  // async function saveData() {
+  //   console.log(`updating website data`);
+  //   const userSettings = { title, description };
+  //
+  //   try {
+  //     const apiURL = `https://firework.localtunnel.me/api/user/settings/update/${
+  //       user._id
+  //     }`;
+  //     const response = await fetch(apiURL, {
+  //       method: 'POST',
+  //       mode: 'no-cors', // no-cors, *cors, same-origin
+  //       // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+  //       // credentials: 'same-origin', // include, *same-origin, omit
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         // 'Content-Type': 'application/x-www-form-urlencoded',
+  //       },
+  //       // redirect: 'follow', // manual, *follow, error
+  //       // referrer: 'no-referrer', // no-referrer, *client
+  //       body: JSON.stringify(userSettings), // );
+  //     });
+  //     console.log(await response.json());
+  //   } catch (err) {
+  //     console.error(`update user settings api error: ${err}`);
+  //   }
+  // }
 
   return (
     <div>
@@ -21,73 +65,40 @@ function SEOSettings() {
         <title>FireWork - SEO Settings</title>
         <meta
           name="description"
-          content="FireWork Change your website title and description"
+          content="FireWork - Set your website title and description"
         />
       </Helmet>
-      <Wrapper>
-        <div>
-          <h2>SEO Settings</h2>
-          <h3>Your Website Title</h3>
-          <Label htmlFor="1">
-            Current
-            <Input id="1" type="radio" name="website-title" />
-          </Label>
-          <Label>
-            Use domain
-            <Input type="radio" name="website-title" />
-          </Label>
-          <Label>
-            Other
-            <Input type="radio" name="website-title" defaultChecked />
-          </Label>
-          <Label>
-            <Input
-              name="website-title-input"
-              onChange={e => setTitle(e.target.value)}
-              placeholder="New website title"
-            />
-          </Label>
-
-          <h3>Your Website Description</h3>
-          <Label>
-            Stick with Current
-            <Input type="radio" name="website-description" />
-          </Label>
-          <Label>
-            Other
-            <Input type="radio" name="website-description" />
-          </Label>
-          <Label>
-            New description
-            <Input
-              name="website-description-input"
-              onChange={e => setDescription(e.target.value)}
-              placeholder="Enter desired website description"
-              defaultChecked
-            />
-          </Label>
-          <Button style={{ float: 'left' }} positive onClick={saveData}>
-            Save
-          </Button>
-        </div>
-        <Tips>
-          <Title>
-            <h2>Tips</h2>
-          </Title>
-          <Content>
-            <h4>
-              Put your most important keyword in your title and description.
-            </h4>
-            <small>
-              With supporting text below as a natural lead-in to additional
-              content.
-            </small>
-          </Content>
-          <img src={metaDescriptionImage} alt="html meta-description example" />
-        </Tips>
-      </Wrapper>
+      <Container>
+        <Row>
+          <Col>1 of 2</Col>
+          <Col>2 of 2</Col>
+        </Row>
+        <Row>
+          <Col>1 of 3</Col>
+          <Col>2 of 3</Col>
+          <Col>3 of 3</Col>
+        </Row>
+      </Container>
     </div>
   );
 }
 
-export default SEOSettings;
+SEOSettings.propTypes = {
+  _id: PropTypes.object,
+};
+
+const mapStateToProps = createStructuredSelector({
+  user: makeSelectCurrentUser(),
+});
+
+export const mapDispatchToProps = dispatch => ({});
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(SEOSettings);

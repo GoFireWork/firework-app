@@ -10,15 +10,3 @@ export const Container = styled.div`
     width: 33%;
   }
 `;
-
-// export const PriceTier = styled.div`
-//   cursor: pointer;
-//   display: block;
-//   padding: 0px 5px;
-//   position: relative;
-//   background-color: #32325d;
-// `;
-
-export const PricingWrapper = styled.div`
-  height: 95vh;
-`;

@@ -10,9 +10,9 @@ import {
 
 // The initial state of the App
 export const initialState = {
-  token: localStorage.getItem('token'),
+  token: localStorage.getItem('googleAccessToken'),
   error: '',
-  userDetails: {},
+  user: {},
   isLoggedIn: false,
 };
 
@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) =>
         // eslint-disable-next-line no-underscore-dangle
         draft.token = action.user._token;
         draft.isLoggedIn = true;
-        draft.userDetails = action.user;
+        draft.user = action.user;
         break;
       case LOGIN_FAILS:
         draft.error = action.error;
@@ -33,7 +33,7 @@ const reducer = (state = initialState, action) =>
         draft.loading = true;
         break;
       case LOAD_USER_SUCCESS:
-        draft.userDetails = action.user;
+        draft.user = action.user;
         draft.loading = false;
         break;
       case LOAD_USER_ERROR:
@@ -41,7 +41,7 @@ const reducer = (state = initialState, action) =>
         break;
       case LOGOUT_USER_SUCCESS:
         draft.token = '';
-        draft.userDetails = {};
+        draft.user = {};
         draft.isLoggedIn = false;
         localStorage.removeItem('googleAccessToken');
     }

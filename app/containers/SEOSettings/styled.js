@@ -1,21 +1,15 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-   {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 60%;
-    // position: relative;
-    margin: 30px auto;
-    h3 {
-      margin: 40px 0px 5px 0px;
-    }
-    div {
-      input {
-        margin-top: 10px;
-        margin-right: 10px;
-      }
+  margin: 15px;
+
+  h3 {
+    margin: 40px 0px 5px 0px;
+  }
+  div {
+    input {
+      margin-top: 10px;
+      margin-right: 10px;
     }
   }
 `;
@@ -44,6 +38,20 @@ export const Content = styled.div`
   h4 {
     margin: 0 0 0 0;
   }
+`;
+
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
 `;
 
 export const Label = styled.label``;

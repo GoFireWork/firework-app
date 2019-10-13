@@ -9,10 +9,8 @@ import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/material.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './global.css';
-
 import App from 'containers/App';
 import LanguageProvider from 'containers/LanguageProvider';
 import { StripeProvider } from 'react-stripe-elements';
@@ -26,6 +24,10 @@ import configureStore from './configureStore';
 // Import i18n messages
 import { translationMessages } from './i18n';
 
+export const apiUrl =
+  process.env.NODE_ENV === 'production'
+    ? 'https://gofirework.com/api'
+    : 'https://firework.localtunnel.me/api';
 // Create redux store with history
 const initialState = {};
 const store = configureStore(initialState, history);
