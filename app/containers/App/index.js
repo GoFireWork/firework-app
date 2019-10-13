@@ -13,7 +13,6 @@ import SEOSettings from '../SEOSettings';
 
 import CRoute from './privateRoutes';
 
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
