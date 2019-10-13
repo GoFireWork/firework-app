@@ -18,7 +18,7 @@ const Login = props => {
     localStorage.setItem('googleAccessToken', accessToken);
     // eslint-disable-next-line no-underscore-dangle
     const googleUserId = thirdPartyAuthUser._profile.id;
-    const email = thirdPartyAuthUser._profile.email;
+    const { email } = thirdPartyAuthUser._profile;
     await props.onLoginSuccess(thirdPartyAuthUser);
     // Get our user id from DB based on googleUserId
 

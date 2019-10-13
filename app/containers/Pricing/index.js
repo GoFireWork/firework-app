@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import './styles.css';
+// import Button from "../../components/Button";
 
 const Pricing = withRouter(({ history }) => (
   <div>
@@ -30,6 +32,13 @@ const Pricing = withRouter(({ history }) => (
             <button
               type="button"
               className="btn btn-lg btn-block btn-outline-primary"
+              onClick={() => {
+                history.push({
+                  pathname: '/subscribe',
+                  state: { detail: 'free' },
+                  state: { plan: 'free' },
+                });
+              }}
             >
               Free
             </button>
@@ -49,9 +58,19 @@ const Pricing = withRouter(({ history }) => (
               <li>SEO Description optimization</li>
               <li>Priority email support</li>
             </ul>
-            <button type="button" className="btn btn-lg btn-block btn-primary">
-              Get started
-            </button>
+            <Button
+              type="button"
+              className="btn btn-lg btn-block btn-primary"
+              onClick={() => {
+                history.push({
+                  pathname: '/subscribe',
+                  state: { detail: 'basic' },
+                  state: { plan: 'basic' },
+                });
+              }}
+            >
+              Subscribe
+            </Button>
           </div>
         </div>
         <div className="card mb-4 box-shadow">
@@ -67,9 +86,19 @@ const Pricing = withRouter(({ history }) => (
               <li>SEO Title optimization</li>
               <li>SEO Description optimization</li>
             </ul>
-            <button type="button" className="btn btn-lg btn-block btn-primary">
-              Get started
-            </button>
+            <Button
+              type="button"
+              className="btn btn-lg btn-block btn-primary"
+              onClick={() => {
+                history.push({
+                  pathname: '/subscribe',
+                  state: { detail: 'pro' },
+                  state: { plan: 'pro' },
+                });
+              }}
+            >
+              Subscribe
+            </Button>
           </div>
         </div>
       </div>
