@@ -39,21 +39,3 @@ export const Content = styled.div`
     margin: 0 0 0 0;
   }
 `;
-
-export const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
-`;
-
-export const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-`;
-
-export const Label = styled.label``;
-
-export const Input = styled.input``;

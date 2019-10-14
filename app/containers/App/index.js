@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Landing from 'containers/Landing';
 import Pricing from 'containers/Pricing';
-import Login from 'containers/Auth';
+import Login from 'containers/User/Login';
 import Subscribe from 'containers/Subscribe';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';

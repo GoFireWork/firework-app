@@ -1,34 +1,43 @@
 import React, { memo, useEffect, useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, FormControl, InputGroup, Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Helmet } from 'react-helmet';
 
+import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+
 import Button from '../../components/Button';
 
-import { Column, Wrapper, Input } from './styled';
 import { makeSelectCurrentUser } from '../App/selectors';
+import reducer from './reducer';
+import saga from './saga';
+
+const key = 'seoSettings';
 
 function SEOSettings(props) {
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+
   const { user } = props;
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  // const getUserSettings = () => {
-  //   const userId = '1';
-  //   const apiURL = `https://firework.localtunnel.me/api/user/settings/${userId}`;
-  //   fetch(apiURL)
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       console.log(`user: ${res.title}`);
-  //       this.setState({ title: res.title, description: res.description });
-  //     })
-  //     .catch(err => {
-  //       console.error(`user settings api error: ${err}`);
-  //     });
-  // };
+  const getUserSettings = () => {
+    const userId = '1';
+    const apiURL = `https://firework.localtunnel.me/api/user/settings/${userId}`;
+    fetch(apiURL)
+      .then(res => res.json())
+      .then(res => {
+        console.log(`user: ${res.title}`);
+        this.setState({ title: res.title, description: res.description });
+      })
+      .catch(err => {
+        console.error(`user settings api error: ${err}`);
+      });
+  };
 
   // useEffect(() => {});
 
@@ -70,13 +79,28 @@ function SEOSettings(props) {
       </Helmet>
       <Container>
         <Row>
-          <Col>1 of 2</Col>
-          <Col>2 of 2</Col>
-        </Row>
-        <Row>
-          <Col>1 of 3</Col>
-          <Col>2 of 3</Col>
-          <Col>3 of 3</Col>
+          <Col>
+            <label htmlFor="basic-url">Your Website Title</label>
+            <InputGroup className="mb-3">
+              <FormControl
+                name="website-title-input"
+                onChange={e => setTitle(e.target.value)}
+                placeholder="title"
+                aria-describedby="basic-addon3"
+              />
+            </InputGroup>
+            <label htmlFor="basic-url">Your Website Description</label>
+            <InputGroup className="mb-3">
+              <FormControl
+                name="website-title-input"
+                onChange={e => setDescription(e.target.value)}
+                placeholder="description"
+                aria-describedby="basic-addon3"
+              />
+            </InputGroup>
+            <Button variant="outline-success">Success</Button>
+          </Col>
+          <Col>Tips</Col>
         </Row>
       </Container>
     </div>

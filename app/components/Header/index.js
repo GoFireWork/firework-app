@@ -7,9 +7,9 @@ import { FormattedMessage } from 'react-intl';
 
 import { useInjectReducer } from 'utils/injectReducer';
 
-import reducer from '../../containers/Auth/reducer';
+import reducer from '../../containers/User/reducer';
 
-import { makeSelectIsLoggedIn, setLogout } from '../../containers/Auth/actions';
+import { makeSelectIsLoggedIn, setLogout } from '../../containers/User/actions';
 import NavBar from './NavBar';
 import HeaderLink from './HeaderLink';
 import NavLinks from './NavLinks';
@@ -18,7 +18,7 @@ import messages from './messages';
 const key = 'user';
 
 const Header = props => {
-  const { isLoggedIn, logout } = props;
+  const { isLoggedIn, removeGoogleAccessToken } = props;
   useInjectReducer({ key, reducer });
 
   return (
@@ -39,7 +39,7 @@ const Header = props => {
           )}
 
           {isLoggedIn ? (
-            <HeaderLink to="/" onClick={logout}>
+            <HeaderLink to="/" onClick={removeGoogleAccessToken}>
               <FormattedMessage {...messages.logout} />
             </HeaderLink>
           ) : (
@@ -55,7 +55,7 @@ const Header = props => {
 
 Header.propTypes = {
   isLoggedIn: PropTypes.bool,
-  logout: PropTypes.func,
+  removeGoogleAccessToken: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({

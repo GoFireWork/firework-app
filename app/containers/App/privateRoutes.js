@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
-import { getToken } from '../Auth/reducer';
+import { getToken } from '../User/reducer';
 
 class CRoute extends React.Component {
   getExtractedJson = ({ component, cprivate, crole, actions, auth, ...rest }) =>

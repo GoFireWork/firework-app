@@ -8,37 +8,20 @@ import { push } from 'connected-react-router';
 
 import SocialLogin from './socialButton';
 import { LoginSection, LoginTitle, Loader, Wrapper } from './style';
-import { OnLoginFails, onLoginSuccess, createUserIfNew } from './actions';
+import { receiveGoogleUserError, receiveGoogleUser } from './actions';
 import LoaderSvg from './loaderSvg';
 
 const Login = props => {
-  const handleSocialLogin = async thirdPartyAuthUser => {
-    // eslint-disable-next-line no-underscore-dangle
-    const { accessToken } = thirdPartyAuthUser._token;
+  const handleSocialLogin = googleUser => {
+    const { accessToken } = googleUser._token;
     localStorage.setItem('googleAccessToken', accessToken);
-    // eslint-disable-next-line no-underscore-dangle
-    const googleUserId = thirdPartyAuthUser._profile.id;
-    const { email } = thirdPartyAuthUser._profile;
-    await props.onLoginSuccess(thirdPartyAuthUser);
-    // Get our user id from DB based on googleUserId
-
-    if (accessToken) {
-      const getQueryUrl = `https://firework.localtunnel.me/api/user/get/${googleUserId}`;
-      const createQueryUrl = `https://firework.localtunnel.me/api/user/create/${googleUserId}`;
-      const possibleNewUser = {
-        email,
-        thirdPartyAuthId: googleUserId,
-      };
-      const fireWorkUser = await fetch(createQueryUrl);
-      // const fireWorkUser = await fetch(queryUrl);
-      await createUserIfNew(thirdPartyAuthUser);
-      props.redirect('/seo');
-    }
+    props.receiveGoogleUser(googleUser);
+    props.redirect('/seo');
   };
 
-  const handleSocialLoginFailure = err => {
+  const handleSocialLoginError = err => {
     console.error(`social login failure ${err}`);
-    props.OnLoginFails(err);
+    props.receiveGoogleUserError(err);
   };
 
   return (
@@ -62,7 +45,7 @@ const Login = props => {
           appId="507607644140-bjhk2581t7an53m56h8n368thv3efhkh.apps.googleusercontent.com"
           redirect="/seo"
           onLoginSuccess={handleSocialLogin}
-          onLoginFailure={handleSocialLoginFailure}
+          onLoginFailure={handleSocialLoginError}
         >
           Login with Google
         </SocialLogin>
@@ -74,18 +57,18 @@ const Login = props => {
 Login.propTypes = {
   location: PropTypes.object,
   redirect: PropTypes.func,
-  onLoginSuccess: PropTypes.func,
-  OnLoginFails: PropTypes.func,
+  receiveGoogleUser: PropTypes.func,
+  receiveGoogleUserError: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({});
 
 const mapDispatchToProps = dispatch => ({
-  onLoginSuccess: token => {
-    dispatch(onLoginSuccess(token));
+  receiveGoogleUser: googleUser => {
+    dispatch(receiveGoogleUser(googleUser));
   },
-  OnLoginFails: error => {
-    dispatch(OnLoginFails(error));
+  receiveGoogleUserError: error => {
+    dispatch(receiveGoogleUserError(error));
   },
   redirect: bindActionCreators(push, dispatch),
   push,
