@@ -16,7 +16,7 @@ export const LoginSection = styled.div`
       padding: 7px 15px;
       background: #343434;
       border: 1px solid #343434;
-      color: #fff;
+      color: #fff !important;
       svg {
         width: 24px;
         margin-right: 10px;
@@ -26,11 +26,6 @@ export const LoginSection = styled.div`
       }
     }
   }
-`;
-export const LoginTitle = styled.h3`
-  font-size: 4.5rem;
-  margin: 0;
-  color: white;
 `;
 
 export const Wrapper = styled.div`

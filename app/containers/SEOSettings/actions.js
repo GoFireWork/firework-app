@@ -1,10 +1,14 @@
 import { createSelector } from 'reselect';
 
-import { RECEIVE_SEO_SETTINGS, RECEIVE_SEO_SETTINGS_ERROR } from './constants';
+import {
+  RECEIVE_SEO_SETTINGS,
+  RECEIVE_SEO_SETTINGS_ERROR,
+  SAVE_SEO_SETTINGS,
+} from './constants';
 
 import { initialState } from './reducer';
 
-const selectUser = state => state.seoSettings || initialState;
+const selectSEOSettings = state => state.seoSettings || initialState;
 
 export const receiveSEOSettingsError = error => ({
   type: RECEIVE_SEO_SETTINGS_ERROR,
@@ -16,8 +20,13 @@ export const receiveSEOSettings = seoSettings => ({
   seoSettings,
 });
 
+export const saveSEOSettings = seoSettings => ({
+  type: SAVE_SEO_SETTINGS,
+  seoSettings,
+});
+
 export const makeSelectSEOSettings = () =>
   createSelector(
-    selectUser,
-    state => state.isLoggedIn,
+    selectSEOSettings,
+    seoSettings => seoSettings.seoSettings,
   );

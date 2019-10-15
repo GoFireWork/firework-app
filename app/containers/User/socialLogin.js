@@ -4,19 +4,19 @@ import SocialLogin from 'react-social-login';
 
 import Button from '../../components/Button';
 
-const LoginButton = ({ children, triggerLogin, ...props }) => (
+const SocialLoginButton = ({ children, triggerLogin, ...props }) => (
   <Button onClick={triggerLogin} {...props}>
     {children}
   </Button>
 );
 
-LoginButton.propTypes = {
+SocialLoginButton.propTypes = {
   children: PropTypes.array,
   triggerLogin: PropTypes.func,
 };
 
-LoginButton.defaultProps = {
+SocialLoginButton.defaultProps = {
   children: [],
 };
 
-export default SocialLogin(LoginButton);
+export default SocialLogin(SocialLoginButton);

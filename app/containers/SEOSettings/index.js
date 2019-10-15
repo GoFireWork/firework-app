@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { Container, FormControl, InputGroup, Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -12,61 +12,24 @@ import { useInjectSaga } from 'utils/injectSaga';
 import Button from '../../components/Button';
 
 import { makeSelectCurrentUser } from '../App/selectors';
+import { saveSEOSettings } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
-const key = 'seoSettings';
+const key = 'seo';
 
 function SEOSettings(props) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  const { user } = props;
+  // const { user } = props;
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  const getUserSettings = () => {
-    const userId = '1';
-    const apiURL = `https://firework.localtunnel.me/api/user/settings/${userId}`;
-    fetch(apiURL)
-      .then(res => res.json())
-      .then(res => {
-        console.log(`user: ${res.title}`);
-        this.setState({ title: res.title, description: res.description });
-      })
-      .catch(err => {
-        console.error(`user settings api error: ${err}`);
-      });
-  };
-
-  // useEffect(() => {});
-
-  // async function saveData() {
-  //   console.log(`updating website data`);
-  //   const userSettings = { title, description };
-  //
-  //   try {
-  //     const apiURL = `https://firework.localtunnel.me/api/user/settings/update/${
-  //       user._id
-  //     }`;
-  //     const response = await fetch(apiURL, {
-  //       method: 'POST',
-  //       mode: 'no-cors', // no-cors, *cors, same-origin
-  //       // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-  //       // credentials: 'same-origin', // include, *same-origin, omit
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         // 'Content-Type': 'application/x-www-form-urlencoded',
-  //       },
-  //       // redirect: 'follow', // manual, *follow, error
-  //       // referrer: 'no-referrer', // no-referrer, *client
-  //       body: JSON.stringify(userSettings), // );
-  //     });
-  //     console.log(await response.json());
-  //   } catch (err) {
-  //     console.error(`update user settings api error: ${err}`);
-  //   }
-  // }
+  // const saveSettings = () => {
+  //   console.log(`saving settings: ${title} ${description}`);
+  //   saveSEOSettings({ title, description });
+  // };
 
   return (
     <div>
@@ -74,7 +37,7 @@ function SEOSettings(props) {
         <title>FireWork - SEO Settings</title>
         <meta
           name="description"
-          content="FireWork - Set your website title and description"
+          content="Set your website title and description"
         />
       </Helmet>
       <Container>
@@ -98,7 +61,14 @@ function SEOSettings(props) {
                 aria-describedby="basic-addon3"
               />
             </InputGroup>
-            <Button variant="outline-success">Success</Button>
+            <Button
+              onClick={() => {
+                props.saveSettings(title, description);
+              }}
+              variant="outline-success"
+            >
+              Save
+            </Button>
           </Col>
           <Col>Tips</Col>
         </Row>
@@ -109,13 +79,18 @@ function SEOSettings(props) {
 
 SEOSettings.propTypes = {
   _id: PropTypes.object,
+  saveSettings: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   user: makeSelectCurrentUser(),
 });
 
-export const mapDispatchToProps = dispatch => ({});
+export const mapDispatchToProps = dispatch => ({
+  saveSettings: (title, description) => {
+    dispatch(saveSEOSettings({ title, description }));
+  },
+});
 
 const withConnect = connect(
   mapStateToProps,

@@ -6,13 +6,14 @@ import { compose, bindActionCreators } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-react-router';
 
-import SocialLogin from './socialButton';
+import SocialLoginButton from './socialLogin';
 import { LoginSection, LoginTitle, Loader, Wrapper } from './style';
 import { receiveGoogleUserError, receiveGoogleUser } from './actions';
 import LoaderSvg from './loaderSvg';
 
 const Login = props => {
   const handleSocialLogin = googleUser => {
+    // eslint-disable-next-line no-underscore-dangle
     const { accessToken } = googleUser._token;
     localStorage.setItem('googleAccessToken', accessToken);
     props.receiveGoogleUser(googleUser);
@@ -39,8 +40,7 @@ const Login = props => {
         </Wrapper>
       )}
       <LoginSection>
-        <LoginTitle>Login with Google</LoginTitle>
-        <SocialLogin
+        <SocialLoginButton
           provider="google"
           appId="507607644140-bjhk2581t7an53m56h8n368thv3efhkh.apps.googleusercontent.com"
           redirect="/seo"
@@ -48,7 +48,7 @@ const Login = props => {
           onLoginFailure={handleSocialLoginError}
         >
           Login with Google
-        </SocialLogin>
+        </SocialLoginButton>
       </LoginSection>
     </div>
   );

@@ -1,5 +1,6 @@
 import produce from 'immer';
 import {
+  RECEIVE_USER,
   LOAD_USER_REQUEST,
   LOAD_USER_ERROR,
   LOAD_USER_SUCCESS,
@@ -13,6 +14,7 @@ export const initialState = {
   user: {},
   googleUser: {},
   isLoggedIn: false,
+  email: '',
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -24,6 +26,10 @@ const reducer = (state = initialState, action) =>
         draft.token = action.googleUser._token;
         draft.isLoggedIn = true;
         draft.googleUser = action.googleUser;
+        draft.email = action.googleUser._profile.email;
+        break;
+      case RECEIVE_USER:
+        draft.user = action.user;
         break;
       case LOAD_USER_REQUEST:
         draft.loading = true;
@@ -47,5 +53,3 @@ const reducer = (state = initialState, action) =>
 export default reducer;
 
 export const getToken = state => state.user.token;
-
-// export const getUserDetails = state => state.user.userDetails;

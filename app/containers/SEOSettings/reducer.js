@@ -1,8 +1,15 @@
 import produce from 'immer';
-import { RECEIVE_SEO_SETTINGS, RECEIVE_SEO_SETTINGS_ERROR } from './constants';
+import {
+  RECEIVE_SEO_SETTINGS,
+  RECEIVE_SEO_SETTINGS_ERROR,
+  SAVE_SEO_SETTINGS,
+} from './constants';
 
 export const initialState = {
-  seoSettings: {},
+  seoSettings: {
+    title: '',
+    description: '',
+  },
   error: '',
 };
 
@@ -11,7 +18,12 @@ const reducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case RECEIVE_SEO_SETTINGS:
-        draft.seoSettings = action.seoSettings;
+        draft.seoSettings.title = action.seoSettings.title;
+        draft.seoSettings.description = action.seoSettings.description;
+        break;
+      case SAVE_SEO_SETTINGS:
+        draft.seoSettings.title = action.seoSettings.title;
+        draft.seoSettings.description = action.seoSettings.description;
         break;
       case RECEIVE_SEO_SETTINGS_ERROR:
         draft.error = action.error;
@@ -20,5 +32,3 @@ const reducer = (state = initialState, action) =>
   });
 
 export default reducer;
-
-export const getSEOSettings = state => state.seoSettings.seoSettings;

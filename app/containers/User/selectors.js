@@ -15,5 +15,11 @@ const makeSelectUserId = () =>
     // eslint-disable-next-line no-underscore-dangle
     userState => userState._id,
   );
+const makeSelectGoogleId = () =>
+  createSelector(
+    selectUser,
+    // eslint-disable-next-line no-underscore-dangle
+    userState => userState.googleUser._profile.id,
+  );
 
-export { makeSelectUserId, makeSelectCurrentUser };
+export { makeSelectGoogleId, makeSelectUserId, makeSelectCurrentUser };
