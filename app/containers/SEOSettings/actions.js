@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 
 import {
+  FETCH_SEO_SETTINGS,
   RECEIVE_SEO_SETTINGS,
   RECEIVE_SEO_SETTINGS_ERROR,
   SAVE_SEO_SETTINGS,
@@ -23,6 +24,10 @@ export const receiveSEOSettings = seoSettings => ({
 export const saveSEOSettings = seoSettings => ({
   type: SAVE_SEO_SETTINGS,
   seoSettings,
+});
+
+export const fetchSEOSettings = () => ({
+  type: FETCH_SEO_SETTINGS,
 });
 
 export const makeSelectSEOSettings = () =>

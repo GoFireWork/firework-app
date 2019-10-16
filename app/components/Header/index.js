@@ -18,7 +18,7 @@ import messages from './messages';
 const key = 'user';
 
 const Header = props => {
-  const { isLoggedIn, removeGoogleAccessToken } = props;
+  const { isLoggedIn, logout } = props;
   useInjectReducer({ key, reducer });
 
   return (
@@ -39,7 +39,7 @@ const Header = props => {
           )}
 
           {isLoggedIn ? (
-            <HeaderLink to="/" onClick={removeGoogleAccessToken}>
+            <HeaderLink to="/" onClick={logout}>
               <FormattedMessage {...messages.logout} />
             </HeaderLink>
           ) : (
@@ -55,7 +55,7 @@ const Header = props => {
 
 Header.propTypes = {
   isLoggedIn: PropTypes.bool,
-  removeGoogleAccessToken: PropTypes.func,
+  logout: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
