@@ -17,6 +17,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 
 import Button from '../../components/Button';
+import H3 from '../../components/H3';
 
 import { makeSelectCurrentUser } from '../App/selectors';
 import {
@@ -37,8 +38,9 @@ function SEOSettings(props) {
   const [description, setDescription] = useState('');
 
   useEffect(() => {
-    fetchSEOSettings();
-  }, [fetchSEOSettings]);
+    // console.log(`props.fetchSEOSettings()`);
+    props.fetchSEOSettings();
+  });
 
   return (
     <div>
@@ -52,7 +54,8 @@ function SEOSettings(props) {
       <Container>
         <Row>
           <Col>
-            <label htmlFor="basic-url">Your Website Title</label>
+            <H3>Website Settings</H3>
+            <label htmlFor="basic-url">Title</label>
             <Alert variant="dark">{props.settings.title}</Alert>
             <InputGroup className="mb-3">
               <FormControl
@@ -62,7 +65,7 @@ function SEOSettings(props) {
                 aria-describedby="basic-addon3"
               />
             </InputGroup>
-            <label htmlFor="basic-url">Your Website Description</label>
+            <label htmlFor="basic-url">Meta Description</label>
             <Alert variant="dark">{props.settings.description}</Alert>
             <InputGroup className="mb-3">
               <FormControl
@@ -90,6 +93,7 @@ function SEOSettings(props) {
 
 SEOSettings.propTypes = {
   saveSettings: PropTypes.func,
+  fetchSEOSettings: PropTypes.func,
   settings: PropTypes.object,
 };
 
@@ -99,7 +103,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  fetchSettings: () => dispatch(fetchSEOSettings()),
+  fetchSEOSettings: () => dispatch(fetchSEOSettings()),
   saveSettings: (title, description) => {
     dispatch(saveSEOSettings({ title, description }));
   },

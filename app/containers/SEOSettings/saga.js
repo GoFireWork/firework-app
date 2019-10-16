@@ -11,37 +11,18 @@ import {
 } from 'containers/SEOSettings/actions';
 
 import request from 'utils/request';
-import {
-  makeSelectGoogleId,
-  makeSelectUserId,
-} from 'containers/User/selectors';
+import { makeSelectUserId } from 'containers/User/selectors';
+import apiUrl from '../../apiUrl';
 import { RECEIVE_GOOGLE_USER } from '../User/constants';
 import { receiveUser, receiveUserError } from '../User/actions';
 
-export function* getSEOSettings() {
-  console.log(`getSEOSettings`);
-  const userId = '5da5ea5ee2a493f125c571dc'; //yield select(makeSelectUserId());
-
-  try {
-    if (userId) {
-      const settingsUrl = `https://firework.localtunnel.me/api/user/${userId}`;
-      const user = yield call(request, settingsUrl);
-      console.log(`userSettings: ${user.settings}`);
-      yield put(receiveSEOSettings(user.settings));
-    }
-  } catch (err) {
-    yield put(receiveSEOSettingsError(err));
-  }
-}
-
 export function* getUser() {
-  console.log(`getting user`);
   try {
-    const googleId = yield select(makeSelectGoogleId());
-    const url = `https://firework.localtunnel.me/api/user/5da5ea5ee2a493f125c571dc`;
+    // const googleId = yield select(makeSelectGoogleId());
+    const url = `${apiUrl}user/5da5ea5ee2a493f125c571dc`;
     const user = yield call(request, url);
-    console.log(`user: ${user}`);
     yield put(receiveUser(user));
+    yield put(receiveSEOSettings(user.settings));
   } catch (err) {
     yield put(receiveUserError(err));
   }
@@ -49,16 +30,16 @@ export function* getUser() {
 
 export function* saveSEOSettings() {
   try {
-    console.log(`saveSEOSettings Saga`);
-    const settings = JSON.stringify(yield select(makeSelectSEOSettings()));
-    const url = `https://firework.localtunnel.me/api/user/settings/5da5ea5ee2a493f125c571dc`;
+    // console.log(`saveSEOSettings Saga`);
+    const settings = yield select(makeSelectSEOSettings());
+    const url = `${apiUrl}user/settings/5da5ea5ee2a493f125c571dc`;
     const options = {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: settings,
+      body: JSON.stringify(settings),
     };
     const user = yield call(request, url, options);
     yield put(receiveUser(user));
@@ -70,7 +51,7 @@ export function* saveSEOSettings() {
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 export function* fetchNewSettings() {
-  yield delay(2000);
+  yield delay(2000); //  wait for settings to be udpated in DB
   yield console.log(`fetching update user + settings`);
   yield getUser();
 }
@@ -81,5 +62,4 @@ export default function* seo() {
   yield takeEvery(SAVE_SEO_SETTINGS, saveSEOSettings);
   yield takeEvery(SAVE_SEO_SETTINGS, fetchNewSettings);
   yield takeEvery(RECEIVE_GOOGLE_USER, getUser);
-  yield takeEvery(RECEIVE_SEO_SETTINGS, getSEOSettings);
 }

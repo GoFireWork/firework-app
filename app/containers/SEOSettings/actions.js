@@ -16,14 +16,14 @@ export const receiveSEOSettingsError = error => ({
   error,
 });
 
-export const receiveSEOSettings = seoSettings => ({
+export const receiveSEOSettings = settings => ({
   type: RECEIVE_SEO_SETTINGS,
-  seoSettings,
+  settings,
 });
 
-export const saveSEOSettings = seoSettings => ({
+export const saveSEOSettings = settings => ({
   type: SAVE_SEO_SETTINGS,
-  seoSettings,
+  settings,
 });
 
 export const fetchSEOSettings = () => ({
@@ -33,5 +33,5 @@ export const fetchSEOSettings = () => ({
 export const makeSelectSEOSettings = () =>
   createSelector(
     selectSEOSettings,
-    seoSettings => seoSettings.seoSettings,
+    seoSettings => seoSettings.settings,
   );
