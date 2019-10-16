@@ -16,8 +16,10 @@ export const Image = styled.div`
 `;
 
 export const TextTitle = styled.div`
+  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   margin-top: 10px;
+  width: 15rem;
 `;
 
 export const Container = styled.div`
