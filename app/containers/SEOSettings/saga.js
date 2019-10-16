@@ -57,7 +57,7 @@ export function* fetchNewSettings() {
 }
 
 export default function* seo() {
-  yield console.log('seo saga');
+  // yield console.log('seo saga');
   yield takeEvery(FETCH_SEO_SETTINGS, getUser);
   yield takeEvery(SAVE_SEO_SETTINGS, saveSEOSettings);
   yield takeEvery(SAVE_SEO_SETTINGS, fetchNewSettings);

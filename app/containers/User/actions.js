@@ -39,7 +39,7 @@ export const setLogout = () => ({
 export const makeSelectIsLoggedIn = () =>
   createSelector(
     selectUser,
-    state => state.isLoggedIn,
+    userState => userState.isLoggedIn,
   );
 
 export const removeGoogleAccessToken = () => {
