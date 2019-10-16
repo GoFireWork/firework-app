@@ -1,8 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import './styles.css';
-// import Button from "../../components/Button";
 
 const Pricing = withRouter(({ history }) => (
   <div>
@@ -25,13 +24,18 @@ const Pricing = withRouter(({ history }) => (
               $0 <small className="text-muted">/ mo</small>
             </h1>
             <ul className="list-unstyled mt-3 mb-4">
-              <li> &lt; 1000 daily visits</li>
+              <li>&lt; 1000 daily visits</li>
               <li>SEO Title optimization</li>
               <li>SEO Description optimization</li>
+              <li>Email support</li>
             </ul>
-            <button
+            <Button
+              style={{
+                paddingTop: '.33rem',
+              }}
+              variant="outline-success"
               type="button"
-              className="btn btn-lg btn-block btn-outline-primary"
+              size="lg"
               onClick={() => {
                 history.push({
                   pathname: '/subscribe',
@@ -40,7 +44,7 @@ const Pricing = withRouter(({ history }) => (
               }}
             >
               Free
-            </button>
+            </Button>
           </div>
         </div>
         <div className="card mb-4 box-shadow">
@@ -52,14 +56,18 @@ const Pricing = withRouter(({ history }) => (
               $9.99 <small className="text-muted">/ mo</small>
             </h1>
             <ul className="list-unstyled mt-3 mb-4">
-              <li> &gt; 1000 daily visits (&lt; 5000)</li>
+              <li>&gt; 1000 daily visits (&lt; 5000)</li>
               <li>SEO Title optimization</li>
               <li>SEO Description optimization</li>
               <li>Priority email support</li>
             </ul>
             <Button
+              style={{
+                paddingTop: '.33rem',
+              }}
+              variant="success"
               type="button"
-              className="btn btn-lg btn-block btn-primary"
+              size="lg"
               onClick={() => {
                 history.push({
                   pathname: '/subscribe',
@@ -73,20 +81,25 @@ const Pricing = withRouter(({ history }) => (
         </div>
         <div className="card mb-4 box-shadow">
           <div className="card-header">
-            <h4 className="font-weight-normal">Pro</h4>
+            <h4 className="my-0 font-weight-normal">Pro</h4>
           </div>
           <div className="card-body">
             <h1 className="card-title pricing-card-title">
               $19.99 <small className="text-muted">/ mo</small>
             </h1>
             <ul className="list-unstyled mt-3 mb-4">
-              <li> &gt; 5000 daily visits</li>
+              <li>&gt; 5000 daily visits</li>
               <li>SEO Title optimization</li>
               <li>SEO Description optimization</li>
+              <li>Priority email support</li>
             </ul>
             <Button
+              style={{
+                paddingTop: '.33rem',
+              }}
+              variant="success"
               type="button"
-              className="btn btn-lg btn-block btn-primary"
+              size="lg"
               onClick={() => {
                 history.push({
                   pathname: '/subscribe',
