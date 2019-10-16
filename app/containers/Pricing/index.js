@@ -21,7 +21,7 @@ const Pricing = withRouter(({ history }) => (
           </div>
           <div className="card-body">
             <h1 className="card-title pricing-card-title">
-              $0 <small className="text-muted">/ mo</small>
+              $0<small className="text-muted">/mo</small>
             </h1>
             <ul className="list-unstyled mt-3 mb-4">
               <li>&lt; 1000 daily visits</li>
@@ -53,7 +53,7 @@ const Pricing = withRouter(({ history }) => (
           </div>
           <div className="card-body">
             <h1 className="card-title pricing-card-title">
-              $9.99 <small className="text-muted">/ mo</small>
+              $9.99<small className="text-muted">/mo</small>
             </h1>
             <ul className="list-unstyled mt-3 mb-4">
               <li>&gt; 1000 daily visits (&lt; 5000)</li>
@@ -85,7 +85,7 @@ const Pricing = withRouter(({ history }) => (
           </div>
           <div className="card-body">
             <h1 className="card-title pricing-card-title">
-              $19.99 <small className="text-muted">/ mo</small>
+              $19.99<small className="text-muted">/mo</small>
             </h1>
             <ul className="list-unstyled mt-3 mb-4">
               <li>&gt; 5000 daily visits</li>
