@@ -1,5 +1,5 @@
 import React from 'react';
-import { Hero, Section, Heading, Subhead } from 'react-landing-page';
+import { Hero, Section } from 'react-landing-page';
 
 import { Container, Services } from './styled';
 

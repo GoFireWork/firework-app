@@ -13,9 +13,9 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import PrivacyPolicy from 'containers/Privacy';
 import SEOSettings from '../SEOSettings';
+import TermsOfService from '../TermsOfService';
 
 import CRoute from './privateRoutes';
-
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
@@ -40,6 +40,7 @@ function App() {
         <Route exact path="/seo" component={SEOSettings} />
         <CRoute exact path="/subscribe" component={Subscribe} />
         <Route exact path="/privacy" component={PrivacyPolicy} />
+        <Route exact path="/termsofservice" component={TermsOfService} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

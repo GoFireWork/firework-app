@@ -48,7 +48,8 @@ const Header = props => {
               <FormattedMessage {...messages.login} />
             </HeaderLink>
           )}
-          <HeaderLink to="/privacytos">ToS & Privacy</HeaderLink>
+          <HeaderLink to="/privacy">Privacy</HeaderLink>
+          <HeaderLink to="/termsofservice">Terms</HeaderLink>
         </NavLinks>
       </NavBar>
     </div>
