@@ -52,10 +52,11 @@ function SEOSettings(props) {
       </Helmet>
       <Container>
         <Row>
-          <Col>
+          <Col lg="6">
             <H3>Website Settings</H3>
-            <label htmlFor="basic-url">Title</label>
+            <label htmlFor="basic-url">Current Title</label>
             <Alert variant="dark">{props.settings.title}</Alert>
+            <label htmlFor="basic-url">New Title</label>
             <InputGroup className="mb-3">
               <FormControl
                 name="website-title-input"
@@ -64,8 +65,9 @@ function SEOSettings(props) {
                 aria-describedby="basic-addon3"
               />
             </InputGroup>
-            <label htmlFor="basic-url">Meta Description</label>
+            <label htmlFor="basic-url">Current Meta Description</label>
             <Alert variant="dark">{props.settings.description}</Alert>
+            <label htmlFor="basic-url">New Meta Description</label>
             <InputGroup className="mb-3">
               <FormControl
                 name="website-title-input"
@@ -83,7 +85,7 @@ function SEOSettings(props) {
               Save
             </Button>
           </Col>
-          <Col>Tips</Col>
+          {/* <Col>Tips</Col> */}
         </Row>
       </Container>
     </div>

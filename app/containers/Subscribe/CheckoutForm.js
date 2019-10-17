@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+
 import {
   injectStripe,
   CardNumberElement,
@@ -8,6 +9,10 @@ import {
   CardCVCElement,
 } from 'react-stripe-elements';
 import './CheckoutForm.css';
+
+import apiUrl from '../../apiUrl';
+
+// import { receiveSubscriptionSuccessful } from './actions';
 
 import { Wrapper, ContentModal, Header } from './styled';
 
@@ -22,7 +27,8 @@ const CheckoutForm = props => {
           plan,
           email,
         });
-        fetch('https://gofirework.com/api/subscribe', {
+        const stripeUrl = `${apiUrl}subscribe`;
+        fetch(stripeUrl, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -31,6 +37,7 @@ const CheckoutForm = props => {
         })
           .then(res => {
             console.log('subscription successful', res);
+            // window.store.dispatch(receiveSubscriptionSuccessful());
             setSubSuccess(true);
           })
           .catch(res => {
@@ -45,7 +52,7 @@ const CheckoutForm = props => {
   const createOptions = (fontSize, padding) => ({
     style: {
       base: {
-        fontSize,
+        fontSize: '16px',
         color: '#424770',
         letterSpacing: '0.025em',
         fontFamily: 'Source Code Pro, monospace',

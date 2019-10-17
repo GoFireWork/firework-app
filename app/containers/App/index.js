@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 import 'react-notifications-component/dist/theme.css';
-// import ReactNotification from 'react-notifications-component';
+import ReactNotification from 'react-notifications-component';
 
 import Landing from 'containers/Landing';
 import Pricing from 'containers/Pricing';
@@ -27,7 +27,7 @@ const AppWrapper = styled.div`
 function App() {
   return (
     <AppWrapper>
-      {/*<ReactNotification />*/}
+      <ReactNotification />
       <Helmet titleTemplate="%s" defaultTitle="FireWork">
         <meta name="description" content="Change Me" />
       </Helmet>

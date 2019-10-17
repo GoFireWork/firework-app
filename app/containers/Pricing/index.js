@@ -8,9 +8,9 @@ const Pricing = withRouter(({ history }) => (
     <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <h1 className="display-4">Pricing</h1>
       <p className="lead">
-        Quickly build an effective pricing table for your potential customers
-        with this Bootstrap example. It&#39;s built with default Bootstrap
-        components and utilities with little customization.
+        We plan to release new features regularly. Subscribing at this price
+        ensures you this price for 12 months since the start of your
+        subscription.
       </p>
     </div>
     <div className="container">
@@ -25,6 +25,9 @@ const Pricing = withRouter(({ history }) => (
             </h1>
             <ul className="list-unstyled mt-3 mb-4">
               <li>&lt; 1000 daily visits</li>
+              <li>
+                <b>60 day trial</b>
+              </li>
               <li>SEO Title optimization</li>
               <li>SEO Description optimization</li>
               <li>Email support</li>
@@ -56,7 +59,10 @@ const Pricing = withRouter(({ history }) => (
               $9.99<small className="text-muted">/mo</small>
             </h1>
             <ul className="list-unstyled mt-3 mb-4">
-              <li>&gt; 1000 daily visits (&lt; 5000)</li>
+              <li>&gt; 1000 daily visits</li>
+              <li>
+                <b>60 day trial</b>
+              </li>
               <li>SEO Title optimization</li>
               <li>SEO Description optimization</li>
               <li>Priority email support</li>
@@ -89,6 +95,9 @@ const Pricing = withRouter(({ history }) => (
             </h1>
             <ul className="list-unstyled mt-3 mb-4">
               <li>&gt; 5000 daily visits</li>
+              <li>
+                <b>60 day trial</b>
+              </li>
               <li>SEO Title optimization</li>
               <li>SEO Description optimization</li>
               <li>Priority email support</li>
