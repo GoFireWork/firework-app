@@ -42,7 +42,7 @@ const Login = props => {
       <LoginSection>
         <SocialLoginButton
           provider="google"
-          appId="507607644140-bjhk2581t7an53m56h8n368thv3efhkh.apps.googleusercontent.com"
+          appId="835456421439-q7f6u0g5ee1f92bp7pt99g9pvuqu6335.apps.googleusercontent.com"
           redirect="/seo"
           onLoginSuccess={handleSocialLogin}
           onLoginFailure={handleSocialLoginError}
