@@ -11,6 +11,7 @@ import Login from 'containers/User/Login';
 import Subscribe from 'containers/Subscribe';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
+import PrivacyPolicy from 'containers/Privacy';
 import SEOSettings from '../SEOSettings';
 
 import CRoute from './privateRoutes';
@@ -38,6 +39,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/seo" component={SEOSettings} />
         <CRoute exact path="/subscribe" component={Subscribe} />
+        <Route exact path="/privacy" component={PrivacyPolicy} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

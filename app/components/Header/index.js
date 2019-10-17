@@ -14,6 +14,7 @@ import NavBar from './NavBar';
 import HeaderLink from './HeaderLink';
 import NavLinks from './NavLinks';
 import messages from './messages';
+import './styles.css';
 
 const key = 'user';
 
@@ -47,6 +48,7 @@ const Header = props => {
               <FormattedMessage {...messages.login} />
             </HeaderLink>
           )}
+          <HeaderLink to="/privacytos">ToS & Privacy</HeaderLink>
         </NavLinks>
       </NavBar>
     </div>

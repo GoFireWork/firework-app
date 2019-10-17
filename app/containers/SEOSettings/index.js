@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import {
   Alert,
+  Button,
   Container,
   FormControl,
   InputGroup,
@@ -16,7 +17,7 @@ import { Helmet } from 'react-helmet';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 
-import Button from '../../components/Button';
+// import Button from '../../components/Button';
 import H3 from '../../components/H3';
 
 import { makeSelectCurrentUser } from '../App/selectors';
@@ -53,7 +54,10 @@ function SEOSettings(props) {
       <Container>
         <Row>
           <Col lg="6">
-            <H3>Website Settings</H3>
+            <br />
+            <br />
+            <H3>Your Website Settings</H3>
+            <br />
             <label htmlFor="basic-url">Current Title</label>
             <Alert variant="dark">{props.settings.title}</Alert>
             <label htmlFor="basic-url">New Title</label>
@@ -65,6 +69,8 @@ function SEOSettings(props) {
                 aria-describedby="basic-addon3"
               />
             </InputGroup>
+            <br />
+            <br />
             <label htmlFor="basic-url">Current Meta Description</label>
             <Alert variant="dark">{props.settings.description}</Alert>
             <label htmlFor="basic-url">New Meta Description</label>
@@ -80,12 +86,11 @@ function SEOSettings(props) {
               onClick={() => {
                 props.saveSettings(title, description);
               }}
-              variant="outline-success"
+              variant="success"
             >
               Save
             </Button>
           </Col>
-          {/* <Col>Tips</Col> */}
         </Row>
       </Container>
     </div>

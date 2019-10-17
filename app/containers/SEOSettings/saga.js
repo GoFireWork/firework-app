@@ -30,7 +30,6 @@ export function* getUser() {
 
 export function* saveSEOSettings() {
   try {
-    // console.log(`saveSEOSettings Saga`);
     const settings = yield select(makeSelectSEOSettings());
     const url = `${apiUrl}user/settings/5da5ea5ee2a493f125c571dc`;
     const options = {
