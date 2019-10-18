@@ -7,7 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-react-router';
 
 import SocialLoginButton from './socialLogin';
-import { LoginSection, LoginTitle, Loader, Wrapper } from './style';
+import { LoginSection, Loader, Wrapper } from './style';
 import { receiveGoogleUserError, receiveGoogleUser } from './actions';
 import LoaderSvg from './loaderSvg';
 
@@ -42,7 +42,7 @@ const Login = props => {
       <LoginSection>
         <SocialLoginButton
           provider="google"
-          appId="835456421439-q7f6u0g5ee1f92bp7pt99g9pvuqu6335.apps.googleusercontent.com"
+          appId="407966847096-7kk6j7finjoav32eaivjh0459g54ivbs.apps.googleusercontent.com"
           redirect="/seo"
           onLoginSuccess={handleSocialLogin}
           onLoginFailure={handleSocialLoginError}
