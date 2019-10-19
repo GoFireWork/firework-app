@@ -2,13 +2,13 @@ import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
 import history from 'utils/history';
-import globalReducer from 'containers/App/reducer';
-import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import user from 'containers/User/reducer';
-import seoSettings from './containers/SEOSettings/reducer';
+import globalReducer from 'reducer/app';
+import languageProviderReducer from 'reducer/language';
+import user from 'reducer/user';
+import seoSettings from './reducer/seo';
 
 /**
- * Merges the main reducer with the router state and dynamically injected reducers
+ * Merges the main user with the router state and dynamically injected reducers
  */
 export default function createReducer(injectedReducers = {}) {
   return combineReducers({

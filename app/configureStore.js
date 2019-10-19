@@ -3,6 +3,7 @@ import { routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import thunk from 'redux-thunk';
 
+import rootSaga from 'saga';
 import createReducer from './reducers';
 
 export default function configureStore(initialState = {}, history) {
@@ -41,7 +42,6 @@ export default function configureStore(initialState = {}, history) {
   );
 
   // Extensions
-  store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry
 
@@ -52,6 +52,6 @@ export default function configureStore(initialState = {}, history) {
       store.replaceReducer(createReducer(store.injectedReducers));
     });
   }
-
+  sagaMiddleware.run(rootSaga);
   return store;
 }

@@ -28,7 +28,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 {{#if wantActionsAndReducer}}
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelect{{properCase name}} from './selectors';
-import reducer from './reducer';
+import user from './user';
 {{/if}}
 {{#if wantSaga}}
 import saga from './saga';
@@ -39,7 +39,7 @@ import messages from './messages';
 
 export function {{ properCase name }}() {
   {{#if wantActionsAndReducer}}
-  useInjectReducer({ key: '{{ camelCase name }}', reducer });
+  useInjectReducer({ key: '{{ camelCase name }}', user });
   {{/if}}
   {{#if wantSaga}}
   useInjectSaga({ key: '{{ camelCase name }}', saga });

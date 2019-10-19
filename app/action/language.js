@@ -1,4 +1,4 @@
-import { CHANGE_LOCALE } from './constants';
+import { CHANGE_LOCALE } from '../actionType/language';
 
 export function changeLocale(languageLocale) {
   return {

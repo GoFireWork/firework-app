@@ -1,29 +1,62 @@
-import React, { memo } from 'react';
+/* eslint-disable no-underscore-dangle */
+import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { compose, bindActionCreators } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-react-router';
-
+import { loginRequest, socialUserReceived } from 'action/user';
+import { authCheck } from '../../selector/auth';
 import SocialLoginButton from './socialLogin';
-import { LoginSection, LoginTitle, Loader, Wrapper } from './style';
-import { receiveGoogleUserError, receiveGoogleUser } from './actions';
+import './style.css';
+import { LoginSection, Loader, Wrapper } from './style';
 import LoaderSvg from './loaderSvg';
+import { makeSelectSocialEmail } from '../../selector/user';
 
 const Login = props => {
-  const handleSocialLogin = googleUser => {
+  const handleSocialLogin = socialUser => {
     // eslint-disable-next-line no-underscore-dangle
-    const { accessToken } = googleUser._token;
-    localStorage.setItem('googleAccessToken', accessToken);
-    props.receiveGoogleUser(googleUser);
-    props.redirect('/seo');
+    props.socialUserReceived({
+      email: socialUser._profile.email,
+    });
+    props.loginRequest({
+      email: socialUser._profile.email,
+      social: true,
+    });
+    // props.redirect('/seo');
   };
 
   const handleSocialLoginError = err => {
     console.error(`social login failure ${err}`);
-    props.receiveGoogleUserError(err);
   };
+
+  const [values, setValues] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleInputChange = e => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  };
+
+  const submitHandler = event => {
+    event.preventDefault();
+    props.loginRequest({
+      email: values.email,
+      password: values.password,
+    });
+  };
+
+  if (props.isAuthenticated) {
+    props.redirect('/seo');
+  }
+
+  if (!props.isAuthenticated && props.socialEmail) {
+    props.redirect('/signup');
+  }
 
   return (
     <div>
@@ -40,15 +73,81 @@ const Login = props => {
         </Wrapper>
       )}
       <LoginSection>
-        <SocialLoginButton
-          provider="google"
-          appId="507607644140-bjhk2581t7an53m56h8n368thv3efhkh.apps.googleusercontent.com"
-          redirect="/seo"
-          onLoginSuccess={handleSocialLogin}
-          onLoginFailure={handleSocialLoginError}
-        >
-          Login with Google
-        </SocialLoginButton>
+        <div className="container register-form">
+          <div className="form">
+            <form onSubmit={submitHandler}>
+              <div className="form-content">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Your Email *"
+                    name="email"
+                    value={values.email}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="row">
+                  <div className="form-group col-md-12">
+                    <input
+                      type="password"
+                      className="form-control"
+                      placeholder="Your Password *"
+                      name="password"
+                      value={values.password}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <button type="submit" className="btnSubmit align-self-center">
+                  Log In
+                </button>
+                <div className="row">
+                  <div className="form-group col-md-4">
+                    <SocialLoginButton
+                      provider="google"
+                      appId="507607644140-bjhk2581t7an53m56h8n368thv3efhkh.apps.googleusercontent.com"
+                      redirect="/seo"
+                      onLoginSuccess={handleSocialLogin}
+                      onLoginFailure={handleSocialLoginError}
+                    >
+                      Login with Google
+                    </SocialLoginButton>
+                  </div>
+                  <div className="form-group col-md-4">
+                    <SocialLoginButton
+                      provider="facebook"
+                      appId="406782833329790"
+                      redirect="/seo"
+                      onLoginSuccess={handleSocialLogin}
+                      onLoginFailure={handleSocialLoginError}
+                    >
+                      Login with Facebook
+                    </SocialLoginButton>
+                  </div>
+                  <div className="form-group col-md-4">
+                    <SocialLoginButton
+                      provider="amazon"
+                      appId="amzn1.application-oa2-client.9ccf20a1f3cf4730a7a83e56203869c7"
+                      redirect="/seo"
+                      onLoginSuccess={handleSocialLogin}
+                      onLoginFailure={handleSocialLoginError}
+                    >
+                      Login with Amazon
+                    </SocialLoginButton>
+                  </div>
+                  <div className="form-group col-md-12 addAccountButton">
+                    <Link to="/signup">
+                      <span>create an account</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </LoginSection>
     </div>
   );
@@ -57,18 +156,23 @@ const Login = props => {
 Login.propTypes = {
   location: PropTypes.object,
   redirect: PropTypes.func,
-  receiveGoogleUser: PropTypes.func,
-  receiveGoogleUserError: PropTypes.func,
+  loginRequest: PropTypes.func,
+  socialUserReceived: PropTypes.func,
+  isAuthenticated: PropTypes.bool,
+  socialEmail: PropTypes.string,
 };
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+  isAuthenticated: authCheck(),
+  socialEmail: makeSelectSocialEmail(),
+});
 
 const mapDispatchToProps = dispatch => ({
-  receiveGoogleUser: googleUser => {
-    dispatch(receiveGoogleUser(googleUser));
+  loginRequest: socialUser => {
+    dispatch(loginRequest(socialUser));
   },
-  receiveGoogleUserError: error => {
-    dispatch(receiveGoogleUserError(error));
+  socialUserReceived: email => {
+    dispatch(socialUserReceived(email));
   },
   redirect: bindActionCreators(push, dispatch),
   push,

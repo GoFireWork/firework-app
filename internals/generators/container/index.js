@@ -39,7 +39,7 @@ module.exports = {
       name: 'wantActionsAndReducer',
       default: true,
       message:
-        'Do you want an actions/constants/selectors/reducer tuple for this container?',
+        'Do you want an actions/constants/selectors/user tuple for this container?',
     },
     {
       type: 'confirm',
@@ -87,14 +87,14 @@ module.exports = {
       });
     }
 
-    // If they want actions and a reducer, generate actions.js, constants.js,
-    // reducer.js and the corresponding tests for actions and the reducer
+    // If they want actions and a user, generate user.js, user.js,
+    // user.jsd the corresponding tests for actions and the user
     if (data.wantActionsAndReducer) {
       // Actions
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/actions.js',
-        templateFile: './container/actions.js.hbs',
+        path: '../../app/containers/{{properCase name}}/user.js',
+        templateFile: './container/user.js.hbs',
         abortOnFail: true,
       });
       actions.push({
@@ -107,16 +107,16 @@ module.exports = {
       // Constants
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/constants.js',
-        templateFile: './container/constants.js.hbs',
+        path: '../../app/containers/{{properCase name}}/user.js',
+        templateFile: './container/user.js.hbs',
         abortOnFail: true,
       });
 
       // Selectors
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/selectors.js',
-        templateFile: './container/selectors.js.hbs',
+        path: '../../app/containers/{{properCase name}}/user.js',
+        templateFile: './container/user.js.hbs',
         abortOnFail: true,
       });
       actions.push({
@@ -130,14 +130,14 @@ module.exports = {
       // Reducer
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/reducer.js',
-        templateFile: './container/reducer.js.hbs',
+        path: '../../app/containers/{{properCase name}}/user',
+        templateFile: './container/user.jss',
         abortOnFail: true,
       });
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/tests/reducer.test.js',
-        templateFile: './container/reducer.test.js.hbs',
+        path: '../../app/containers/{{properCase name}}/tests/user.test.js',
+        templateFile: './container/user.test.js.hbs',
         abortOnFail: true,
       });
     }
@@ -146,8 +146,8 @@ module.exports = {
     if (data.wantSaga) {
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/saga.js',
-        templateFile: './container/saga.js.hbs',
+        path: '../../app/containers/{{properCase name}}/user.js',
+        templateFile: './container/user.js.hbs',
         abortOnFail: true,
       });
       actions.push({

@@ -5,21 +5,15 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { FormattedMessage } from 'react-intl';
 
-import { useInjectReducer } from 'utils/injectReducer';
-
-import reducer from '../../containers/User/reducer';
-
-import { makeSelectIsLoggedIn, setLogout } from '../../containers/User/actions';
+import { setLogout } from '../../action/user';
+import { authCheck } from '../../selector/auth';
 import NavBar from './NavBar';
 import HeaderLink from './HeaderLink';
 import NavLinks from './NavLinks';
 import messages from './messages';
 
-const key = 'user';
-
 const Header = props => {
-  const { isLoggedIn, logout } = props;
-  useInjectReducer({ key, reducer });
+  const { isAuthenticated, logout } = props;
 
   return (
     <div>
@@ -28,7 +22,7 @@ const Header = props => {
           <FormattedMessage {...messages.brand} />
         </HeaderLink>
         <NavLinks>
-          {isLoggedIn ? (
+          {isAuthenticated ? (
             <HeaderLink to="/seo">
               <FormattedMessage {...messages.seo} />
             </HeaderLink>
@@ -38,8 +32,8 @@ const Header = props => {
             </HeaderLink>
           )}
 
-          {isLoggedIn ? (
-            <HeaderLink to="/" onClick={logout}>
+          {isAuthenticated ? (
+            <HeaderLink to="/" type="button" onClick={logout}>
               <FormattedMessage {...messages.logout} />
             </HeaderLink>
           ) : (
@@ -54,12 +48,12 @@ const Header = props => {
 };
 
 Header.propTypes = {
-  isLoggedIn: PropTypes.bool,
+  isAuthenticated: PropTypes.bool,
   logout: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
-  isLoggedIn: makeSelectIsLoggedIn(),
+  isAuthenticated: authCheck(),
 });
 
 export const mapDispatchToProps = dispatch => ({
@@ -70,7 +64,7 @@ export const mapDispatchToProps = dispatch => ({
 
 const withConnect = connect(
   mapStateToProps,
-  mapDispatchToProps(),
+  mapDispatchToProps,
 );
 
 export default compose(

@@ -7,6 +7,7 @@ import ReactNotification from 'react-notifications-component';
 
 import Landing from 'containers/Landing';
 import Pricing from 'containers/Pricing';
+import SignUp from 'containers/User/SignUp';
 import Login from 'containers/User/Login';
 import Subscribe from 'containers/Subscribe';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -36,6 +37,7 @@ function App() {
         <Route exact path="/" component={Landing} />
         <Route exact path="/pricing" component={Pricing} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />
         <Route exact path="/seo" component={SEOSettings} />
         <CRoute exact path="/subscribe" component={Subscribe} />
         <Route path="" component={NotFoundPage} />

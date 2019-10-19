@@ -4,7 +4,7 @@ import {
   RECEIVE_SEO_SETTINGS,
   RECEIVE_SEO_SETTINGS_ERROR,
   SAVE_SEO_SETTINGS,
-} from './constants';
+} from '../actionType/seo';
 
 export const initialState = {
   settings: {
@@ -16,7 +16,7 @@ export const initialState = {
 };
 
 /* eslint-disable default-case, no-param-reassign */
-const reducer = (state = initialState, action) =>
+const seo = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case RECEIVE_SEO_SETTINGS:
@@ -37,4 +37,4 @@ const reducer = (state = initialState, action) =>
     }
   });
 
-export default reducer;
+export default seo;

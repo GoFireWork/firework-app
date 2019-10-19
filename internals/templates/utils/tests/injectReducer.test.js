@@ -35,7 +35,7 @@ describe('injectReducer decorator', () => {
     reducerInjectors.default.mockClear();
   });
 
-  it('should inject a given reducer', () => {
+  it('should inject a given user', () => {
     renderer.create(
       <Provider store={store}>
         <ComponentWithReducer />
@@ -85,7 +85,7 @@ describe('useInjectReducer hook', () => {
     };
   });
 
-  it('should inject a given reducer', () => {
+  it('should inject a given user', () => {
     render(
       <Provider store={store}>
         <ComponentWithReducer />

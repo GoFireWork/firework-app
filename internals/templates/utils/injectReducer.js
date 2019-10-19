@@ -5,10 +5,10 @@ import { ReactReduxContext } from 'react-redux';
 import getInjectors from './reducerInjectors';
 
 /**
- * Dynamically injects a reducer
+ * Dynamically injects a user
  *
- * @param {string} key A key of the reducer
- * @param {function} reducer A reducer that will be injected
+ * @param {string} key A key of the user
+ * @param {function} reducer A user that will be injected
  *
  */
 export default ({ key, reducer }) => WrappedComponent => {

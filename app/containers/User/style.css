@@ -1,0 +1,54 @@
+.note
+{
+  text-align: center;
+  height: 80px;
+  background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+  color: #fff;
+  font-weight: bold;
+  line-height: 80px;
+}
+.form-content
+{
+  padding: 5%;
+  text-align: center;
+  border: 1px solid #ced4da;
+  margin-bottom: 2%;
+  background: #aab7c4;
+}
+.form-control{
+  border-radius:1.5rem;
+}
+.btnSubmit
+{
+  border:none;
+  border-radius:1.5rem;
+  width: 20%;
+  cursor: pointer;
+  background: #0062cc;
+  color: #fff;
+}
+.passwordError {
+  color: red;
+}
+.form {
+  width: 60%;
+}
+.jrFyQD {
+  width: 100%;
+  text-align: center;
+  margin: 1em 0;
+}
+
+.addAccountButton>a {
+  color: #0062cc!important;
+  background: transparent!important;
+  border: 0!important;
+  text-align: center;
+}
+
+.addAccountButton>a span{
+  color: #0062cc!important;
+  background: transparent!important;
+  border: 0!important;
+  text-align: center;
+}

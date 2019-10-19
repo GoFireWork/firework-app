@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { initialState } from './reducer';
+import { initialState } from '../reducer/user';
 
 const selectUser = state => state.user || initialState;
 
@@ -19,7 +19,19 @@ const makeSelectGoogleId = () =>
   createSelector(
     selectUser,
     // eslint-disable-next-line no-underscore-dangle
-    userState => userState.googleUser._profile.id,
+    userState => userState.user.email,
   );
 
-export { makeSelectGoogleId, makeSelectUserId, makeSelectCurrentUser };
+const makeSelectSocialEmail = () =>
+  createSelector(
+    selectUser,
+    // eslint-disable-next-line no-underscore-dangle
+    userState => userState.socialEmail,
+  );
+
+export {
+  makeSelectGoogleId,
+  makeSelectUserId,
+  makeSelectCurrentUser,
+  makeSelectSocialEmail,
+};

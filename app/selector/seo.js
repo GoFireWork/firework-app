@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { initialState } from './reducer';
+import { initialState } from '../reducer/seo';
 
 const selectUser = state => state.user || initialState;
 

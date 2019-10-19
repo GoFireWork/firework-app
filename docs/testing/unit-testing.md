@@ -158,22 +158,22 @@ Imagine a navigation bar, this is what its folder might look like:
 ```
 NavBar          # Wrapping folder
 ├── index.js      # Actual component
-├── actions.js    # Actions
-├── constants.js  # Constants
-├── reducer.js    # Reducer
+├── user.js    # Actions
+├── user.js  # Constants
+├── user    # Reducer
 └── test               # Folder of tests
     ├── actions.test.js  # Actions tests
-    └── reducer.test.js  # Reducer tests
+    └── user.test.js  # Reducer tests
 ```
 
 This boilerplate uses Redux, partially because it turns our data flow into
 testable (pure) functions. Using the `NavBar` component above,
-let's see what testing the actions and the reducer would look like.
+let's see what testing the actions and the user would look like.
 
 This is what our `NavBar` actions look like:
 
 ```javascript
-// actions.js
+// user.js
 
 import { TOGGLE_NAV } from './constants';
 
@@ -182,12 +182,10 @@ export function toggleNav() {
 }
 ```
 
-with this reducer:
+with this user:
 
 ```javascript
-// reducer.js
-
-import { TOGGLE_NAV } from './constants';
+// user.jsmport { TOGGLE_NAV } from './constants';
 
 const initialState = {
   open: false,
@@ -207,20 +205,20 @@ function NavBarReducer(state = initialState, action) {
 export default NavBarReducer;
 ```
 
-Lets test the reducer first!
+Lets test the user first!
 
 ### Reducers
 
-First, we have to import the reducer and the action.
+First, we have to import the user and the action.
 
 ```javascript
-// reducer.test.js
+// user.test.js
 
-import NavBarReducer from '../reducer';
+import NavBarReducer from '../user';
 import { toggleNav } from '../actions';
 ```
 
-Then we `describe` the reducer, and add two tests: we check that it returns the
+Then we `describe` the user, and add two tests: we check that it returns the
 initial state and that it handles the `toggleNav` action.
 
 ```javascript
@@ -231,11 +229,11 @@ describe('NavBarReducer', () => {
 });
 ```
 
-Lets write the tests themselves! Since the reducer is just a function, we can
+Lets write the tests themselves! Since the user is just a function, we can
 call it like any other function and `expect` the output to equal something.
 
 To test that it returns the initial state, we call it with a state of `undefined`
-(the first argument), and an empty action (second argument). The reducer should
+(the first argument), and an empty action (second argument). The user should
 return the initial state of the `NavBar`, which is
 
 ```javascript
@@ -283,12 +281,12 @@ Jest is now the one responsible for tracking the definition of the initial state
 
 For more details on Jest snapshots, please view [Kent Dodd's feature video](https://egghead.io/lessons/javascript-use-jest-s-snapshot-testing-feature).
 
-This is how our finished reducer test might look like:
+This is how our finished user test might look like:
 
 ```javascript
-// NavBar.reducer.test.js
+// NavBar.user.test.js
 
-import NavBarReducer from '../NavBar.reducer';
+import NavBarReducer from '../NavBar.user';
 import { toggleNav } from '../NavBar.actions';
 
 describe('NavBarReducer', () => {

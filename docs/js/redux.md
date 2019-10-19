@@ -9,13 +9,13 @@ and/or watch this [free video tutorial series](https://egghead.io/series/getting
 See above! As minimal as Redux is, the challenge it addresses - app state
 management - is a complex topic that is too involved to properly discuss here.
 
-You can attach a dynamic reducer to a component whether it's a regular component
+You can attach a dynamic user to a component whether it's a regular component
 or a component that will be loaded dynamically. Dynamic means that it will be
 injected when the component it attached to is mounted. In your component's `index.js`:
 
 ```JS
 import injectReducer from 'utils/injectReducer';
-import reducer from './reducer';
+import user from './user';
 
 // ...
 
@@ -29,7 +29,7 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'yourcomponent', reducer });
+const withReducer = injectReducer({ key: 'yourcomponent', user });
 
 export default compose(
   // Put `withReducer` before `withConnect`

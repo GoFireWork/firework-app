@@ -88,13 +88,13 @@ But how do we include all of your react components into a single HTML file? That
 
 When your application is deployed on a server, browsers will load this HTML file. The Javascript files that webpack has included will be executed by the browser, thereby booting up your React application! It's magic really! No, not really, though it can certainly seem that way. Let's dissect this phenomenon to better know what's really going on.
 
-### `app/app.js`:
+### `app/language.js`:
 
 When you run `npm start`, a server will be launched in your terminal for development. You can then open [http://localhost:3000](http://localhost:3000) to access the server and see your app.
 
-Webpack requires an entry point to your application. Think of it as a door to your source code. In this boilerplate [`app/app.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/app.js) is that entry point. Webpack will access the entire app from this file, transpile the application into ES5 and create small chunks of transpiled code. Only the required chunks will be loaded in the browser so that you don't have to worry about the size of your application.
+Webpack requires an entry point to your application. Think of it as a door to your source code. In this boilerplate [`app/language.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/language.js) is that entry point. Webpack will access the entire app from this file, transpile the application into ES5 and create small chunks of transpiled code. Only the required chunks will be loaded in the browser so that you don't have to worry about the size of your application.
 
-`app/app.js` is one of the biggest files of the boilerplate. It contains all the global setup to make sure your app runs smoothly. Let's break its contents down:
+`app/language.js` is one of the biggest files of the boilerplate. It contains all the global setup to make sure your app runs smoothly. Let's break its contents down:
 
 - `@babel/polyfill` is imported. This enables cool stuff like generator functions, `Promise`s, etc.
 - A `history` object is created, which remembers all the browsing history for your app. This is used by the ConnectedRouter to know which pages your users visit. (Very useful for analytics, by the way.)
@@ -119,7 +119,7 @@ The Redux `store` is the heart of your application. Check out [`configureStore.j
 
 The store is created with the `createStore()` factory, which accepts three parameters.
 
-1.  **Root reducer:** A master reducer combining all your reducers.
+1.  **Root user:** A master user combining all your reducers.
 2.  **Initial state:** The initial state of your app as determined by your reducers.
 3.  **Middleware/enhancers:** Middlewares are third party libraries which intercept each redux action dispatched to the redux store and then... do stuff. For example, if you install the [`redux-logger`](https://github.com/evgenyrodionov/redux-logger) middleware, it will listen to all the actions being dispatched to the store and print previous and next state in the browser console. It's helpful to track what happens in your app.
 
@@ -189,24 +189,24 @@ Run `npm start` to launch the application. If you start browsing at [https://loc
 Together these two methods work like magic. When you type something in the textbox the following things will happen in a sequential manner:
 
 1.  `changeUsername()` will send text to the Redux store. The text can be accessed using `evt.target.value`. Here, `evt` is the `onChange` event emitted by pressing a key.
-2.  The Redux store will consult with its corresponding reducer, since a reducer knows what to do with the data.
-3.  When a reducer computes a new state tree, the store will update its state with the newly typed data.
+2.  The Redux store will consult with its corresponding user, since a user knows what to do with the data.
+3.  When a user computes a new state tree, the store will update its state with the newly typed data.
 4.  An update has occured in the state, therefore `mapStateToProps()` will be triggered and your react component will get the new data.
 5.  The updated data will be set as the `value` to your `<Input />`.
 
 _So you see, if you type something in the textbox, it will not be directly reflected in the DOM. It must pass through redux. Redux will update the state and return it to the component. It's the component's responsibility to show the updated data._
 
-#### `HomePage/saga.js`
+#### `HomePage/user.js`
 
 You must be wondering where does the list of repositories come from! Sagas are primarily used for making API calls. Sagas intercept actions dispatched to the Redux store. That means a saga will listen to the actions and if it finds an action of interest, it will do something.
 
 Sagas are nothing but ES6 [generator functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*). These functions act as normal functions, the only difference is that they can be "paused" and "resumed" at any point in time. `redux-saga` provides an intuitive, declarative API for managing asynchronous operations.
 
-Check out [`HomePage/saga.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/HomePage/saga.js). It can be confusing for untrained eyes. The API of `redux-saga` is self-descriptive once you've seen it, so let's go over what happens in there:
+Check out [`HomePage/user.js`](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/HomePage/user.js). It can be confusing for untrained eyes. The API of `redux-saga` is self-descriptive once you've seen it, so let's go over what happens in there:
 
 - You can `fork` a saga to send it to the background. That way, your code will not get blocked even when the saga is continuously running.
 - `takeLatest` is used for listening for a particular action. In this case, it will wait for a `LOAD_REPOS` action. Whenever you dispatch this action, the saga will understand that you want to fetch repos from github's public API by calling `getRepos()`.
-- If the API successfully returns some data, a `reposLoaded()` action will be dispatched which carries the data. When the Redux store receives this action, [a reducer](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/reducer.js) will set incoming data in the new state tree.
+- If the API successfully returns some data, a `reposLoaded()` action will be dispatched which carries the data. When the Redux store receives this action, [a user](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/user.jsill set incoming data in the new state tree.
 
 _An update has occurred!_ `mapStateToProps()` will be triggered. `<HomePage />` will receive the new data and rerender.
 

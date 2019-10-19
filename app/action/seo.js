@@ -5,9 +5,9 @@ import {
   RECEIVE_SEO_SETTINGS,
   RECEIVE_SEO_SETTINGS_ERROR,
   SAVE_SEO_SETTINGS,
-} from './constants';
+} from '../actionType/seo';
 
-import { initialState } from './reducer';
+import { initialState } from '../reducer/seo';
 
 const selectSEOSettings = state => state.seoSettings || initialState;
 

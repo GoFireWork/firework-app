@@ -3,9 +3,8 @@ import {
   makeSelectCurrentUser,
   makeSelectLoading,
   makeSelectError,
-  makeSelectRepos,
   makeSelectLocation,
-} from '../selectors';
+} from '../../../selector/app';
 
 describe('selectGlobal', () => {
   it('should select the global state', () => {
@@ -56,20 +55,7 @@ describe('makeSelectError', () => {
   });
 });
 
-describe('makeSelectRepos', () => {
-  const reposSelector = makeSelectRepos();
-  it('should select the repos', () => {
-    const repositories = [];
-    const mockedState = {
-      global: {
-        userData: {
-          repositories,
-        },
-      },
-    };
-    expect(reposSelector(mockedState)).toEqual(repositories);
-  });
-});
+describe('makeSelectRepos', () => {});
 
 describe('makeSelectLocation', () => {
   const locationStateSelector = makeSelectLocation();

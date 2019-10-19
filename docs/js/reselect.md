@@ -51,7 +51,7 @@ export default connect(
 
 ### Adding a new selector
 
-If you have a `selectors.js` file next to the reducer which's part of the state
+If you have a `user.js` file next to the user which's part of the state
 you want to select, add your selector to said file. If you don't have one yet,
 add a new one into your container folder and fill it with this boilerplate code:
 

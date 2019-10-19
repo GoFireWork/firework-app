@@ -10,7 +10,7 @@
     - [Full in-depth explanation](#full-in-depth-explanation)
 - [Local webfonts not working for development](#local-webfonts-not-working-for-development)
 - [Non-route containers](#non-route-containers)
-  - [Where do I put the reducer?](#where-do-i-put-the-reducer)
+  - [Where do I put the user?](#where-do-i-put-the-user)
 - [Use CI with bitbucket pipelines](#use-ci-with-bitbucket-pipelines)
 - [How to keep my project up-to-date with `react-boilerplate`?](#how-to-keep-my-project-up-to-date-with-react-boilerplate)
 - [How to turn off Webpack performance warnings after production build?](#how-to-turn-off-webpack-performance-warnings-after-production-build)
@@ -120,14 +120,14 @@ output: {
 > Note: Container will always be nested somewhere below a route. Even if there's dozens of components
 > in between, somewhere up the tree will be route. (maybe only "/", but still a route)
 
-### Where do I put the reducer?
+### Where do I put the user?
 
-While you can include the reducer statically in `reducers.js`, we don't recommend this as you lose
+While you can include the user statically in `reducers.js`, we don't recommend this as you lose
 the benefits of code splitting. Instead, add it as a _composed reducer_. This means that you
-pass actions onward to a second reducer from a lower-level route reducer like so:
+pass actions onward to a second user from a lower-level route user like so:
 
 ```JS
-// Main route reducer
+// Main route user
 
 function myReducerOfRoute(state, action) {
   switch (action.type) {
@@ -140,7 +140,7 @@ function myReducerOfRoute(state, action) {
 That way, you still get the code splitting at route level, but avoid having a static `combineReducers`
 call that includes all of them by default.
 
-_See [this and the following lesson](https://egghead.io/lessons/javascript-redux-reducer-composition-with-arrays?course=getting-started-with-redux) of the egghead.io Redux course for more information about reducer composition!_
+_See [this and the following lesson](https://egghead.io/lessons/javascript-redux-user-composition-with-arrays?course=getting-started-with-redux) of the egghead.io Redux course for more information about user composition!_
 
 ## Use CI with bitbucket pipelines
 

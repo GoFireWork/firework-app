@@ -13,27 +13,17 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Helmet } from 'react-helmet';
 
-import { useInjectReducer } from 'utils/injectReducer';
-import { useInjectSaga } from 'utils/injectSaga';
-
 import Button from '../../components/Button';
 import H3 from '../../components/H3';
 
-import { makeSelectCurrentUser } from '../App/selectors';
+import { makeSelectCurrentUser } from '../../selector/app';
 import {
   fetchSEOSettings,
   makeSelectSEOSettings,
   saveSEOSettings,
-} from './actions';
-import reducer from './reducer';
-import saga from './saga';
-
-const key = 'seo';
+} from '../../action/seo';
 
 function SEOSettings(props) {
-  useInjectReducer({ key, reducer });
-  useInjectSaga({ key, saga });
-
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 

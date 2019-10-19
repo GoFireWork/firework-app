@@ -1,6 +1,6 @@
 /*
  *
- * LanguageProvider reducer
+ * LanguageProvider user
  *
  */
 import produce from 'immer';
