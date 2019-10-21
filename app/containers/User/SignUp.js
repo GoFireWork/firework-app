@@ -15,7 +15,6 @@ import LoaderSvg from './loaderSvg';
 const SignUp = props => {
   const [values, setValues] = useState({
     email: '',
-    domain: '',
     password: '',
     confirmPassword: '',
   });
@@ -38,7 +37,6 @@ const SignUp = props => {
     }
     props.signupRequest({
       email: values.email,
-      domain: values.domain,
       password: values.password,
     });
   };
@@ -81,16 +79,6 @@ const SignUp = props => {
                     value={values.email}
                     onChange={handleInputChange}
                     required
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Domain Name"
-                    name="domain"
-                    value={values.domain}
-                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="row">

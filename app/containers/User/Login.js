@@ -140,7 +140,7 @@ const Login = props => {
                   </div>
                   <div className="form-group col-md-12 addAccountButton">
                     <Link to="/signup">
-                      <span>create an account</span>
+                      <span>Sign Up</span>
                     </Link>
                   </div>
                 </div>
