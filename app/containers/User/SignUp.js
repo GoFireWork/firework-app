@@ -1,13 +1,16 @@
+/* eslint-disable no-underscore-dangle */
 import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { compose, bindActionCreators } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { push } from 'connected-react-router';
-import { signupRequest } from 'action/user';
+import { signupRequest, socialUserReceived } from 'action/user';
 import { authCheck, checkError } from '../../selector/auth';
 import { makeSelectSocialEmail } from '../../selector/user';
+import SocialLoginButton from './socialLogin';
 import './style.css';
 import { LoginSection, Loader, Wrapper } from './style';
 import LoaderSvg from './loaderSvg';
@@ -39,6 +42,18 @@ const SignUp = props => {
       email: values.email,
       password: values.password,
     });
+  };
+
+  const handleSocialSignup = socialUser => {
+    // eslint-disable-next-line no-underscore-dangle
+    props.socialUserReceived({
+      email: socialUser._profile.email,
+    });
+    // props.redirect('/seo');
+  };
+
+  const handleSocialLoginError = err => {
+    console.error(`social login failure ${err}`);
   };
 
   if (props.isAuthenticated) {
@@ -110,6 +125,46 @@ const SignUp = props => {
                 <button type="submit" className="btnSubmit align-self-center">
                   Sign Up
                 </button>
+                <div className="row">
+                  <div className="form-group col-md-4">
+                    <SocialLoginButton
+                      provider="google"
+                      appId="507607644140-bjhk2581t7an53m56h8n368thv3efhkh.apps.googleusercontent.com"
+                      redirect="/seo"
+                      onLoginSuccess={handleSocialSignup}
+                      onLoginFailure={handleSocialLoginError}
+                    >
+                      Login with Google
+                    </SocialLoginButton>
+                  </div>
+                  <div className="form-group col-md-4">
+                    <SocialLoginButton
+                      provider="facebook"
+                      appId="406782833329790"
+                      redirect="/seo"
+                      onLoginSuccess={handleSocialSignup}
+                      onLoginFailure={handleSocialLoginError}
+                    >
+                      Login with Facebook
+                    </SocialLoginButton>
+                  </div>
+                  <div className="form-group col-md-4">
+                    <SocialLoginButton
+                      provider="amazon"
+                      appId="amzn1.application-oa2-client.9ccf20a1f3cf4730a7a83e56203869c7"
+                      redirect="/seo"
+                      onLoginSuccess={handleSocialSignup}
+                      onLoginFailure={handleSocialLoginError}
+                    >
+                      Login with Amazon
+                    </SocialLoginButton>
+                  </div>
+                  <div className="form-group col-md-12 addAccountButton">
+                    <Link to="/login">
+                      <span>Log In</span>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </form>
           </div>
@@ -123,6 +178,7 @@ SignUp.propTypes = {
   location: PropTypes.object,
   signupRequest: PropTypes.func,
   redirect: PropTypes.func,
+  socialUserReceived: PropTypes.func,
   errorMessage: PropTypes.string,
   isAuthenticated: PropTypes.bool,
   socialEmail: PropTypes.string,
@@ -137,6 +193,9 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   signupRequest: credentials => {
     dispatch(signupRequest(credentials));
+  },
+  socialUserReceived: email => {
+    dispatch(socialUserReceived(email));
   },
   redirect: bindActionCreators(push, dispatch),
   push,
