@@ -134,7 +134,7 @@ const SignUp = props => {
                       onLoginSuccess={handleSocialSignup}
                       onLoginFailure={handleSocialLoginError}
                     >
-                      Login with Google
+                      SignUp with Google
                     </SocialLoginButton>
                   </div>
                   <div className="form-group col-md-4">
@@ -145,7 +145,7 @@ const SignUp = props => {
                       onLoginSuccess={handleSocialSignup}
                       onLoginFailure={handleSocialLoginError}
                     >
-                      Login with Facebook
+                      SignUp with Facebook
                     </SocialLoginButton>
                   </div>
                   <div className="form-group col-md-4">
@@ -156,7 +156,7 @@ const SignUp = props => {
                       onLoginSuccess={handleSocialSignup}
                       onLoginFailure={handleSocialLoginError}
                     >
-                      Login with Amazon
+                      SignUp with Amazon
                     </SocialLoginButton>
                   </div>
                   <div className="form-group col-md-12 addAccountButton">
