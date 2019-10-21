@@ -88,12 +88,6 @@ module.exports = {
       templateFile: './language/translations-json.hbs',
       abortOnFail: true,
     });
-    actions.push({
-      type: 'modify',
-      path: '../../app/language.js',
-      pattern: /(import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),\n)(?!.*import\('intl\/locale-data\/jsonp\/[a-z]+\.js'\),)/g,
-      templateFile: './language/polyfill-intl-locale.hbs',
-    });
 
     if (!test) {
       actions.push(() => {
