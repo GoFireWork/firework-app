@@ -108,7 +108,7 @@ const Login = props => {
                   <div className="form-group col-md-4">
                     <SocialLoginButton
                       provider="google"
-                      appId="507607644140-bjhk2581t7an53m56h8n368thv3efhkh.apps.googleusercontent.com"
+                      appId="407966847096-7kk6j7finjoav32eaivjh0459g54ivbs.apps.googleusercontent.com"
                       redirect="/seo"
                       onLoginSuccess={handleSocialLogin}
                       onLoginFailure={handleSocialLoginError}
