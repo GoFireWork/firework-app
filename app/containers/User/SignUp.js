@@ -49,7 +49,7 @@ const SignUp = props => {
     props.socialUserReceived({
       email: socialUser._profile.email,
     });
-    // props.redirect('/seo');
+    props.redirect('/seo');
   };
 
   const handleSocialLoginError = err => {

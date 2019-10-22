@@ -1,8 +1,8 @@
 import axios from 'axios';
-import apiURL from '../apiUrl';
+import { apiUrl } from '../apiUrl';
 
 const baseRequest = axios.create({
-  apiURL,
+  apiUrl,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',

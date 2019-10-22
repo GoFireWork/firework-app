@@ -2,7 +2,7 @@ import { call, put, select } from 'redux-saga/effects';
 import { makeSelectSEOSettings, receiveSEOSettings } from 'action/seo';
 
 import { getRequest } from 'utils/request';
-import apiUrl from '../apiUrl';
+import { apiUrl } from '../apiUrl';
 import { receiveUser, receiveUserError } from '../action/user';
 
 export function* getUser() {

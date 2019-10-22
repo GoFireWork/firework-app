@@ -8,7 +8,7 @@ import {
 } from 'action/user';
 
 import { postRequest } from 'utils/request';
-import apiUrl from '../apiUrl';
+import { apiUrl } from '../apiUrl';
 
 export function* login(action) {
   try {

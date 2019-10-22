@@ -14,6 +14,7 @@ import messages from './messages';
 
 const Header = props => {
   const { isAuthenticated, logout } = props;
+  console.log(`header rerendering`);
   console.log(`isAuthenticated ${isAuthenticated}`);
 
   return (
