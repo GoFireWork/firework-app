@@ -28,7 +28,6 @@ function SEOSettings(props) {
   const [description, setDescription] = useState('');
 
   useEffect(() => {
-    // console.log(`props.fetchSEOSettings()`);
     props.fetchSEOSettings();
   });
 

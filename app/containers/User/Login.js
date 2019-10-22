@@ -25,7 +25,8 @@ const Login = props => {
       email: socialUser._profile.email,
       social: true,
     });
-    // props.redirect('/seo');
+    console.log(`redirecting`);
+    props.redirect('/seo');
   };
 
   const handleSocialLoginError = err => {
@@ -51,6 +52,7 @@ const Login = props => {
   };
 
   if (props.isAuthenticated) {
+    console.log(`redirecting to seo`);
     props.redirect('/seo');
   }
 
